@@ -6,9 +6,18 @@ import '../src/styles/base.css';
 
 type Theme = 'light' | 'dark';
 
+function storedTheme(): Theme {
+  try {
+    return localStorage.getItem('beachsports-docs-theme') === 'dark' ? 'dark' : 'light';
+  } catch {
+    return 'light';
+  }
+}
+
 const preview: Preview = {
   parameters: {
     layout: 'padded',
+    options: { storySort: { order: ['Comece aqui', 'Fundamentos', 'Referência'] } },
     viewport: {
       options: {
         mobile: {
@@ -43,7 +52,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    theme: 'light',
+    theme: storedTheme(),
     viewport: { value: 'mobile', isRotated: false },
   },
   decorators: [

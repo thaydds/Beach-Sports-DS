@@ -5,11 +5,14 @@ const output = new URL('../packages/components/docs/Tokens.mdx', import.meta.url
 const markdown = await readFile(source, 'utf8');
 await writeFile(
   output,
-  `import { Meta } from '@storybook/addon-docs/blocks';
+  `import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { TechnicalReference } from './ui/FoundationDocs';
 
-<Meta title="Fundamentos/Tokens" />
+<Meta title="Referência/Contrato dos tokens" />
 
 {/* Generated from docs/tokens.md. Do not edit. */}
-
-${markdown}`,
+<Unstyled>
+  <TechnicalReference markdown={${JSON.stringify(markdown)}} />
+</Unstyled>
+`,
 );

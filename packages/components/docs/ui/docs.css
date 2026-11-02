@@ -1,0 +1,22 @@
+@font-face {
+  font-family: Inter;
+  src: url('./assets/InterVariable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+.sbdocs.sbdocs-wrapper {
+  padding: 0;
+  background: var(--ds-color-bg-base);
+  color: var(--ds-color-text-primary);
+}
+
+.sbdocs.sbdocs-content {
+  max-width: none;
+  width: 100%;
+}
+
+.sbdocs-wrapper :is(h1, h2, h3, p, li, td, th) {
+  font-family: var(--ds-type-family-primary), sans-serif;
+}

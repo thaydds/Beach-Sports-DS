@@ -87,3 +87,14 @@ Não foi feita migração de major.
 
 - O push inicial executa CI. O workflow de Pages depende de `vars.DEPLOY_DOCS == 'true'`,
   para manter o deploy pendente até sua configuração e autorização.
+
+## Documentação visual
+
+- As páginas visuais são componentes internos de documentação em `packages/components/docs/ui`,
+  fora do entry publicado da biblioteca. Não implementam componentes de produto.
+- As amostras leem os artefatos públicos gerados pelo Style Dictionary. Nenhum JSON DTCG foi alterado.
+- A palette aparece somente como catálogo documental. Componentes de produto continuam restritos a papéis semânticos.
+- A fonte Inter variável é servida localmente, com a licença OFL original, apenas na documentação.
+- A composição editorial usa dimensões responsivas próprias da documentação; não cria tokens de produto.
+- O tracking das amostras converte percentuais canônicos em `em` para a renderização, sem modificar valores fonte.
+- A referência técnica continua gerada de `docs/tokens.md`; o catálogo visual deriva dos artefatos, sem segunda tabela manual.

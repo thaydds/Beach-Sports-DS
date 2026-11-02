@@ -55,7 +55,7 @@
       "executor": "nx:run-commands",
       "cache": true,
       "options": {
-        "command": "stylelint \"packages/components/src/**/*.css\" --allow-empty-input"
+        "command": "stylelint \"packages/components/{src,docs}/**/*.css\" --allow-empty-input"
       }
     },
     "docs-tokens": {
