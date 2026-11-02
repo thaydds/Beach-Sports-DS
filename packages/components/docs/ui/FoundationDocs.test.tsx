@@ -1,8 +1,13 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 
-import { Colors, Geometry, Overview, Typography } from './FoundationDocs';
+import { Colors, Geometry, Overview, TechnicalReference, Typography } from './FoundationDocs';
+
+const guide = readFileSync(resolve(import.meta.dirname, '../../../../docs/consumption.md'), 'utf8');
+const reference = readFileSync(resolve(import.meta.dirname, '../../../../docs/tokens.md'), 'utf8');
 
 vi.mock('storybook/preview-api', () => ({
   addons: { getChannel: () => ({ on: vi.fn(), off: vi.fn(), emit: vi.fn() }) },
@@ -73,12 +78,20 @@ describe('visual documentation', () => {
     expect(screen.getAllByText('Vento a favor')).toHaveLength(12);
   });
 
-  it.each([
+  const pages = [
     ['overview', Overview],
     ['colors', Colors],
     ['typography', Typography],
     ['geometry', Geometry],
-  ] as const)('has accessible documentation structure (%s)', async (_name, Page) => {
+    ['guide', () => <TechnicalReference markdown={guide} section="COMO USAR" />],
+    ['reference', () => <TechnicalReference markdown={reference} />],
+  ] as const;
+  it.each(
+    pages.flatMap(([name, Page]) =>
+      (['light', 'dark'] as const).map((theme) => ({ name, Page, theme })),
+    ),
+  )('has accessible structure ($name / $theme)', async ({ Page, theme }) => {
+    localStorage.setItem('beachsports-docs-theme', theme);
     render(
       <div>
         <Page />
@@ -88,5 +101,6 @@ describe('visual documentation', () => {
     expect(
       await axe(document.body, { rules: { 'color-contrast': { enabled: false } } }),
     ).toHaveNoViolations();
+    expect(document.documentElement).toHaveAttribute('data-theme', theme);
   });
 });

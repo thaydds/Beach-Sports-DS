@@ -5,3 +5,9 @@ coverage
 .nx
 pnpm-lock.yaml
 **/tokens/src/*.tokens.json
+
+# Preserve imported third-party skills and templates
+.agents/skills/
+
+playwright-report
+test-results

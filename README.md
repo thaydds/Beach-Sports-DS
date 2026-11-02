@@ -47,7 +47,7 @@ pnpm build:storybook      # site estático em packages/components/storybook-stat
 
 Alvos individuais: `nx run tokens:build`, `nx run components:test`, `nx run components:storybook`.
 
-CI roda `nx affected -t lint typecheck test build`. O workflow de deploy do Storybook fica preparado, mas só executa quando a variável de repositório `DEPLOY_DOCS` estiver definida como `true`, após a configuração do GitHub Pages.
+CI verifica formatação e roda `nx affected -t lint typecheck test build build-storybook test-browser`. O workflow separado do Storybook publica a documentação no GitHub Pages a cada push na `main` ou execução manual. Ele não versiona nem publica pacotes npm.
 
 ## Tokens
 
@@ -74,3 +74,58 @@ MIT © Thay Santos
 
 Decisões e limites desta rodada estão em [docs/decisions.md](docs/decisions.md).
 O código fica no GitHub; publicação dos pacotes e deploy da documentação são etapas posteriores.
+
+## Skills do projeto
+
+As skills [design-system](.agents/skills/design-system/SKILL.md) e
+[storybook-codex](.agents/skills/storybook-codex/SKILL.md) ficam em `.agents/skills/`,
+com referências, templates, licenças e versões upstream fixadas.
+Veja [a origem e as adaptações](.agents/skills/README.md).
+
+## Guia de consumo
+
+Leia [Como usar os tokens com CSS Modules](docs/consumption.md), também disponível
+no Storybook em **Comece aqui → Como usar**. O guia explica temas, fonte Inter,
+tipografia completa, foco e a cadeia de atualização a partir do Figma.
+
+## Testes no navegador
+
+```sh
+pnpm exec playwright install chromium # uma vez por máquina
+pnpm test:browser
+pnpm exec playwright show-report packages/components/playwright-report
+```
+
+O target constrói o Storybook e serve o resultado estático na porta 6007,
+separada do ambiente de desenvolvimento na 6006. A porta 6007 deve estar livre.
+Chromium verifica todas as seis páginas em Light/Dark e nos viewports desktop
+(1440×1000) e mobile (393×852), incluindo axe com contraste, overflow, busca,
+cópia, persistência do tema e foco por teclado.
+
+Capturas completas e resultados axe ficam no relatório HTML; falhas preservam
+traces e screenshots. O CI instala Chromium e publica esses artefatos por 14 dias.
+As capturas servem para revisão: não há comparação automática de pixels com
+baselines. As verificações automáticas de aparência cobrem overflow e foco;
+axe não substitui avaliação manual com tecnologias assistivas.
+
+Os testes de tokens comparam fontes DTCG com CSS, JS, declarações TypeScript e
+JSON; também conferem as tabelas de cores, geometria e tipografia da referência.
+O cache Nx considera os documentos usados nesses testes e no build do Storybook.
+
+## Releases independentes
+
+Tokens e componentes têm versões, tags e changelogs separados. Uma release de
+`tokens` não aumenta a versão de `components`, e vice-versa. A atualização da
+dependência de tokens em componentes é explícita quando necessária.
+
+Para simular a primeira release de cada pacote, sem publicar ou alterar arquivos:
+
+```sh
+pnpm release:plan:tokens 0.1.0 --first-release
+pnpm release:plan:components 0.1.0 --first-release
+```
+
+Depois da primeira release, omita `--first-release`; a simulação pode usar
+Conventional Commits ou receber `patch`, `minor`, `major` ou uma versão exata.
+O fluxo técnico completo está em [Releases e deploy da documentação](docs/releases.md).
+Ainda não há workflow de publicação npm automática nem autenticação npm validada.

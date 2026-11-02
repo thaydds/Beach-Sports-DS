@@ -9,9 +9,13 @@ export default tseslint.config(
   {
     ignores: [
       '**/node_modules/**',
+      // Vendored skill templates are reference material, not workspace source.
+      '.agents/skills/**',
       '**/dist/**',
       '**/storybook-static/**',
       '**/coverage/**',
+      '**/test-results/**',
+      '**/playwright-report/**',
       '.nx/**',
       '**/*.d.ts',
     ],

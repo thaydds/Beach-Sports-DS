@@ -40,3 +40,7 @@ pnpm-debug.log*
 
 # Generated from docs/tokens.md
 packages/components/docs/Tokens.mdx
+
+# Browser test artifacts
+playwright-report/
+test-results/

@@ -2,7 +2,7 @@
   "name": "beach-sports-ds",
   "version": "0.0.0",
   "private": true,
-  "description": "Beach Sports DS — design system monorepo (tokens + React components)",
+  "description": "Beach Sports DS \u2014 design system monorepo (tokens + React components)",
   "license": "MIT",
   "author": "Thay Santos",
   "homepage": "https://thaydds.github.io/Beach-Sports-DS/",
@@ -25,17 +25,23 @@
     "test": "nx run-many -t test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "affected": "nx affected -t lint,typecheck,test,build",
+    "affected": "nx affected -t lint,typecheck,test,build,build-storybook,test-browser",
     "prepare": "husky",
-    "lint:styles": "nx run components:lint-styles"
+    "lint:styles": "nx run components:lint-styles",
+    "test:browser": "nx run components:test-browser",
+    "release:plan:tokens": "nx release --projects=tokens --dry-run --skip-publish",
+    "release:plan:components": "nx release --projects=components --dry-run --skip-publish"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@commitlint/cli": "21.2.4",
     "@commitlint/config-conventional": "21.2.4",
     "@eslint/js": "9.39.5",
     "@nx/eslint": "21.6.11",
     "@nx/eslint-plugin": "21.6.11",
+    "@nx/js": "21.6.11",
     "@nx/storybook": "21.6.11",
+    "@playwright/test": "1.64.1",
     "@storybook/addon-a11y": "9.1.21",
     "@storybook/addon-docs": "9.1.21",
     "@storybook/react-vite": "9.1.21",
@@ -65,8 +71,7 @@
     "typescript-eslint": "8.72.1",
     "vite": "7.3.7",
     "vitest": "3.2.7",
-    "vitest-axe": "0.1.0",
-    "@nx/js": "21.6.11"
+    "vitest-axe": "0.1.0"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs,cjs}": [

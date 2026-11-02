@@ -9,7 +9,9 @@
       "!{projectRoot}/node_modules/**/*",
       "!{projectRoot}/**/*.tsbuildinfo",
       "!{projectRoot}/docs/Tokens.mdx",
-      "sharedGlobals"
+      "sharedGlobals",
+      "!{projectRoot}/test-results/**/*",
+      "!{projectRoot}/playwright-report/**/*"
     ],
     "production": [
       "default",
@@ -19,7 +21,9 @@
       "!{projectRoot}/**/*.mdx",
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/vitest.config.ts",
-      "!{projectRoot}/storybook-static/**/*"
+      "!{projectRoot}/storybook-static/**/*",
+      "!{projectRoot}/e2e/**/*",
+      "!{projectRoot}/playwright.config.ts"
     ],
     "sharedGlobals": [
       "{workspaceRoot}/tsconfig.base.json",
@@ -62,20 +66,21 @@
     "version": {
       "conventionalCommits": true,
       "preMajor": true,
-      "git": {
-        "commit": false,
-        "tag": false,
-        "push": false
-      }
+      "updateDependents": "never",
+      "preserveLocalDependencyProtocols": true,
+      "preserveMatchingDependencyRanges": true
     },
     "changelog": {
       "projectChangelogs": true,
-      "git": {
-        "commit": false,
-        "tag": false,
-        "push": false
-      }
+      "workspaceChangelog": false
     },
-    "projectsRelationship": "fixed"
+    "projectsRelationship": "independent",
+    "releaseTagPattern": "{projectName}@{version}",
+    "git": {
+      "commit": false,
+      "tag": false,
+      "push": false,
+      "stageChanges": false
+    }
   }
 }

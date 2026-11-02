@@ -18,7 +18,13 @@
       "options": {
         "command": "vitest run",
         "cwd": "{projectRoot}"
-      }
+      },
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/docs/tokens.md",
+        "{workspaceRoot}/docs/consumption.md"
+      ]
     },
     "lint": {
       "executor": "@nx/eslint:lint",
@@ -49,7 +55,17 @@
         "outputDir": "packages/components/storybook-static"
       },
       "outputs": ["{projectRoot}/storybook-static"],
-      "dependsOn": ["^build", "docs-tokens"]
+      "dependsOn": ["^build", "docs-tokens"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/docs/tokens.md",
+        "{workspaceRoot}/tools/docs-tokens.mjs",
+        "{workspaceRoot}/docs/consumption.md",
+        {
+          "env": "STORYBOOK_BASE_PATH"
+        }
+      ]
     },
     "lint-styles": {
       "executor": "nx:run-commands",
@@ -71,6 +87,14 @@
       "executor": "@nx/js:release-publish",
       "options": {
         "packageRoot": "packages/components"
+      }
+    },
+    "test-browser": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "command": "playwright test -c packages/components/playwright.config.ts"
       }
     }
   }

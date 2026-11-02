@@ -85,8 +85,9 @@ Não foi feita migração de major.
 - O Vite avisa que o entry de componentes está vazio, como esperado nesta rodada.
   O build de docs avisa sobre chunks maiores que 500 kB. Não bloqueiam os builds.
 
-- O push inicial executa CI. O workflow de Pages depende de `vars.DEPLOY_DOCS == 'true'`,
-  para manter o deploy pendente até sua configuração e autorização.
+- O push inicial executou CI. O bloqueio inicial de Pages por `DEPLOY_DOCS` foi
+  removido após a usuária informar que concluiu sua configuração; o workflow
+  agora pode executar em pushes na `main` e manualmente.
 
 ## Documentação visual
 
@@ -98,3 +99,34 @@ Não foi feita migração de major.
 - A composição editorial usa dimensões responsivas próprias da documentação; não cria tokens de produto.
 - O tracking das amostras converte percentuais canônicos em `em` para a renderização, sem modificar valores fonte.
 - A referência técnica continua gerada de `docs/tokens.md`; o catálogo visual deriva dos artefatos, sem segunda tabela manual.
+
+## Proteções da documentação
+
+- CI inclui formatação, build do Storybook e `components:test-browser` além dos
+  targets originais. A base de pushes usa o SHA anterior ao push inteiro.
+- Playwright com Chromium e axe verifica seis páginas em Light/Dark nos
+  viewports 1440×1000 e 393×852. O relatório inclui resultados axe e capturas;
+  falhas preservam traces. Não há comparação automática de pixels com baselines.
+- Busca, clipboard, texto longo, persistência de tema e foco são testados em
+  browser; a sincronização do manager é verificada em desktop. O browser roda
+  sobre o Storybook estático em uma porta separada (6007), sem reutilizar um
+  servidor preexistente.
+- Declarações TypeScript são verificadas por um consumidor compilado em memória;
+  CSS, JS e JSON são comparados com os valores resolvidos das fontes DTCG. As
+  tabelas técnicas de cores, geometria e tipografia também têm testes de paridade.
+- `docs/consumption.md` alimenta a página **Comece aqui / Como usar**. Documentos
+  usados nos testes e no build integram os inputs do Nx para invalidar caches.
+
+## Releases dos pacotes
+
+- Tokens e componentes usam `projectsRelationship: independent`, tags
+  `{projectName}@{version}` e changelog por pacote. A configuração inicial
+  `fixed` foi substituída para atender à cadência independente solicitada.
+- `updateDependents: never` impede incrementos automáticos no outro pacote.
+  Atualizações de contrato e da faixa de tokens nos componentes são explícitas.
+- Os scripts `release:plan:*` são simulações sem publicação. Ainda não existe
+  workflow npm automático; autenticação e primeira publicação continuam pendentes.
+- Pages é um fluxo de deploy da documentação, sem alterar versões dos pacotes.
+  `STORYBOOK_BASE_PATH` faz parte do hash de build para evitar reutilizar o
+  artefato local com base `/` no deploy com base `/Beach-Sports-DS/`.
+- Procedimento técnico em `docs/releases.md`.

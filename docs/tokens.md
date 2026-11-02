@@ -1,7 +1,10 @@
 # Beach Sports DS · Tokens
 
 Referência completa da camada de tokens do design system (arquivo Figma `volei-app (Copy)`, página `Design System`).
-Este documento é a fonte de verdade para implementação. Os JSONs em `../tokens/` são a versão legível por máquina.
+Os exports DTCG em `packages/tokens/src/` são a fonte de dados do build e do catálogo visual.
+Este documento registra as orientações de uso e as tabelas técnicas, conferidas contra os exports pelos testes.
+A cadeia de atualização é Figma → export DTCG → Style Dictionary → CSS/JS/TS/JSON.
+Não edite artefatos em `dist/`; mudanças de design devem voltar ao Figma e gerar novos exports.
 
 - Última extração: seção `Design System` (`node 0:1`), 14 seções, fundações `Cores` / `Fontes` / `Espaçamentos`.
 - Nomes de token usam `/` (Figma). Nomes de CSS usam `-` com prefixo `--ds-`.

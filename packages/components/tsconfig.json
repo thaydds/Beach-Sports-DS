@@ -4,5 +4,13 @@
     "noEmit": true,
     "types": ["node", "vite/client", "vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src", ".storybook/**/*", "vite.config.ts", "vitest.config.ts", "docs/ui/**/*"]
+  "include": [
+    "src",
+    ".storybook/**/*",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "docs/ui/**/*",
+    "e2e/**/*.ts",
+    "playwright.config.ts"
+  ]
 }

@@ -1,0 +1,16 @@
+{
+  "skills": [
+    {
+      "name": "design-system",
+      "repo": "rampstackco/claude-skills",
+      "path": "skills/design-system",
+      "commit": "9b90db257f7395fab76ff9bfcb808456709f6af3"
+    },
+    {
+      "name": "storybook-codex",
+      "repo": "ychampion/storybook-codex",
+      "path": "skills/storybook-codex",
+      "commit": "0f593367db125e0d902d780c6312e9b970459898"
+    }
+  ]
+}

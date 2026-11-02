@@ -21,6 +21,7 @@ import './docs.css';
 
 const links = {
   overview: `${import.meta.env.BASE_URL}?path=/docs/comece-aqui-visão-geral--docs`,
+  guide: `${import.meta.env.BASE_URL}?path=/docs/comece-aqui-como-usar--docs`,
   colors: `${import.meta.env.BASE_URL}?path=/docs/fundamentos-cores--docs`,
   typography: `${import.meta.env.BASE_URL}?path=/docs/fundamentos-tipografia--docs`,
   geometry: `${import.meta.env.BASE_URL}?path=/docs/fundamentos-espaço-e-geometria--docs`,
@@ -284,6 +285,10 @@ export function Overview() {
                 }
               </code>
             </pre>
+            <a href={links.guide} target="_top" className={styles.textLink}>
+              Aprender a usar no código <span aria-hidden="true">↗</span>
+            </a>
+            <br />
             <a href={links.reference} target="_top" className={styles.textLink}>
               Consultar o contrato técnico <span aria-hidden="true">↗</span>
             </a>
@@ -645,9 +650,15 @@ export function Geometry() {
   );
 }
 
-export function TechnicalReference({ markdown }: { markdown: string }) {
+export function TechnicalReference({
+  markdown,
+  section = 'REFERÊNCIA TÉCNICA',
+}: {
+  markdown: string;
+  section?: string;
+}) {
   return (
-    <DocShell section="REFERÊNCIA TÉCNICA">
+    <DocShell section={section}>
       {() => (
         <div className={styles.reference}>
           <Markdown

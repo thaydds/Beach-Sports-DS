@@ -18,7 +18,8 @@
       "options": {
         "command": "vitest run",
         "cwd": "{projectRoot}"
-      }
+      },
+      "inputs": ["default", "^production", "{workspaceRoot}/docs/tokens.md"]
     },
     "lint": {
       "executor": "@nx/eslint:lint",

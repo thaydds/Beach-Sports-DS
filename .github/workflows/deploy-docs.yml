@@ -20,8 +20,6 @@ env:
 jobs:
   build:
     name: Build Storybook
-    # Enable after GitHub Pages has been configured.
-    if: vars.DEPLOY_DOCS == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
