@@ -1,0 +1,77 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "components",
+  "projectType": "library",
+  "sourceRoot": "packages/components/src",
+  "tags": ["scope:components", "type:ui"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vite build && tsc -p tsconfig.lib.json --emitDeclarationOnly",
+        "cwd": "{projectRoot}"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest run",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["{projectRoot}/**/*.{ts,tsx}"]
+      },
+      "dependsOn": ["lint-styles"]
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit -p tsconfig.json",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "configDir": "packages/components/.storybook",
+        "port": 6006
+      },
+      "dependsOn": ["^build", "docs-tokens"]
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "options": {
+        "configDir": "packages/components/.storybook",
+        "outputDir": "packages/components/storybook-static"
+      },
+      "outputs": ["{projectRoot}/storybook-static"],
+      "dependsOn": ["^build", "docs-tokens"]
+    },
+    "lint-styles": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "command": "stylelint \"packages/components/src/**/*.css\" --allow-empty-input"
+      }
+    },
+    "docs-tokens": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["{workspaceRoot}/docs/tokens.md", "{workspaceRoot}/tools/docs-tokens.mjs"],
+      "outputs": ["{projectRoot}/docs/Tokens.mdx"],
+      "options": {
+        "command": "node tools/docs-tokens.mjs"
+      }
+    },
+    "nx-release-publish": {
+      "executor": "@nx/js:release-publish",
+      "options": {
+        "packageRoot": "packages/components"
+      }
+    }
+  }
+}

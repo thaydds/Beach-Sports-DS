@@ -1,0 +1,110 @@
+{
+  "$description": "Beach Sports DS · Camada 1 — primitivos de cor (69 variáveis, coleção 'palette'). Nenhum componente consome este arquivo diretamente.",
+  "palette": {
+    "blue": {
+      "$type": "color",
+      "$description": "Azul de ação (Light). Escala completa da marca.",
+      "50": { "$value": "#EAF1FB" },
+      "100": { "$value": "#D0E0F6" },
+      "200": { "$value": "#A3C1EC" },
+      "300": { "$value": "#6F9DDF" },
+      "400": { "$value": "#3D74CE" },
+      "500": { "$value": "#0047AB" },
+      "600": { "$value": "#003D93" },
+      "700": { "$value": "#003278" },
+      "800": { "$value": "#00265C" },
+      "900": { "$value": "#001A40" },
+      "950": { "$value": "#000F26" }
+    },
+    "sky": {
+      "$type": "color",
+      "$description": "Azul céu — links e informação.",
+      "50": { "$value": "#E6F7FD" },
+      "100": { "$value": "#C2ECFA" },
+      "200": { "$value": "#8ADCF5" },
+      "300": { "$value": "#4CC8EC" },
+      "400": { "$value": "#12B0E0" },
+      "500": { "$value": "#00A3E0" },
+      "600": { "$value": "#0085BA" },
+      "700": { "$value": "#006A96" },
+      "800": { "$value": "#004F71" },
+      "900": { "$value": "#00344C" }
+    },
+    "yellow": {
+      "$type": "color",
+      "$description": "Areia — ação principal no Dark e aviso.",
+      "50": { "$value": "#FEF9E7" },
+      "100": { "$value": "#FCF0BF" },
+      "200": { "$value": "#F8E27E" },
+      "300": { "$value": "#F5D24A" },
+      "400": { "$value": "#F1C40F" },
+      "500": { "$value": "#D9AE05" },
+      "600": { "$value": "#B08C04" },
+      "700": { "$value": "#866A03" },
+      "800": { "$value": "#5C4902" },
+      "900": { "$value": "#332901" }
+    },
+    "red": {
+      "$type": "color",
+      "$description": "Sol — erro e ação destrutiva.",
+      "50": { "$value": "#FDEDEB" },
+      "100": { "$value": "#FAD5D1" },
+      "200": { "$value": "#F4ABA3" },
+      "300": { "$value": "#EE8074" },
+      "350": { "$value": "#E56A5C" },
+      "400": { "$value": "#E74C3C" },
+      "500": { "$value": "#D33A2B" },
+      "600": { "$value": "#B02E22" },
+      "700": { "$value": "#8A241A" },
+      "800": { "$value": "#631912" },
+      "900": { "$value": "#3D0F0B" }
+    },
+    "neutral": {
+      "$type": "color",
+      "$description": "Cinza de texto e separadores.",
+      "0": { "$value": "#FFFFFF" },
+      "25": { "$value": "#F4F6FA" },
+      "50": { "$value": "#F6F8FB" },
+      "100": { "$value": "#ECF0F6" },
+      "200": { "$value": "#DCE2EC" },
+      "300": { "$value": "#C3CCDA" },
+      "400": { "$value": "#98A4B6" },
+      "500": { "$value": "#6E7A90" },
+      "600": { "$value": "#515D73" },
+      "700": { "$value": "#3B4557" },
+      "800": { "$value": "#262E3D" },
+      "900": { "$value": "#161C28" },
+      "950": { "$value": "#0B0F18" }
+    },
+    "navy": {
+      "$type": "color",
+      "$description": "Azul profundo — superfícies do Dark mode.",
+      "600": { "$value": "#2E4066" },
+      "700": { "$value": "#1E2C4A" },
+      "800": { "$value": "#142444" },
+      "900": { "$value": "#0D1830" },
+      "950": { "$value": "#071022" },
+      "975": { "$value": "#040B18" }
+    },
+    "slate": {
+      "$type": "color",
+      "$description": "Cinza azulado — texto secundário no Dark mode.",
+      "200": { "$value": "#C4CEDF" },
+      "400": { "$value": "#8B99B3" },
+      "600": { "$value": "#5A6784" }
+    },
+    "green": {
+      "$type": "color",
+      "$description": "Sucesso.",
+      "100": { "$value": "#DCF3E6" },
+      "400": { "$value": "#4FBF86" },
+      "500": { "$value": "#2E9E62" },
+      "900": { "$value": "#102E22" }
+    },
+    "support": {
+      "$type": "color",
+      "$description": "Preto de apoio. A opacidade da pintura é independente do token; não é um novo preto translúcido na palette.",
+      "stroke-1": { "$value": "#000000" }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Fundamentos/Visão geral" />
+
+# Fundamentos
+
+A palette define os primitivos; os 34 papéis semânticos escolhem seus valores em
+Light e Dark. Componentes consomem os papéis e as fundações por CSS custom properties.
+A referência completa é gerada da fonte `docs/tokens.md`, na página Tokens.
+
+## Tipografia e geometria
+
+Inter é a família do DS. Os 12 estilos nativos mantêm a escala do Figma.
+Espaço, tamanho, raio, traço e foco vêm dos tokens. Não arredonde os espaçamentos
+ópticos de 18 e 22. A família é declarada nos tokens; o consumidor fornece a fonte Inter.
+
+## Tema e acessibilidade
+
+Light é o padrão em `:root`; Dark usa `data-theme="dark"` no elemento raiz.
+Use a toolbar Tema nas stories. A base de revisão é 393×852.
+Foco visível e alvo mínimo de 44 são contratos dos futuros componentes.
+A validação automática de contraste será feita em navegador quando houver stories de UI.

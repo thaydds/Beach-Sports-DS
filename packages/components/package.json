@@ -1,0 +1,49 @@
+{
+  "name": "@beachsports/components",
+  "version": "0.1.0",
+  "description": "Beach Sports DS React components — React 19, TypeScript and CSS Modules",
+  "license": "MIT",
+  "author": "Thay Santos",
+  "homepage": "https://thaydds.github.io/Beach-Sports-DS/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thaydds/Beach-Sports-DS.git",
+    "directory": "packages/components"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@beachsports/tokens": "workspace:^"
+  },
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.lib.json --emitDeclarationOnly",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static"
+  }
+}

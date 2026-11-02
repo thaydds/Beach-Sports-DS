@@ -1,0 +1,73 @@
+{
+  "$description": "Beach Sports DS · Fundações geométricas — spacing (21), sizing (30 = size 14 + radius 9 + stroke 3 + target 2 + focus 2). Valores em px CSS de referência.",
+  "space": {
+    "$type": "dimension",
+    "$description": "Coleção 'spacing' no Figma. Zero é ausência de espaço. Não arredondar 18/22 para forçar grade 4/8.",
+    "0": { "$value": "0px", "$description": "Ajustes finos e relações próximas" },
+    "2": { "$value": "2px", "$description": "Ajustes finos e relações próximas" },
+    "4": { "$value": "4px", "$description": "Ajustes finos e relações próximas" },
+    "6": { "$value": "6px", "$description": "Ajustes finos e relações próximas" },
+    "8": { "$value": "8px", "$description": "Conteúdo interno e controles; gap padrão entre controles" },
+    "10": { "$value": "10px", "$description": "Conteúdo interno e controles" },
+    "12": { "$value": "12px", "$description": "Conteúdo interno e controles" },
+    "14": { "$value": "14px", "$description": "Conteúdo interno e controles" },
+    "16": { "$value": "16px", "$description": "Conteúdo interno e controles; padding do Card Compact" },
+    "18": { "$value": "18px", "$description": "Refinamento óptico · padding lateral do Button SM" },
+    "20": { "$value": "20px", "$description": "Padding de componentes e grupos" },
+    "22": { "$value": "22px", "$description": "Refinamento óptico · padding lateral do Button MD" },
+    "24": { "$value": "24px", "$description": "Padding de componentes e grupos; Card Comfortable" },
+    "28": { "$value": "28px", "$description": "Padding de componentes e grupos; padding lateral do Button LG" },
+    "32": { "$value": "32px", "$description": "Padding de componentes e grupos" },
+    "40": { "$value": "40px", "$description": "Separação ampla de regiões" },
+    "48": { "$value": "48px", "$description": "Separação ampla de regiões" },
+    "56": { "$value": "56px", "$description": "Separação ampla de regiões" },
+    "64": { "$value": "64px", "$description": "Separação ampla de regiões" },
+    "80": { "$value": "80px", "$description": "Separação ampla de regiões" },
+    "96": { "$value": "96px", "$description": "Separação ampla de regiões" }
+  },
+  "size": {
+    "$type": "dimension",
+    "$description": "Dimensão de uma caixa, não espaço vazio.",
+    "0": { "$value": "0px" },
+    "12": { "$value": "12px" },
+    "14": { "$value": "14px" },
+    "16": { "$value": "16px" },
+    "20": { "$value": "20px", "$description": "Caixa do Checkbox SM" },
+    "24": { "$value": "24px", "$description": "Caixa do Checkbox MD" },
+    "28": { "$value": "28px" },
+    "32": { "$value": "32px", "$description": "Avatar SM" },
+    "40": { "$value": "40px" },
+    "44": { "$value": "44px", "$description": "Altura do Button SM / Input SM" },
+    "48": { "$value": "48px", "$description": "Altura do Button MD / Input MD; Avatar MD" },
+    "56": { "$value": "56px", "$description": "Altura do Button LG / Input LG; Avatar LG" },
+    "64": { "$value": "64px" },
+    "72": { "$value": "72px", "$description": "Linha do RankingItem (Comfortable)" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "0": { "$value": "0px" },
+    "2": { "$value": "2px" },
+    "4": { "$value": "4px", "$description": "Checkbox" },
+    "8": { "$value": "8px" },
+    "12": { "$value": "12px", "$description": "Input" },
+    "16": { "$value": "16px", "$description": "Card, Chip de conteúdo, ScoreMatch" },
+    "20": { "$value": "20px" },
+    "24": { "$value": "24px" },
+    "pill": { "$value": "999px", "$description": "Button, Chip, Badge, Avatar" }
+  },
+  "stroke": {
+    "$type": "dimension",
+    "subtle": { "$value": "1px", "$description": "Contornos e separadores" },
+    "icon": { "$value": "1.5px", "$description": "Traço de ícones" },
+    "control": { "$value": "2px", "$description": "Partes funcionais e estados (borda de controle em hover, erro, selected)" }
+  },
+  "target": {
+    "$type": "dimension",
+    "min": { "$value": "44px", "$description": "Padrão mínimo confortável do DS (WCAG 2.2 AA exige 24px; o DS adota 44)" },
+    "comfortable": { "$value": "48px", "$description": "Alvo confortável do DS" }
+  },
+  "focus": {
+    "width": { "$type": "dimension", "$value": "2px", "$description": "Espessura do anel" },
+    "offset": { "$type": "dimension", "$value": "2px", "$description": "Afastamento externo; reservar 4px de folga, não altera padding" }
+  }
+}

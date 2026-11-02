@@ -1,0 +1,39 @@
+{
+  "name": "@beachsports/tokens",
+  "version": "0.1.0",
+  "description": "Beach Sports DS design tokens — DTCG sources compiled to CSS custom properties, TypeScript and JSON",
+  "license": "MIT",
+  "author": "Thay Santos",
+  "homepage": "https://thaydds.github.io/Beach-Sports-DS/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thaydds/Beach-Sports-DS.git",
+    "directory": "packages/tokens"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/ts/tokens.d.ts",
+      "import": "./dist/ts/tokens.js",
+      "default": "./dist/ts/tokens.js"
+    },
+    "./css/tokens.css": "./dist/css/tokens.css",
+    "./json/resolved.json": "./dist/json/resolved.json",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node build.ts && tsc -p tsconfig.lib.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
+}

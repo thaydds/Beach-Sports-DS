@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "packages/tokens/tsconfig.lib.json"
+    },
+    {
+      "path": "packages/components/tsconfig.lib.json"
+    }
+  ]
+}

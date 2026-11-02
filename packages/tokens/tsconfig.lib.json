@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rootDir": "dist/ts",
+    "outDir": "dist/ts",
+    "tsBuildInfoFile": "dist/tokens.tsbuildinfo"
+  },
+  "files": ["dist/ts/tokens.ts"],
+  "include": [],
+  "exclude": []
+}

@@ -1,0 +1,10 @@
+packages:
+  - 'packages/*'
+  - 'apps/*'
+
+onlyBuiltDependencies:
+  - esbuild
+  - nx
+  - sharp
+
+linkWorkspacePackages: true

@@ -1,0 +1,181 @@
+{
+  "$description": "Beach Sports DS · Tipografia — primitivos + 12 estilos nativos, com os sete campos por estilo. O tracking canônico é percentual; o px é derivado só para paridade com o Figma.",
+  "type": {
+    "family": {
+      "$type": "string",
+      "primary": { "$value": "Inter", "$description": "Única família do produto" }
+    },
+    "weight": {
+      "$type": "number",
+      "$description": "Peso numérico, sem unidade",
+      "400": { "$value": 400, "$description": "Regular — leitura" },
+      "500": { "$value": 500, "$description": "Medium — apoio documental, não é variante de produto" },
+      "600": { "$value": 600, "$description": "Semi Bold — hierarquia e controles" },
+      "700": { "$value": 700, "$description": "Bold — Display" }
+    },
+    "font-style": {
+      "$type": "string",
+      "regular": { "$value": "Regular" },
+      "medium": { "$value": "Medium" },
+      "semi-bold": { "$value": "Semi Bold" },
+      "bold": { "$value": "Bold" }
+    },
+    "size": {
+      "$type": "dimension",
+      "$description": "10, 11, 18 e 40 são apoio documental e NÃO ampliam a escala de produto.",
+      "10": { "$value": "10px", "$description": "Apoio documental" },
+      "11": { "$value": "11px", "$description": "Apoio documental" },
+      "12": { "$value": "12px" },
+      "13": { "$value": "13px" },
+      "14": { "$value": "14px" },
+      "15": { "$value": "15px" },
+      "16": { "$value": "16px" },
+      "17": { "$value": "17px" },
+      "18": { "$value": "18px", "$description": "Apoio documental" },
+      "20": { "$value": "20px" },
+      "24": { "$value": "24px" },
+      "32": { "$value": "32px" },
+      "40": { "$value": "40px", "$description": "Apoio documental" }
+    },
+    "tracking": {
+      "$type": "string",
+      "$description": "Percentual canônico do tamanho da fonte. É o valor de implementação.",
+      "negative-1": { "$value": "-1%", "$description": "Display/L = -0.01em" },
+      "negative-0-5": { "$value": "-0.5%", "$description": "Display/M = -0.005em" },
+      "negative-0-3": { "$value": "-0.3%", "$description": "Heading/L = -0.003em" },
+      "negative-0-2": { "$value": "-0.2%", "$description": "Heading/M = -0.002em" },
+      "0": { "$value": "0%", "$description": "Body/*, Label/M, Control/*" },
+      "2": { "$value": "2%", "$description": "Label/S = 0.02em" }
+    },
+    "tracking-px": {
+      "$type": "dimension",
+      "$description": "Equivalente em px, derivado do percentual. Existe só para vínculo nativo no Figma.",
+      "display-l": { "$value": "-0.32px" },
+      "display-m": { "$value": "-0.12px" },
+      "heading-l": { "$value": "-0.06px" },
+      "heading-m": { "$value": "-0.034px" },
+      "label-s": { "$value": "0.24px" },
+      "zero": { "$value": "0px" }
+    },
+    "display-l": {
+      "$description": "32/38 · 700 · -1%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.bold}" },
+      "font-weight": { "$type": "number", "$value": 700 },
+      "font-size": { "$type": "dimension", "$value": "32px" },
+      "line-height": { "$type": "dimension", "$value": "38px" },
+      "letter-spacing": { "$type": "dimension", "$value": "-0.32px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "-1%" }
+    },
+    "display-m": {
+      "$description": "24/30 · 700 · -0.5%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.bold}" },
+      "font-weight": { "$type": "number", "$value": 700 },
+      "font-size": { "$type": "dimension", "$value": "24px" },
+      "line-height": { "$type": "dimension", "$value": "30px" },
+      "letter-spacing": { "$type": "dimension", "$value": "-0.12px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "-0.5%" }
+    },
+    "heading-l": {
+      "$description": "20/26 · 600 · -0.3%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.semi-bold}" },
+      "font-weight": { "$type": "number", "$value": 600 },
+      "font-size": { "$type": "dimension", "$value": "20px" },
+      "line-height": { "$type": "dimension", "$value": "26px" },
+      "letter-spacing": { "$type": "dimension", "$value": "-0.06px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "-0.3%" }
+    },
+    "heading-m": {
+      "$description": "17/24 · 600 · -0.2%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.semi-bold}" },
+      "font-weight": { "$type": "number", "$value": 600 },
+      "font-size": { "$type": "dimension", "$value": "17px" },
+      "line-height": { "$type": "dimension", "$value": "24px" },
+      "letter-spacing": { "$type": "dimension", "$value": "-0.034px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "-0.2%" }
+    },
+    "body-l": {
+      "$description": "16/24 · 400 · 0%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.regular}" },
+      "font-weight": { "$type": "number", "$value": 400 },
+      "font-size": { "$type": "dimension", "$value": "16px" },
+      "line-height": { "$type": "dimension", "$value": "24px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "0%" }
+    },
+    "body-m": {
+      "$description": "15/22 · 400 · 0%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.regular}" },
+      "font-weight": { "$type": "number", "$value": 400 },
+      "font-size": { "$type": "dimension", "$value": "15px" },
+      "line-height": { "$type": "dimension", "$value": "22px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "0%" }
+    },
+    "body-s": {
+      "$description": "13/18 · 400 · 0%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.regular}" },
+      "font-weight": { "$type": "number", "$value": 400 },
+      "font-size": { "$type": "dimension", "$value": "13px" },
+      "line-height": { "$type": "dimension", "$value": "18px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "0%" }
+    },
+    "label-m": {
+      "$description": "14/20 · 600 · 0% · label global, não é o label do Button",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.semi-bold}" },
+      "font-weight": { "$type": "number", "$value": 600 },
+      "font-size": { "$type": "dimension", "$value": "14px" },
+      "line-height": { "$type": "dimension", "$value": "20px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "0%" }
+    },
+    "label-s": {
+      "$description": "12/16 · 600 · 2%",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.semi-bold}" },
+      "font-weight": { "$type": "number", "$value": 600 },
+      "font-size": { "$type": "dimension", "$value": "12px" },
+      "line-height": { "$type": "dimension", "$value": "16px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0.24px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "2%" }
+    },
+    "control-sm": {
+      "$description": "14/18 · 600 · 0% · label do Button SM",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.semi-bold}" },
+      "font-weight": { "$type": "number", "$value": 600 },
+      "font-size": { "$type": "dimension", "$value": "14px" },
+      "line-height": { "$type": "dimension", "$value": "18px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "0%" }
+    },
+    "control-md": {
+      "$description": "15/20 · 600 · 0% · label do Button MD",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.semi-bold}" },
+      "font-weight": { "$type": "number", "$value": 600 },
+      "font-size": { "$type": "dimension", "$value": "15px" },
+      "line-height": { "$type": "dimension", "$value": "20px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "0%" }
+    },
+    "control-lg": {
+      "$description": "16/22 · 600 · 0% · label do Button LG",
+      "font-family": { "$type": "string", "$value": "{type.family.primary}" },
+      "font-style": { "$type": "string", "$value": "{type.font-style.semi-bold}" },
+      "font-weight": { "$type": "number", "$value": 600 },
+      "font-size": { "$type": "dimension", "$value": "16px" },
+      "line-height": { "$type": "dimension", "$value": "22px" },
+      "letter-spacing": { "$type": "dimension", "$value": "0px" },
+      "letter-spacing-percent": { "$type": "string", "$value": "0%" }
+    }
+  }
+}

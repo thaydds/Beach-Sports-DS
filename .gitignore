@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+storybook-static/
+*.tsbuildinfo
+*.tgz
+
+# Nx
+.nx/
+.nx/cache/
+.nx/workspace-data/
+
+# Tool caches
+.cache/
+.vite/
+
+# Test output
+coverage/
+
+# Env
+.env
+.env.*
+!.env.example
+*.local
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Generated from docs/tokens.md
+packages/components/docs/Tokens.mdx

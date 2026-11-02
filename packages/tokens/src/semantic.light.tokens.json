@@ -1,0 +1,165 @@
+{
+  "$description": "Beach Sports DS · Camada 2 — papéis semânticos de cor, tema Light (34 papéis). Todos os valores são aliases da palette.",
+  "color": {
+    "bg": {
+      "$type": "color",
+      "base": {
+        "$value": "{palette.neutral.50}",
+        "$description": "Fundo de página"
+      },
+      "surface": {
+        "$value": "{palette.neutral.0}",
+        "$description": "Cards e controles"
+      },
+      "raised": {
+        "$value": "{palette.neutral.0}",
+        "$description": "Superfície elevada"
+      },
+      "sunken": {
+        "$value": "{palette.neutral.100}",
+        "$description": "Áreas rebaixadas"
+      }
+    },
+    "border": {
+      "$type": "color",
+      "subtle": {
+        "$value": "{palette.neutral.200}",
+        "$description": "Separador decorativo"
+      },
+      "strong": {
+        "$value": "{palette.neutral.300}",
+        "$description": "Contorno decorativo"
+      },
+      "control": {
+        "$value": "{color.text.secondary}",
+        "$description": "Limite funcional de controle (contraste 3:1)"
+      }
+    },
+    "text": {
+      "$type": "color",
+      "primary": {
+        "$value": "{palette.neutral.900}",
+        "$description": "Conteúdo principal"
+      },
+      "secondary": {
+        "$value": "{palette.neutral.600}",
+        "$description": "Descrição e apoio"
+      },
+      "muted": {
+        "$value": "{palette.neutral.600}",
+        "$description": "Metadados com contraste verificado (6,64:1). No Light resolve para o mesmo valor de text/secondary — não colapsar os dois tokens"
+      },
+      "inverse": {
+        "$value": "{palette.neutral.0}",
+        "$description": "Texto sobre superfície inversa"
+      }
+    },
+    "action": {
+      "$type": "color",
+      "default": {
+        "$value": "{palette.blue.500}",
+        "$description": "Ação principal"
+      },
+      "hover": {
+        "$value": "{palette.blue.600}",
+        "$description": "Ponteiro sobre ação"
+      },
+      "pressed": {
+        "$value": "{palette.blue.700}",
+        "$description": "Ação pressionada"
+      },
+      "fg": {
+        "$value": "{palette.neutral.0}",
+        "$description": "Conteúdo da ação"
+      },
+      "disabled-bg": {
+        "$value": "{palette.neutral.200}",
+        "$description": "Fundo inativo"
+      },
+      "disabled-fg": {
+        "$value": "{palette.neutral.400}",
+        "$description": "Conteúdo inativo"
+      }
+    },
+    "accent": {
+      "$type": "color",
+      "default": {
+        "$value": "{palette.yellow.400}",
+        "$description": "Destaque de marca"
+      },
+      "soft": {
+        "$value": "{palette.yellow.50}",
+        "$description": "Destaque suave e fundo do Avatar"
+      },
+      "fg": {
+        "$value": "{palette.neutral.900}",
+        "$description": "Conteúdo sobre accent/soft"
+      }
+    },
+    "link": {
+      "$type": "color",
+      "default": {
+        "$value": "{palette.sky.700}",
+        "$description": "Link com sublinhado/contexto (6,00:1)"
+      },
+      "hover": {
+        "$value": "{palette.sky.800}",
+        "$description": "Link sob ponteiro (8,91:1)"
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "ring": {
+        "$value": "{palette.blue.500}",
+        "$description": "Foco visível independente do estado"
+      }
+    },
+    "status": {
+      "$type": "color",
+      "success": {
+        "$value": "{palette.green.500}",
+        "$description": "Sucesso + ícone ou texto"
+      },
+      "success-soft": {
+        "$value": "{palette.green.100}",
+        "$description": "Fundo de sucesso"
+      },
+      "warning": {
+        "$value": "{palette.yellow.600}",
+        "$description": "Aviso + texto explícito"
+      },
+      "warning-soft": {
+        "$value": "{palette.yellow.100}",
+        "$description": "Fundo de aviso"
+      },
+      "danger": {
+        "$value": "{palette.red.500}",
+        "$description": "Ação destrutiva / erro"
+      },
+      "danger-hover": {
+        "$value": "{palette.red.600}",
+        "$description": "Hover destrutivo"
+      },
+      "danger-pressed": {
+        "$value": "{palette.red.700}",
+        "$description": "Pressed destrutivo"
+      },
+      "danger-soft": {
+        "$value": "{palette.red.50}",
+        "$description": "Fundo de erro"
+      },
+      "danger-fg": {
+        "$value": "{palette.neutral.0}",
+        "$description": "Conteúdo da ação destrutiva"
+      },
+      "info": {
+        "$value": "{palette.sky.500}",
+        "$description": "Informação + ícone/texto"
+      },
+      "info-soft": {
+        "$value": "{palette.sky.50}",
+        "$description": "Fundo informativo"
+      }
+    }
+  }
+}

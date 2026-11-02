@@ -1,0 +1,57 @@
+/*
+ * Global reset. The only place where raw lengths and global selectors are
+ * allowed — Stylelint relaxes `unit-disallowed-list` for this file.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--ds-color-bg-base);
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-type-family-primary), system-ui, sans-serif;
+  font-size: var(--ds-type-body-m-font-size);
+  line-height: var(--ds-type-body-m-line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+a {
+  color: var(--ds-color-link-default);
+}
+
+:focus-visible {
+  outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+  outline-offset: var(--ds-focus-offset);
+}

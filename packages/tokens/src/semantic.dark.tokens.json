@@ -1,0 +1,63 @@
+{
+  "$description": "Beach Sports DS · Camada 2 — papéis semânticos de cor, tema Dark (34 papéis). Mesmos caminhos do arquivo Light; muda apenas o destino dos aliases.",
+  "color": {
+    "bg": {
+      "$type": "color",
+      "base": { "$value": "{palette.navy.950}", "$description": "Fundo de página" },
+      "surface": { "$value": "{palette.navy.900}", "$description": "Cards e controles" },
+      "raised": { "$value": "{palette.navy.800}", "$description": "Superfície elevada" },
+      "sunken": { "$value": "{palette.navy.975}", "$description": "Áreas rebaixadas" }
+    },
+    "border": {
+      "$type": "color",
+      "subtle": { "$value": "{palette.navy.700}", "$description": "Separador decorativo" },
+      "strong": { "$value": "{palette.navy.600}", "$description": "Contorno decorativo" },
+      "control": { "$value": "{color.text.secondary}", "$description": "Limite funcional de controle (contraste 3:1)" }
+    },
+    "text": {
+      "$type": "color",
+      "primary": { "$value": "{palette.neutral.25}", "$description": "Conteúdo principal" },
+      "secondary": { "$value": "{palette.slate.200}", "$description": "Descrição e apoio" },
+      "muted": { "$value": "{palette.slate.400}", "$description": "Metadados" },
+      "inverse": { "$value": "{palette.navy.950}", "$description": "Texto sobre superfície inversa" }
+    },
+    "action": {
+      "$type": "color",
+      "default": { "$value": "{palette.yellow.400}", "$description": "Ação principal (amarelo no Dark)" },
+      "hover": { "$value": "{palette.yellow.300}", "$description": "Ponteiro sobre ação" },
+      "pressed": { "$value": "{palette.yellow.500}", "$description": "Ação pressionada" },
+      "fg": { "$value": "{palette.neutral.900}", "$description": "Conteúdo da ação (texto escuro sobre amarelo)" },
+      "disabled-bg": { "$value": "{palette.navy.700}", "$description": "Fundo inativo" },
+      "disabled-fg": { "$value": "{palette.slate.600}", "$description": "Conteúdo inativo" }
+    },
+    "accent": {
+      "$type": "color",
+      "default": { "$value": "{palette.blue.500}", "$description": "Destaque de marca" },
+      "soft": { "$value": "{palette.navy.800}", "$description": "Destaque suave e fundo do Avatar" },
+      "fg": { "$value": "{palette.neutral.0}", "$description": "Conteúdo sobre accent/soft" }
+    },
+    "link": {
+      "$type": "color",
+      "default": { "$value": "{palette.sky.300}", "$description": "Link com sublinhado/contexto" },
+      "hover": { "$value": "{palette.sky.200}", "$description": "Link sob ponteiro" }
+    },
+    "focus": {
+      "$type": "color",
+      "ring": { "$value": "{palette.sky.500}", "$description": "Foco visível independente do estado" }
+    },
+    "status": {
+      "$type": "color",
+      "success": { "$value": "{palette.green.400}", "$description": "Sucesso + ícone ou texto" },
+      "success-soft": { "$value": "{palette.green.900}", "$description": "Fundo de sucesso" },
+      "warning": { "$value": "{palette.yellow.400}", "$description": "Aviso + texto explícito" },
+      "warning-soft": { "$value": "{palette.yellow.900}", "$description": "Fundo de aviso" },
+      "danger": { "$value": "{palette.red.300}", "$description": "Ação destrutiva / erro" },
+      "danger-hover": { "$value": "{palette.red.200}", "$description": "Hover destrutivo" },
+      "danger-pressed": { "$value": "{palette.red.350}", "$description": "Pressed destrutivo" },
+      "danger-soft": { "$value": "{palette.red.900}", "$description": "Fundo de erro" },
+      "danger-fg": { "$value": "{palette.red.900}", "$description": "Conteúdo da ação destrutiva" },
+      "info": { "$value": "{palette.sky.300}", "$description": "Informação + ícone/texto" },
+      "info-soft": { "$value": "{palette.navy.800}", "$description": "Fundo informativo" }
+    }
+  }
+}

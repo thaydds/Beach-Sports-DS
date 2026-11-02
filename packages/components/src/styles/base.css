@@ -1,0 +1,24 @@
+/*
+ * Base globals shared by every story and, later, by the published stylesheet.
+ * Component styles stay in their own `*.module.css` files.
+ */
+:root {
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+}
+
+#root,
+#storybook-root {
+  min-height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
