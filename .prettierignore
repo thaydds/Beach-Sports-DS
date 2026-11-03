@@ -4,6 +4,7 @@ storybook-static
 coverage
 .nx
 pnpm-lock.yaml
+.release-please-manifest.json
 **/tokens/src/*.tokens.json
 
 # Preserve imported third-party skills and templates

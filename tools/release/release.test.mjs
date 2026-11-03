@@ -7,6 +7,10 @@ import { Version } from 'release-please/build/src/version.js';
 import { TagName } from 'release-please/build/src/util/tag-name.js';
 import { buildStrategy } from 'release-please/build/src/factory.js';
 import { parse } from 'yaml';
+import { PullRequestBody } from 'release-please/build/src/util/pull-request-body.js';
+import { check, getFileInfo, resolveConfig } from 'prettier';
+
+import { registerReleaseNotes } from './notes.mjs';
 
 import {
   needsPublication,
@@ -19,14 +23,20 @@ import {
 const config = JSON.parse(readFileSync('release-please-config.json', 'utf8'));
 const silent = { info() {}, debug() {}, warn() {}, error() {}, trace() {} };
 setLogger(silent);
+const mergeSha = 'a'.repeat(40);
+registerReleaseNotes(new Set([mergeSha]));
 const commit = (message, files) => ({ sha: '1234567890abcdef', message, files });
+// These cases model the first release. A release PR's own version manifest
+// must not become the baseline of the GitHub fixture running inside that PR.
+const fixtureContent = (path) =>
+  path === '.release-please-manifest.json' ? '{}\n' : readFileSync(path, 'utf8');
 const github = (commits = []) => ({
   repository: { owner: 'thaydds', repo: 'Beach-Sports-DS', defaultBranch: 'main' },
   async getFileJson(path) {
-    return JSON.parse(readFileSync(path, 'utf8'));
+    return JSON.parse(fixtureContent(path));
   },
   async getFileContentsOnBranch(path) {
-    const parsedContent = readFileSync(path, 'utf8');
+    const parsedContent = fixtureContent(path);
     return { parsedContent, content: Buffer.from(parsedContent).toString('base64'), sha: 'file' };
   },
   async *releaseIterator() {},
@@ -90,6 +100,78 @@ test('component feature proposes only components, preserving tokens manifest', a
   assert.equal(prs.length, 1);
   assert.ok(prs[0].updates.some((update) => update.path === 'packages/components/package.json'));
   assert.ok(!prs[0].updates.some((update) => update.path.startsWith('packages/tokens/')));
+});
+
+test('release PR and changelog share concise notes without the repeated merge entry', async () => {
+  const files = ['packages/components/src/components/Button/Button.tsx'];
+  const pullRequest = { number: 1, baseBranchName: 'main', mergeCommitOid: mergeSha, body: '' };
+  const commits = [
+    {
+      ...commit(
+        'Merge pull request #1 from org/feature\n\nfeat(components): add Button and IconButton',
+        files,
+      ),
+      sha: mergeSha,
+      pullRequest,
+    },
+    { ...commit('feat(components): add Button and IconButton', files), pullRequest },
+  ];
+  const [pr] = await candidates(commits);
+  const [withoutMerge] = await candidates([commits[1]]);
+  assert.equal(pr.version.toString(), withoutMerge.version.toString());
+  const body = pr.body.toString();
+  assert.match(body, /^# Release de @beachsports\/components/);
+  assert.match(body, /### Novidades/);
+  assert.match(body, /Ao fazer merge desta PR/);
+  assert.doesNotMatch(body, /beep|boop|I have created a release/);
+  assert.equal(body.match(/add Button and IconButton/g)?.length, 1);
+  assert.ok(body.includes(`/commit/${commits[1].sha}`));
+  assert.ok(!body.includes(`/commit/${mergeSha}`));
+  const changelog = pr.updates
+    .find((entry) => entry.path === 'packages/components/CHANGELOG.md')
+    .updater.updateContent('');
+  assert.equal(changelog.match(/add Button and IconButton/g)?.length, 1);
+  const formatting = { ...(await resolveConfig('release-please-config.json')), parser: 'markdown' };
+  assert.equal(
+    await check(changelog, formatting),
+    true,
+    'Generated changelog must pass the CI formatter',
+  );
+  const previous = '# Changelog\n\n## 0.0.1\n\n### Correções\n\n- Ajuste anterior.\n';
+  assert.equal(
+    await check(
+      pr.updates
+        .find((entry) => entry.path === 'packages/components/CHANGELOG.md')
+        .updater.updateContent(previous),
+      formatting,
+    ),
+    true,
+  );
+  const parsedBody = PullRequestBody.parse(body, silent);
+  assert.equal(parsedBody.releaseData.length, 1);
+  assert.equal(parsedBody.releaseData[0].version.toString(), '0.1.0');
+  assert.match(parsedBody.releaseData[0].notes, /add Button and IconButton/);
+});
+
+test('both package headers identify the release without creating a dependent release', async () => {
+  const [pr] = await candidates([
+    commit('feat(tokens): add foundation', ['packages/tokens/src/foundations.tokens.json']),
+  ]);
+  assert.match(pr.body.toString(), /^# Release de @beachsports\/tokens/);
+  assert.equal(pr.version.toString(), '0.1.0');
+});
+
+test('the generated version manifest keeps Release Please formatting and valid version data', async () => {
+  const [pr] = await candidates([
+    commit('feat(components): add Button', [
+      'packages/components/src/components/Button/Button.tsx',
+    ]),
+  ]);
+  const path = '.release-please-manifest.json';
+  const update = pr.updates.find((entry) => entry.path === path);
+  const manifest = JSON.parse(update.updater.updateContent('{}'));
+  assert.deepEqual(manifest, { 'packages/components': '0.1.0' });
+  assert.equal((await getFileInfo(path, { ignorePath: '.prettierignore' })).ignored, true);
 });
 
 test('a commit touching both packages produces separate reviewable PRs', async () => {

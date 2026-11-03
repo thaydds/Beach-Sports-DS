@@ -17,6 +17,7 @@
         "default",
         "{workspaceRoot}/release-please-config.json",
         "{workspaceRoot}/.release-please-manifest.json",
+        "{workspaceRoot}/.prettierignore",
         "{workspaceRoot}/.github/workflows/release.yml",
         "{workspaceRoot}/packages/tokens/package.json",
         "{workspaceRoot}/packages/components/package.json"
