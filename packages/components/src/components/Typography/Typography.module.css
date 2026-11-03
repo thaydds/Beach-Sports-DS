@@ -1,0 +1,109 @@
+.typography {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--ds-color-text-primary);
+  font-family: var(--typography-family), sans-serif;
+  font-size: var(--typography-font-size);
+  font-style: normal;
+  font-weight: var(--typography-weight);
+  line-height: var(--typography-line-height);
+  letter-spacing: var(--typography-tracking);
+  overflow-wrap: anywhere;
+}
+
+/* Ratios preserve the DTCG values, without changing the shared token CSS.
+ * The reference scale is 16 CSS px; 1rem still follows the user's root font.
+ * Engines without typed division retain the token lengths above. */
+@supports (font-size: calc(1rem * (1rem / 1rem))) {
+  .typography {
+    font-size: calc(var(--typography-font-size) / var(--ds-type-size-16) * 1rem);
+    line-height: calc(var(--typography-line-height) / var(--typography-font-size));
+    letter-spacing: calc(var(--typography-tracking) / var(--typography-font-size) * 1em);
+  }
+}
+
+.typography[data-tone='secondary'] {
+  color: var(--ds-color-text-secondary);
+}
+
+.typography[data-tone='muted'] {
+  color: var(--ds-color-text-muted);
+}
+
+.typography[data-tone='inherit'] {
+  color: inherit;
+}
+
+.display-l {
+  --typography-family: var(--ds-type-display-l-font-family);
+  --typography-weight: var(--ds-type-display-l-font-weight);
+  --typography-font-size: var(--ds-type-display-l-font-size);
+  --typography-line-height: var(--ds-type-display-l-line-height);
+  --typography-tracking: var(--ds-type-display-l-letter-spacing);
+}
+
+.display-m {
+  --typography-family: var(--ds-type-display-m-font-family);
+  --typography-weight: var(--ds-type-display-m-font-weight);
+  --typography-font-size: var(--ds-type-display-m-font-size);
+  --typography-line-height: var(--ds-type-display-m-line-height);
+  --typography-tracking: var(--ds-type-display-m-letter-spacing);
+}
+
+.heading-l {
+  --typography-family: var(--ds-type-heading-l-font-family);
+  --typography-weight: var(--ds-type-heading-l-font-weight);
+  --typography-font-size: var(--ds-type-heading-l-font-size);
+  --typography-line-height: var(--ds-type-heading-l-line-height);
+  --typography-tracking: var(--ds-type-heading-l-letter-spacing);
+}
+
+.heading-m {
+  --typography-family: var(--ds-type-heading-m-font-family);
+  --typography-weight: var(--ds-type-heading-m-font-weight);
+  --typography-font-size: var(--ds-type-heading-m-font-size);
+  --typography-line-height: var(--ds-type-heading-m-line-height);
+  --typography-tracking: var(--ds-type-heading-m-letter-spacing);
+}
+
+.text-l {
+  --typography-family: var(--ds-type-body-l-font-family);
+  --typography-weight: var(--ds-type-body-l-font-weight);
+  --typography-font-size: var(--ds-type-body-l-font-size);
+  --typography-line-height: var(--ds-type-body-l-line-height);
+  --typography-tracking: var(--ds-type-body-l-letter-spacing);
+}
+
+.text-m {
+  --typography-family: var(--ds-type-body-m-font-family);
+  --typography-weight: var(--ds-type-body-m-font-weight);
+  --typography-font-size: var(--ds-type-body-m-font-size);
+  --typography-line-height: var(--ds-type-body-m-line-height);
+  --typography-tracking: var(--ds-type-body-m-letter-spacing);
+}
+
+.text-s {
+  --typography-family: var(--ds-type-body-s-font-family);
+  --typography-weight: var(--ds-type-body-s-font-weight);
+  --typography-font-size: var(--ds-type-body-s-font-size);
+  --typography-line-height: var(--ds-type-body-s-line-height);
+  --typography-tracking: var(--ds-type-body-s-letter-spacing);
+}
+
+.label-m {
+  --typography-family: var(--ds-type-label-m-font-family);
+  --typography-weight: var(--ds-type-label-m-font-weight);
+  --typography-font-size: var(--ds-type-label-m-font-size);
+  --typography-line-height: var(--ds-type-label-m-line-height);
+  --typography-tracking: var(--ds-type-label-m-letter-spacing);
+}
+
+.label-s {
+  --typography-family: var(--ds-type-label-s-font-family);
+  --typography-weight: var(--ds-type-label-s-font-weight);
+  --typography-font-size: var(--ds-type-label-s-font-size);
+  --typography-line-height: var(--ds-type-label-s-line-height);
+  --typography-tracking: var(--ds-type-label-s-letter-spacing);
+}

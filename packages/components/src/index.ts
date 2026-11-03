@@ -8,3 +8,11 @@
 export { Button, type ButtonProps } from './components/Button/Button';
 export { IconButton, type IconButtonProps } from './components/IconButton/IconButton';
 export type { ButtonVariant, ButtonSize } from './components/Button/ButtonBase';
+
+export {
+  Typography,
+  type TypographyProps,
+  type TypographyVariant,
+  type TypographyTone,
+  type TypographyElement,
+} from './components/Typography/Typography';
