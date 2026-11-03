@@ -1,0 +1,66 @@
+.card {
+  --card-space: var(--ds-space-16);
+
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: var(--card-space);
+  inline-size: 100%;
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--card-space);
+  overflow: visible;
+  border: var(--ds-stroke-subtle) solid var(--ds-color-border-strong);
+  border-radius: var(--ds-radius-16);
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.card[data-density='comfortable'] {
+  --card-space: var(--ds-space-24);
+}
+
+.card[data-surface='raised'] {
+  border-color: var(--ds-color-border-subtle);
+  background: var(--ds-color-bg-raised);
+}
+
+.header {
+  display: flex;
+  gap: var(--ds-space-16);
+  align-items: flex-start;
+  min-inline-size: 0;
+}
+
+.heading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--ds-space-8);
+  min-inline-size: 0;
+}
+
+.action {
+  flex: none;
+  min-inline-size: var(--ds-target-min);
+  margin-inline-start: auto;
+  overflow: visible;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-12);
+  min-inline-size: 0;
+  overflow: visible;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-12);
+  align-items: flex-start;
+  min-inline-size: 0;
+  overflow: visible;
+}
