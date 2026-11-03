@@ -16,6 +16,7 @@ import { Markdown } from '@storybook/addon-docs/blocks';
 import { GLOBALS_UPDATED, UPDATE_GLOBALS } from 'storybook/internal/core-events';
 import { addons } from 'storybook/preview-api';
 
+import { FormField } from '../../src/index';
 import styles from './FoundationDocs.module.css';
 import './docs.css';
 
@@ -364,8 +365,8 @@ export function Colors() {
           </div>
           <div className={styles.searchbar}>
             <div>
-              <label htmlFor={inputId}>Encontre uma cor</label>
-              <input
+              <FormField
+                label="Encontre uma cor"
                 id={inputId}
                 type="search"
                 placeholder="Busque por nome ou valor…"
@@ -478,8 +479,8 @@ export function Typography() {
           </div>
           <div className={styles.searchbar}>
             <div>
-              <label htmlFor={sampleId}>Experimente seu próprio texto</label>
-              <input
+              <FormField
+                label="Experimente seu próprio texto"
                 id={sampleId}
                 maxLength={180}
                 value={sample}

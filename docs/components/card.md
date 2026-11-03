@@ -53,3 +53,7 @@ Título recebe id único e nomeia o contêiner; aria-label ou aria-labelledby ex
 ## Composição de participantes
 
 Os exemplos importam Avatar MD da biblioteca, preservando nome completo e fallback. A story “Avatar, Chip e Badge da biblioteca” também demonstra seleção controlada com Chip e status textual com Badge. Essas peças pertencem ao corpo consumidor; Card continua sem dependência de domínio ou conteúdo padrão.
+
+## Composição com formulários
+
+O exemplo de cadastro agora compõe FormField, Input, Checkbox, Button, Avatar e Badge da biblioteca. O Card continua passivo; validação e estado ficam no formulário consumidor.

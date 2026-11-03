@@ -107,3 +107,7 @@ exemplo documental; nenhuma biblioteca de ícones é imposta ao consumidor.
 
 Os componentes estão disponíveis no workspace. A publicação npm depende do
 fluxo de release e da configuração de Trusted Publishing descrita em releases.
+
+## Composição com formulários
+
+O exemplo de envio de formulário usa FormField e Input da biblioteca, preservando o bloqueio de envios durante loading.

@@ -1,0 +1,125 @@
+.root {
+  --checkbox-size: var(--ds-size-24);
+  --checkbox-target: var(--ds-size-48);
+
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  gap: var(--ds-space-12);
+  align-items: start;
+  min-inline-size: var(--checkbox-target);
+  max-inline-size: 100%;
+  min-block-size: var(--checkbox-target);
+  padding-block: var(--ds-space-12);
+  border-radius: var(--ds-radius-8);
+  color: var(--ds-color-text-primary);
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.root[data-size='sm'] {
+  --checkbox-size: var(--ds-size-20);
+  --checkbox-target: var(--ds-size-44);
+}
+
+.root[data-label='false'] {
+  gap: 0;
+  justify-content: center;
+  inline-size: var(--checkbox-target);
+}
+
+.input {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.box {
+  display: inline-flex;
+  flex: none;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--checkbox-size);
+  block-size: var(--checkbox-size);
+  border: var(--ds-stroke-control) solid var(--ds-color-border-control);
+  border-radius: var(--ds-radius-4);
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-action-fg);
+}
+
+.input:is(:checked, :indeterminate) + .box {
+  border-color: var(--ds-color-action-default);
+  background: var(--ds-color-action-default);
+}
+
+.mark {
+  display: none;
+  inline-size: var(--ds-size-14);
+  block-size: var(--ds-size-14);
+  background: currentcolor;
+  mask: url('./assets/check.svg') center / contain no-repeat;
+}
+
+.input:is(:checked, :indeterminate) + .box .mark {
+  display: block;
+}
+
+.input:indeterminate + .box .mark {
+  mask-image: url('./assets/mixed.svg');
+  mask-size: 100% var(--ds-stroke-control);
+}
+
+.label {
+  flex: 1;
+}
+
+@media (hover: hover) {
+  .root:hover .input:enabled + .box {
+    background: var(--ds-color-bg-sunken);
+  }
+
+  .root:hover .input:enabled:is(:checked, :indeterminate) + .box {
+    border-color: var(--ds-color-action-hover);
+    background: var(--ds-color-action-hover);
+  }
+}
+
+.root:has(.input:disabled) {
+  color: var(--ds-color-action-disabled-fg);
+  cursor: not-allowed;
+}
+
+.input:disabled + .box {
+  border-color: var(--ds-color-border-subtle);
+  background: var(--ds-color-action-disabled-bg);
+  color: var(--ds-color-action-disabled-fg);
+}
+
+.root:has(.input:focus-visible) {
+  outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+  outline-offset: var(--ds-focus-offset);
+}
+
+@media (forced-colors: active) {
+  .box {
+    border-color: ButtonText;
+  }
+
+  .input:is(:checked, :indeterminate) + .box {
+    border-color: Highlight;
+    background: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+
+  .input:disabled + .box {
+    border-color: GrayText;
+    color: GrayText;
+  }
+}

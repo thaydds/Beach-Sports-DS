@@ -1,3 +1,4 @@
+import { RegistrationCard } from '../../../docs/examples/FormExamples';
 import { RosterComposition } from '../../../docs/examples/IdentityExamples';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
@@ -80,4 +81,9 @@ export const Interaction: Story = {
 export const Participants: Story = {
   name: 'Avatar, Chip e Badge da biblioteca',
   render: () => <RosterComposition />,
+};
+
+export const Registration: Story = {
+  name: 'Cadastro com FormField e Checkbox',
+  render: () => <RegistrationCard />,
 };

@@ -1,7 +1,8 @@
 # Do token ao componente.
 
 O Beach Sports DS reúne tokens e componentes React. Button, IconButton, Typography e Card
-já foram publicados; esta evolução acrescenta Avatar, Badge e Chip. Novos exports ficam
+já foram publicados; o workspace inclui Avatar, Badge e Chip e esta evolução acrescenta
+Input, FormField e Checkbox. Novos exports ficam
 disponíveis no npm após a PR de release correspondente. Os exemplos abaixo usam a biblioteca
 do workspace e explicam como consumir seus estilos e compor os componentes.
 
@@ -198,3 +199,23 @@ Para identidade ao lado de nome visível, use Avatar decorative. Card permanece
 passivo; Chip é seleção controlada e Badge é informação. Os exemplos e testes de
 Card usam os exports reais da biblioteca. Consulte as páginas específicas para
 tamanhos, semântica, recuperação de imagem e remoção por teclado.
+
+## 10. Componha os formulários com os controles da biblioteca
+
+```tsx
+import { Button, Card, Checkbox, FormField } from '@beachsports/components';
+
+<Card title="Adicionar jogador">
+  <form onSubmit={handleSubmit}>
+    <FormField label="Nome do jogador" name="player" helper="Use o nome pelo qual é conhecido." />
+    <Checkbox label="Confirmar presença" name="confirmed" />
+    <Button type="submit">Adicionar jogador</Button>
+  </form>
+</Card>;
+```
+
+FormField já compõe o Input e Typography e conecta label e mensagem. Input usa
+IconButton quando tem ação final; não redesenhe esses controles em CSS local.
+`ref` aponta ao controle nativo, para focar o primeiro campo inválido.
+Para ajuda e erro, consulte as regras de [FormField](?path=/docs/componentes-formfield--docs),
+[Input](?path=/docs/componentes-input--docs) e [Checkbox](?path=/docs/componentes-checkbox--docs).

@@ -1,0 +1,37 @@
+.field {
+  display: grid;
+  gap: var(--ds-space-8);
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.label {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: start;
+}
+
+.label > :first-child {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.required {
+  flex: none;
+  color: var(--ds-color-text-secondary);
+}
+
+.message {
+  display: flex;
+  gap: var(--ds-space-6);
+  align-items: start;
+  min-inline-size: 0;
+}
+
+.errorIcon {
+  flex: none;
+  inline-size: var(--ds-size-16);
+  block-size: var(--ds-size-16);
+  background: var(--ds-color-text-secondary);
+  mask: url('./assets/circle-alert.svg') center / contain no-repeat;
+}

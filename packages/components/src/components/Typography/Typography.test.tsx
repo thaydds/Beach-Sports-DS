@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
 
+import { Input } from '../Input/Input';
 import { Typography, type TypographyVariant } from './Typography';
 
 const variants: TypographyVariant[] = [
@@ -66,11 +67,12 @@ describe('Typography', () => {
         <Typography as="label" variant="label-m" htmlFor="name">
           Nome
         </Typography>
-        <input id="name" />
+        <Input id="name" />
         <Typography variant="label-s">Categoria</Typography>
       </>,
     );
     expect(screen.getByLabelText('Nome')).toHaveAttribute('id', 'name');
+    expect(screen.getByLabelText('Nome').closest('[data-input]')).toBeInTheDocument();
     expect(screen.getByText('Categoria').tagName).toBe('P');
   });
 
@@ -93,7 +95,7 @@ describe('Typography', () => {
         <Typography as="label" variant="label-m" htmlFor="email">
           E-mail
         </Typography>
-        <input id="email" type="email" />
+        <Input id="email" type="email" />
       </main>,
     );
     expect(

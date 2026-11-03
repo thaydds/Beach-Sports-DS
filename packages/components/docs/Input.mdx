@@ -1,0 +1,14 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Input/Input.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/input.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="INPUT" />
+</Unstyled>
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Sizes} />
+<Canvas of={Stories.States} />
+<Canvas of={Stories.Interaction} />
