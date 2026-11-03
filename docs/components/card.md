@@ -36,7 +36,7 @@ Importe os estilos dos tokens e da biblioteca uma vez, conforme Como usar, e for
 | footer                  | ReactNode opcional             | Ações substituíveis, com quebra de linha e gap 12                     |
 | ref / atributos nativos | HTMLElement                    | ARIA e atributos nativos; sem style, onClick ou tabIndex              |
 
-Slots ausentes não produzem wrappers vazios. Cabeçalho desaparece se título, descrição e ação forem omitidos; não há flags show duplicando a presença do conteúdo. Avatares aparecem apenas como fixture documental, sem novo componente público. O corpo e o rodapé não impõem conteúdo padrão.
+Slots ausentes não produzem wrappers vazios. Cabeçalho desaparece se título, descrição e ação forem omitidos; não há flags show duplicando a presença do conteúdo. Os exemplos importam Avatar da biblioteca; não há implementação local de avatar no Card. O corpo e o rodapé não impõem conteúdo padrão.
 
 ## Tokens e comportamento
 
@@ -49,3 +49,7 @@ Largura ocupa o container e altura acompanha o conteúdo. A largura de 520 do ma
 Título recebe id único e nomeia o contêiner; aria-label ou aria-labelledby explícitos têm prioridade. Defina titleAs conforme a hierarquia da página. Somente controles internos participam da ordem de tabulação. Use action com IconButton size="sm" variant="ghost", nome contextual e estado controlado pelo consumidor. Menu, exclusão e confirmação não integram Card: exclusão deve usar intenção destructive e confirmação no contexto apropriado.
 
 [Figma — Card](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P?node-id=2098-55960). O SVG ellipsis dos exemplos foi exportado sem edição do master; não integra o pacote publicado.
+
+## Composição de participantes
+
+Os exemplos importam Avatar MD da biblioteca, preservando nome completo e fallback. A story “Avatar, Chip e Badge da biblioteca” também demonstra seleção controlada com Chip e status textual com Badge. Essas peças pertencem ao corpo consumidor; Card continua sem dependência de domínio ou conteúdo padrão.

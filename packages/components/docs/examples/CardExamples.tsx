@@ -1,21 +1,20 @@
 import { useState } from 'react';
-import { Card, type CardProps } from '../../src/components/Card/Card';
-import { Typography } from '../../src/components/Typography/Typography';
-import { Button } from '../../src/components/Button/Button';
-import { IconButton } from '../../src/components/IconButton/IconButton';
+import { Avatar, Card, Typography, Button, IconButton, type CardProps } from '../../src/index';
 import styles from './CardExamples.module.css';
 
 export function PlayersExample() {
   return (
     <>
       <ul className={styles.players} aria-label="Jogadores confirmados">
-        {[
-          ['AN', 'André'],
-          ['IO', 'Iolanda'],
-          ['GU', 'Gustavo'],
-        ].map(([initials, name]) => (
-          <li key={initials} className={styles.avatar} aria-label={name}>
-            {initials}
+        {(
+          [
+            ['AN', 'André'],
+            ['IO', 'Iolanda'],
+            ['GU', 'Gustavo'],
+          ] as const
+        ).map(([initials, name]) => (
+          <li key={initials}>
+            <Avatar size="md" initials={initials} name={name} />
           </li>
         ))}
       </ul>

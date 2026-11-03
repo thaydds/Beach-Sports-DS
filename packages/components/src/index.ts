@@ -18,3 +18,7 @@ export {
 } from './components/Typography/Typography';
 
 export { Card, type CardProps, type CardSurface, type CardDensity } from './components/Card/Card';
+
+export { Avatar, type AvatarProps, type AvatarSize } from './components/Avatar/Avatar';
+export { Badge, type BadgeProps, type BadgeTone } from './components/Badge/Badge';
+export { Chip, type ChipProps } from './components/Chip/Chip';
