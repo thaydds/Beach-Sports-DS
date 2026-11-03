@@ -1,0 +1,15 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Typography/Typography.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/typography.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="TYPOGRAPHY" />
+</Unstyled>
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Scale} />
+<Canvas of={Stories.Hierarchy} />
+<Canvas of={Stories.LongContent} />
+<Canvas of={Stories.FormLabel} />
