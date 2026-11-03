@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.2.0...components@0.3.0) (2026-11-03)
+
+### Novidades
+
+- **components:** add Chip, Badge and Avatar ([3b5f829](https://github.com/thaydds/Beach-Sports-DS/commit/3b5f82930d1dbd3599d8fda6231f1e5cf08c3aa0))
+
 ## [0.2.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.1.0...components@0.2.0) (2026-11-03)
 
 ### Novidades
