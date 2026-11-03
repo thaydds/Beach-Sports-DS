@@ -284,14 +284,29 @@ test('publication selection accepts only the actual release path and version', (
   }
 });
 
-test('archive check blocks wrong versions and unconverted workspace dependencies', () => {
-  const manifest = JSON.parse(readFileSync('packages/components/package.json', 'utf8'));
-  assert.throws(() => validatePackedManifest(manifest, 'components@0.1.0'));
-  manifest.dependencies['@beachsports/tokens'] = '^0.1.0';
-  assert.equal(validatePackedManifest(manifest, 'components@0.1.0').project, 'components');
-  assert.throws(() => validatePackedManifest(manifest, 'tokens@0.1.0'));
-  assert.throws(() => validatePackedManifest(manifest, 'components@0.2.0'));
-});
+// Exercise both historical and candidate versions: the release PR changes the
+// source version before this suite runs, while workspace ranges stay unchanged.
+const componentsSource = JSON.parse(readFileSync('packages/components/package.json', 'utf8'));
+for (const version of new Set([componentsSource.version, '0.1.0', '0.2.0', '1.4.2'])) {
+  test(`archive check validates version ${version} and rejects local dependencies`, () => {
+    const manifest = structuredClone(componentsSource);
+    manifest.version = version;
+    const tag = `components@${version}`;
+    // Match the reason so an earlier version mismatch cannot hide this guard.
+    assert.throws(() => validatePackedManifest(manifest, tag), /local dependency protocols/);
+    manifest.dependencies['@beachsports/tokens'] = '^0.1.0';
+    assert.equal(validatePackedManifest(manifest, tag).project, 'components');
+    assert.throws(
+      () => validatePackedManifest(manifest, `tokens@${version}`),
+      /approved release tag/,
+    );
+    const [major, minor, patch] = version.split('.').map(Number);
+    assert.throws(
+      () => validatePackedManifest(manifest, `components@${major}.${minor}.${patch + 1}`),
+      /approved release tag/,
+    );
+  });
+}
 
 test('workflow uses successful CI, OIDC, scoped tag checkouts and ordered publishing', () => {
   const workflow = parse(readFileSync('.github/workflows/release.yml', 'utf8'));
