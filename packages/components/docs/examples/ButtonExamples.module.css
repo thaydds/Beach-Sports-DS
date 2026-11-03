@@ -1,0 +1,43 @@
+.stack {
+  display: grid;
+  gap: var(--ds-space-24);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-8);
+  align-items: center;
+}
+
+.heading {
+  margin: 0 0 var(--ds-space-12);
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-type-body-s-font-size);
+}
+
+.arrow {
+  background: currentcolor;
+  mask: url('./assets/chevron-right.svg') center / contain no-repeat;
+}
+
+.form {
+  display: grid;
+  gap: var(--ds-space-16);
+  max-inline-size: 30rem;
+}
+
+.input {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-block-size: var(--ds-target-min);
+  padding: var(--ds-space-12);
+  border: var(--ds-stroke-subtle) solid var(--ds-color-border-control);
+  border-radius: var(--ds-radius-8);
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-text-primary);
+}
+
+.narrow {
+  max-inline-size: 16rem;
+}

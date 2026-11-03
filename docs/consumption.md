@@ -1,8 +1,8 @@
 # Do token ao componente.
 
-O Beach Sports DS está na fase de fundações: tokens e documentação disponíveis
-no workspace; componentes React e publicação no npm ainda pendentes. Os exemplos
-abaixo explicam o padrão de consumo, não uma API de Button já publicada.
+O Beach Sports DS oferece tokens, Button e IconButton no workspace. A publicação
+no npm depende do fluxo de release. Os exemplos abaixo explicam como consumir
+os estilos e o contrato compartilhado.
 
 ## 1. Abra o workspace
 
@@ -24,15 +24,25 @@ No ponto de entrada da aplicação ou do ambiente de desenvolvimento:
 
 ```tsx
 import '@beachsports/tokens/css/tokens.css';
+import '@beachsports/components/styles.css';
+import { Button } from '@beachsports/components';
 ```
 
-O Storybook já faz essa importação em seu preview. Os pacotes são conectados
+O Storybook já importa os tokens e renderiza os estilos dos componentes. Os pacotes são conectados
 por pnpm workspaces. A instalação pelo npm será possível depois da publicação.
 
 O consumidor também deve carregar a fonte Inter, por exemplo com um `@font-face`
 apontando para seu arquivo local licenciado, nos pesos usados (400, 600 e 700).
 O pacote de tokens declara a família, mas não distribui a fonte. O Storybook
 possui sua própria cópia local licenciada exclusivamente para a documentação.
+
+```tsx
+<Button onClick={salvar}>Salvar</Button>
+```
+
+O CSS agregado da biblioteca contém apenas estilos dos componentes. O consumidor
+mantém seu próprio reset. Consulte **Componentes / Button** e **IconButton** no
+Storybook para variantes, ícones, loading e exemplos de formulário.
 
 ## 3. Escolha o token pela função
 

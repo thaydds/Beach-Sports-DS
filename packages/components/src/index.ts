@@ -5,4 +5,6 @@
  * same five files: `<Component>.tsx`, `<Component>.module.css`,
  * `<Component>.test.tsx`, `<Component>.stories.tsx` and `index.ts`.
  */
-export {};
+export { Button, type ButtonProps } from './components/Button/Button';
+export { IconButton, type IconButtonProps } from './components/IconButton/IconButton';
+export type { ButtonVariant, ButtonSize } from './components/Button/ButtonBase';

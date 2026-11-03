@@ -147,3 +147,29 @@ Não foi feita migração de major.
   dependem das contas externas. Não foram configuradas nem presumidas existentes.
 - A primeira versão continua 0.1.0; o manifesto de releases começa vazio. Um
   commit somente de documentação/automação não força publicação dos pacotes.
+
+## Primeiro componente: Button e IconButton
+
+- `Button` e `IconButton` agora são exports públicos. O build agrega apenas seus
+  estilos em `dist/styles.css`, exposto por `@beachsports/components/styles.css`.
+  O consumidor importa tokens e stylesheet e fornece a fonte Inter. O reset do
+  Storybook não é incorporado ao pacote. As notas anteriores sobre entry vazio
+  e ausência de CSS agregado descrevem o estado do bootstrap.
+- A API aprovada usa `variant` para preservar o nome nativo `style`, que não é
+  exposto para customizar o visual interno. Um único `icon` e `iconPosition`
+  representam os exemplos esquerda/direita do Figma. `IconButton` exige `label`.
+- Estados hover/pressed/focus são nativos. Loading preserva o foco e a largura;
+  disabled tem prioridade. Sem ícone, o spinner fica centralizado; com ícone,
+  ocupa seu slot. A mensagem de loading do Button acrescenta informação ao
+  nome da ação para preservar o texto visível no nome acessível (WCAG 2.5.3).
+- Alturas de 44/48/56 são mínimas no Button para suportar texto longo; IconButton
+  mantém caixas quadradas. Cores e dimensões usam os tokens existentes. A borda
+  Secondary de 1,5 px vem de `stroke/icon`, conforme o Figma, sem novo token.
+- SVGs de spinner e chevron são exports originais dos nós 2089:1013 e 2087:2969,
+  aplicados como máscaras de cor herdada. Apenas spinner integra o pacote.
+  A fonte visual e as diferenças entre notas e exemplos estão em
+  `docs/components/button.md`. Os arquivos SVG foram preservados sem edição.
+- Transições de cor de 150 ms e ciclo do spinner de 900 ms são constantes locais
+  de implementação, removidas com reduced motion; não criam tokens de movimento.
+- Stories são excluídas da emissão de declarações. A documentação do Button é
+  um input explícito do build Storybook para invalidar seu cache.

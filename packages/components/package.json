@@ -15,7 +15,8 @@
     "*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    "!dist/**/*.tsbuildinfo"
   ],
   "publishConfig": {
     "access": "public",
@@ -30,6 +31,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./styles.css": "./dist/styles.css",
     "./package.json": "./package.json"
   },
   "peerDependencies": {

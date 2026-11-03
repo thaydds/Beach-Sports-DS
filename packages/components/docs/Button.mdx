@@ -1,0 +1,18 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from '../src/components/Button/Button.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/button.md?raw';
+
+<Meta of={ButtonStories} />
+
+<Unstyled>
+  <TechnicalReference markdown={guide} section="BUTTON" />
+</Unstyled>
+
+<Canvas of={ButtonStories.Playground} />
+<Controls of={ButtonStories.Playground} />
+<Canvas of={ButtonStories.Variants} />
+<Canvas of={ButtonStories.Icons} />
+<Canvas of={ButtonStories.States} />
+<Canvas of={ButtonStories.LongLabel} />
+<Canvas of={ButtonStories.Form} />

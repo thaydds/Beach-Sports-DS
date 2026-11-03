@@ -62,6 +62,7 @@
         "{workspaceRoot}/docs/tokens.md",
         "{workspaceRoot}/tools/docs-tokens.mjs",
         "{workspaceRoot}/docs/consumption.md",
+        "{workspaceRoot}/docs/components/**/*.md",
         {
           "env": "STORYBOOK_BASE_PATH"
         }
