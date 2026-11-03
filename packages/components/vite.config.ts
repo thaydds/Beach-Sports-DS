@@ -14,6 +14,7 @@ export default defineConfig({
       entry: fileURLToPath(new URL('src/index.ts', import.meta.url)),
       formats: ['es', 'cjs'],
       fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs'),
+      cssFileName: 'styles',
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime', /^react\//],

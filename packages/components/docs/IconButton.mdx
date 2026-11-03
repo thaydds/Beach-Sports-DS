@@ -1,0 +1,48 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as IconButtonStories from '../src/components/IconButton/IconButton.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+
+<Meta of={IconButtonStories} />
+
+<Unstyled>
+  <TechnicalReference
+    section="ICONBUTTON"
+    markdown={`# Uma ação compacta. Com nome acessível.
+
+IconButton executa uma ação representada por um ícone. Use quando o símbolo for
+reconhecível no contexto; quando precisar de texto visível, use Button.
+
+## Props
+
+| Prop              | Tipo                                   | Função                                           |
+| ----------------- | -------------------------------------- | ------------------------------------------------ |
+| icon              | ReactElement                           | Obrigatório; decorativo e com cor herdada.       |
+| label             | string                                 | Obrigatório; nome acessível da ação.             |
+| variant           | primary, secondary, ghost, destructive | primary por padrão.                              |
+| size              | sm, md, lg                             | md por padrão.                                   |
+| disabled, loading | boolean                                | false por padrão; mesmo comportamento de Button. |
+| loadingLabel      | string                                 | Nome acessível opcional durante loading.         |
+
+Aceita type, className, ref e os demais atributos nativos de botão. Não recebe
+children nem iconPosition. O label controla o nome acessível; não passe
+aria-label ou aria-labelledby separadamente. Um tooltip pode ajudar a descoberta
+visual, mas não substitui o label obrigatório.
+
+## Dimensões e comportamento
+
+SM é 44×44 px, MD 48×48 px e LG 56×56 px, com ícones de 14, 16 e 20 px.
+O spinner substitui o ícone durante loading. A caixa e o foco permanecem estáveis.
+Disabled tem prioridade. Enter e Espaço ativam a ação; Tab navega entre alvos.
+O foco tem anel de 2 px e offset de 2 px. Reserve espaço entre botões.
+
+Importe os tokens e @beachsports/components/styles.css uma vez na aplicação,
+e forneça um ícone que herde currentColor. As regras de formulário, loading,
+movimento reduzido e temas são compartilhadas com Button.`}
+/>
+
+</Unstyled>
+
+<Canvas of={IconButtonStories.Playground} />
+<Controls of={IconButtonStories.Playground} />
+<Canvas of={IconButtonStories.Variants} />
+<Canvas of={IconButtonStories.States} />

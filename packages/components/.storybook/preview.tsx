@@ -3,6 +3,7 @@ import type { Preview } from '@storybook/react-vite';
 import '@beachsports/tokens/css/tokens.css';
 import '../src/styles/reset.css';
 import '../src/styles/base.css';
+import '../docs/ui/docs.css';
 
 type Theme = 'light' | 'dark';
 
@@ -17,7 +18,7 @@ function storedTheme(): Theme {
 const preview: Preview = {
   parameters: {
     layout: 'padded',
-    options: { storySort: { order: ['Comece aqui', 'Fundamentos', 'Referência'] } },
+    options: { storySort: { order: ['Comece aqui', 'Fundamentos', 'Componentes', 'Referência'] } },
     viewport: {
       options: {
         mobile: {

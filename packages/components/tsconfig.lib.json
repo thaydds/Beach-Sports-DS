@@ -11,7 +11,7 @@
     "tsBuildInfoFile": "dist/components.tsbuildinfo"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/test-setup.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.stories.tsx", "src/test-setup.ts"],
   "references": [
     {
       "path": "../tokens/tsconfig.lib.json"
