@@ -9,12 +9,28 @@
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": false,
   "initial-version": "0.1.0",
+  "pull-request-footer": "Ao fazer merge desta PR, a automação cria a tag e a GitHub Release e inicia a publicação do pacote no npm.",
+  "changelog-sections": [
+    { "type": "feat", "section": "Novidades" },
+    { "type": "fix", "section": "Correções" },
+    { "type": "perf", "section": "Desempenho" },
+    { "type": "revert", "section": "Reversões" },
+    { "type": "docs", "section": "Documentação", "hidden": true },
+    { "type": "chore", "section": "Manutenção", "hidden": true },
+    { "type": "refactor", "section": "Refatoração", "hidden": true },
+    { "type": "test", "section": "Testes", "hidden": true },
+    { "type": "build", "section": "Build", "hidden": true },
+    { "type": "ci", "section": "CI", "hidden": true },
+    { "type": "style", "section": "Formatação", "hidden": true }
+  ],
   "packages": {
     "packages/tokens": {
-      "component": "tokens"
+      "component": "tokens",
+      "pull-request-header": "# Release de @beachsports/tokens"
     },
     "packages/components": {
       "component": "components",
+      "pull-request-header": "# Release de @beachsports/components",
       "exclude-paths": [
         "packages/components/docs",
         "packages/components/.storybook",

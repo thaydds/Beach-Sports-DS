@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { GitHub, Manifest } from 'release-please';
 
 import { parseTag, tagsFromReleases, validateCiRun } from './contracts.mjs';
+import { mergeCommitShas, registerReleaseNotes } from './notes.mjs';
 
 // All writes happen only in the dedicated workflow, after a successful CI.
 const dryRun = process.argv.includes('--dry-run');
@@ -59,6 +60,7 @@ if (process.env.RETRY_TAG) {
 }
 
 const github = await GitHub.create({ owner, repo, token: process.env.GITHUB_TOKEN });
+registerReleaseNotes(mergeCommitShas());
 const manifest = await Manifest.fromManifest(github, 'main');
 if (dryRun) {
   const prs = await manifest.buildPullRequests();

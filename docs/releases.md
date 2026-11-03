@@ -19,6 +19,23 @@
 | Storybook                 | Sem tag npm        | Apenas deploy no Pages       |
 
 Release Please, fixado no lockfile, é o motor da automação de versões e changelogs.
+
+As PRs identificam o pacote no cabeçalho, mostram versão e alterações em seções
+como **Novidades**, **Correções** e **Desempenho**, e explicam o que acontece após
+o merge. As descrições dos commits são preservadas no idioma em que foram escritas.
+
+Quando um merge tradicional repete uma entrada do commit original, o gerador de
+notas mantém apenas a referência ao original. A remoção exige um commit com mais
+de um pai, a mesma PR e conteúdo convencional equivalente, incluindo notas de
+incompatibilidade e referências. Entradas diferentes, PRs distintas, squash,
+rebase e commits diretos são preservados. Esse filtro atua somente nas notas;
+o cálculo de versões continua recebendo todos os commits. O changelog e a
+descrição da PR usam as mesmas notas.
+O Markdown gerado também passa pelo Prettier para atender ao mesmo check de
+formatação do restante do repositório. O manifesto de versões é gerado pelo
+Release Please em JSON compacto e fica fora do Prettier; seus valores continuam
+validados pelos testes da automação.
+
 Nx continua responsável pelo grafo, builds e verificações. Sua configuração
 independente permanece para compatibilidade, mas não execute releases reais
 manuais pelo Nx em paralelo com o fluxo automático.
@@ -103,8 +120,7 @@ pacote esteja publicado no npm. Conclua o bootstrap do pacote aprovado e use a
 retomada descrita abaixo. Nenhuma credencial deve ser colocada no repositório.
 
 Componentes dependem dos tokens: publique a fundação antes de aprovar a primeira
-publicação da biblioteca de componentes. Nesta fase a biblioteca de componentes
-continua sem componentes exportados; a automação não transforma isso em produto.
+publicação da biblioteca de componentes.
 
 ## Contrato entre tokens e componentes
 
