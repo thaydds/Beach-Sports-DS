@@ -26,6 +26,7 @@ type OwnProps = {
 export type TypographyProps = {
   [Tag in TypographyElement]: OwnProps &
     (Tag extends 'p' ? { as?: Tag } : { as: Tag }) &
+    (Tag extends 'label' ? { htmlFor?: string } : { htmlFor?: never }) &
     Omit<ComponentPropsWithoutRef<Tag>, keyof OwnProps | 'as' | 'style' | 'color'>;
 }[TypographyElement];
 
