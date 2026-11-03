@@ -1,0 +1,15 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Checkbox/Checkbox.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/checkbox.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="CHECKBOX" />
+</Unstyled>
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Variants} />
+<Canvas of={Stories.Selection} />
+<Canvas of={Stories.WithoutLabel} />
+<Canvas of={Stories.LongLabel} />

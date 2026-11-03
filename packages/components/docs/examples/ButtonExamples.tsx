@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, IconButton } from '../../src';
+import { Button, IconButton, FormField } from '../../src';
 import styles from './ButtonExamples.module.css';
 
 export const variants = ['primary', 'secondary', 'ghost', 'destructive'] as const;
@@ -126,8 +126,7 @@ export function FormExample() {
         setLoading(true);
       }}
     >
-      <label htmlFor="team-name">Nome do time</label>
-      <input className={styles.input} id="team-name" name="team" defaultValue="Time da praia" />
+      <FormField label="Nome do time" id="team-name" name="team" defaultValue="Time da praia" />
       <div className={styles.row}>
         <Button type="submit" loading={loading} loadingLabel="Salvando time">
           Salvar time

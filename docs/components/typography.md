@@ -37,3 +37,7 @@ Escolha h1–h6 pela estrutura do documento, sem saltar níveis por estética. L
 ## Referência visual
 
 [Figma — Typography](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P?node-id=2093-3242). Nove combinações; não criar Display S, Heading S ou Label L.
+
+## Composição com formulários
+
+O exemplo de label associado usa Input da biblioteca. FormField e Checkbox reutilizam Typography para rótulos e mensagens sem duplicar estilos de texto.

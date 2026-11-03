@@ -1,8 +1,9 @@
 # @beachsports/components
 
 Biblioteca React do Beach Sports DS, com TypeScript e CSS Modules.
-Exporta `Button`, `IconButton` e seus tipos. Disponível no workspace;
-a instalação abaixo se aplica após a publicação no npm.
+O workspace exporta `Button`, `IconButton`, `Typography`, `Card`, `Avatar`,
+`Badge`, `Chip`, `Input`, `FormField`, `Checkbox` e seus tipos. Novas exportações
+chegam ao npm pelo fluxo de release; confira o CHANGELOG da versão instalada.
 
 ```sh
 pnpm add @beachsports/components @beachsports/tokens react react-dom
@@ -31,3 +32,6 @@ reset global nem distribui a fonte. A aplicação fornece Inter.
 
 `MeuIcone` é fornecido pela aplicação. Veja a API e os estados em
 [Button](../../docs/components/button.md) e no Storybook, em **Componentes**.
+
+Para formulários, componha `FormField` (que já usa `Input` e `Typography`),
+`Checkbox` e `Button`. Evite reconstruir controles nos exemplos e aplicações.

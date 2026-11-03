@@ -26,9 +26,9 @@
   text-decoration: none;
 }
 
-.shell button,
-.shell input {
+.shell button {
   font: inherit;
+  cursor: pointer;
 }
 
 .shell code,
@@ -36,11 +36,7 @@
   font-family: ui-monospace, monospace;
 }
 
-.shell button {
-  cursor: pointer;
-}
-
-.shell :is(a, button, input, summary, pre, table):focus-visible {
+.shell :is(a, button, summary, pre, table):focus-visible {
   outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
   outline-offset: var(--ds-focus-offset);
 }
@@ -511,28 +507,6 @@
   flex: 1;
   max-width: 36rem;
   min-width: min(100%, 15rem);
-}
-
-.searchbar label {
-  display: block;
-  margin-bottom: var(--ds-space-8);
-  font-size: var(--ds-type-label-m-font-size);
-  font-weight: var(--ds-type-label-m-font-weight);
-}
-
-.searchbar input {
-  display: block;
-  width: 100%;
-  min-height: var(--ds-target-comfortable);
-  padding: var(--ds-space-12) var(--ds-space-16);
-  border: var(--ds-stroke-subtle) solid var(--ds-color-border-control);
-  border-radius: var(--ds-radius-12);
-  background: var(--ds-color-bg-surface);
-  color: var(--ds-color-text-primary);
-}
-
-.searchbar input::placeholder {
-  color: var(--ds-color-text-secondary);
 }
 
 .searchbar > span {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Input } from '../Input/Input';
 import { Typography, type TypographyVariant } from './Typography';
 
 const variants: TypographyVariant[] = [
@@ -74,7 +75,7 @@ export const FormLabel: Story = {
       <Typography as="label" variant="label-m" htmlFor="player-name">
         Nome do jogador
       </Typography>
-      <input id="player-name" />
+      <Input id="player-name" />
     </div>
   ),
 };

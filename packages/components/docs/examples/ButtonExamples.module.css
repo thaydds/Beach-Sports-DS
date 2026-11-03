@@ -27,17 +27,6 @@
   max-inline-size: 30rem;
 }
 
-.input {
-  box-sizing: border-box;
-  max-inline-size: 100%;
-  min-block-size: var(--ds-target-min);
-  padding: var(--ds-space-12);
-  border: var(--ds-stroke-subtle) solid var(--ds-color-border-control);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-surface);
-  color: var(--ds-color-text-primary);
-}
-
 .narrow {
   max-inline-size: 16rem;
 }

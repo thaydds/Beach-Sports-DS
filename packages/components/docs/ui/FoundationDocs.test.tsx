@@ -27,6 +27,7 @@ describe('visual documentation', () => {
     );
     expect(screen.getByRole('status', { name: '' })).toHaveTextContent('34 de 34 papéis');
     expect(screen.getAllByRole('img', { name: /^--ds-color-/ })).toHaveLength(68);
+    expect(screen.getByRole('searchbox').closest('[data-form-field]')).toBeInTheDocument();
     fireEvent.change(screen.getByRole('searchbox', { name: 'Encontre uma cor' }), {
       target: { value: 'action' },
     });

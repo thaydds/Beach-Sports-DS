@@ -1,0 +1,45 @@
+.stack {
+  display: grid;
+  gap: var(--ds-space-16);
+  inline-size: 100%;
+  max-inline-size: 36rem;
+  min-inline-size: 0;
+}
+
+.user,
+.ellipsis {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background: currentcolor;
+  mask: url('./assets/input-user-md.svg') center / contain no-repeat;
+}
+
+:global([data-size='sm']) > :global([aria-hidden]) .user {
+  mask-image: url('./assets/input-user-sm.svg');
+}
+
+.ellipsis {
+  mask-image: url('./assets/input-ellipsis.svg');
+}
+
+.narrow {
+  max-inline-size: 20rem;
+}
+
+.group {
+  display: grid;
+  gap: var(--ds-space-8);
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--ds-space-16);
+  border: var(--ds-stroke-subtle) solid var(--ds-color-border-control);
+  border-radius: var(--ds-radius-12);
+}
+
+.person {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-12);
+  align-items: center;
+}
