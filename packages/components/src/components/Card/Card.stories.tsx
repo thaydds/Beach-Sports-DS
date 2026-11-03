@@ -1,3 +1,4 @@
+import { RosterComposition } from '../../../docs/examples/IdentityExamples';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { Card } from './Card';
@@ -74,4 +75,9 @@ export const Interaction: Story = {
     await userEvent.click(canvas.getByRole('button', { name: 'Cancelar' }));
     await expect(canvas.getByRole('status')).toHaveTextContent('Aguardando confirmação.');
   },
+};
+
+export const Participants: Story = {
+  name: 'Avatar, Chip e Badge da biblioteca',
+  render: () => <RosterComposition />,
 };

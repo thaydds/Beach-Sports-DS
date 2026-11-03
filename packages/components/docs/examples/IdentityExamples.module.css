@@ -1,0 +1,76 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-8);
+  align-items: center;
+}
+
+.stack {
+  display: grid;
+  gap: var(--ds-space-24);
+}
+
+.person {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ds-space-12);
+}
+
+.glyph {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background: currentcolor;
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+.glyph[data-glyph='badge-neutral-sm'] {
+  mask-image: url('./assets/badge-neutral-sm.svg');
+}
+
+.glyph[data-glyph='badge-info-sm'] {
+  mask-image: url('./assets/badge-info-sm.svg');
+}
+
+.glyph[data-glyph='badge-success-sm'] {
+  mask-image: url('./assets/badge-success-sm.svg');
+}
+
+.glyph[data-glyph='badge-warning-sm'] {
+  mask-image: url('./assets/badge-warning-sm.svg');
+}
+
+.glyph[data-glyph='badge-danger-sm'] {
+  mask-image: url('./assets/badge-danger-sm.svg');
+}
+
+.glyph[data-glyph='badge-neutral-md'] {
+  mask-image: url('./assets/badge-neutral-md.svg');
+}
+
+.glyph[data-glyph='badge-info-md'] {
+  mask-image: url('./assets/badge-info-md.svg');
+}
+
+.glyph[data-glyph='badge-success-md'] {
+  mask-image: url('./assets/badge-success-md.svg');
+}
+
+.glyph[data-glyph='badge-warning-md'] {
+  mask-image: url('./assets/badge-warning-md.svg');
+}
+
+.glyph[data-glyph='badge-danger-md'] {
+  mask-image: url('./assets/badge-danger-md.svg');
+}
+
+.glyph[data-glyph='chip-user-sm'] {
+  mask-image: url('./assets/chip-user-sm.svg');
+}
+
+.glyph[data-glyph='chip-user-md'] {
+  mask-image: url('./assets/chip-user-md.svg');
+}

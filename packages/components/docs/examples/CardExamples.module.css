@@ -19,23 +19,6 @@
   list-style: none;
 }
 
-.avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  inline-size: var(--ds-size-44);
-  block-size: var(--ds-size-44);
-  border: var(--ds-stroke-subtle) solid var(--ds-color-border-subtle);
-  border-radius: var(--ds-radius-pill);
-  background: var(--ds-color-accent-soft);
-  color: var(--ds-color-accent-fg);
-  font-family: var(--ds-type-label-m-font-family), sans-serif;
-  font-size: var(--ds-type-label-m-font-size);
-  font-weight: var(--ds-type-label-m-font-weight);
-  line-height: var(--ds-type-label-m-line-height);
-}
-
 .ellipsis {
   display: block;
   inline-size: 100%;

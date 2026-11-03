@@ -1,0 +1,15 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Avatar/Avatar.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/avatar.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="AVATAR" />
+</Unstyled>
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Variants} />
+<Canvas of={Stories.People} />
+<Canvas of={Stories.ImageFailure} />
+<Canvas of={Stories.Composition} />

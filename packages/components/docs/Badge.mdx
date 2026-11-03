@@ -1,0 +1,14 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Badge/Badge.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/badge.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="BADGE" />
+</Unstyled>
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Variants} />
+<Canvas of={Stories.LongLabel} />
+<Canvas of={Stories.Composition} />

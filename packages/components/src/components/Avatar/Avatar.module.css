@@ -1,0 +1,61 @@
+.avatar {
+  --avatar-size: var(--ds-size-32);
+
+  display: inline-flex;
+  box-sizing: border-box;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--avatar-size);
+  block-size: var(--avatar-size);
+  overflow: hidden;
+  border: var(--ds-stroke-subtle) solid var(--ds-color-border-subtle);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-color-accent-soft);
+  color: var(--ds-color-accent-fg);
+  vertical-align: middle;
+}
+
+.avatar[data-size='md'] {
+  --avatar-size: var(--ds-size-44);
+}
+
+.avatar[data-size='lg'] {
+  --avatar-size: var(--ds-size-64);
+}
+
+@supports (width: calc(1rem * (1rem / 1rem))) {
+  .avatar {
+    inline-size: calc(var(--avatar-size) / var(--ds-type-size-16) * 1rem);
+    block-size: calc(var(--avatar-size) / var(--ds-type-size-16) * 1rem);
+  }
+}
+
+.image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.fallback {
+  inline-size: calc(var(--avatar-size) / 2);
+  block-size: calc(var(--avatar-size) / 2);
+  background: currentcolor;
+  mask: url('./assets/user-sm.svg') center / contain no-repeat;
+}
+
+.avatar[data-size='md'] .fallback {
+  mask-image: url('./assets/user-md.svg');
+}
+
+.avatar[data-size='lg'] .fallback {
+  mask-image: url('./assets/user-lg.svg');
+}
+
+@supports (width: calc(1rem * (1rem / 1rem))) {
+  .fallback {
+    inline-size: calc(var(--avatar-size) / var(--ds-type-size-16) * 0.5rem);
+    block-size: calc(var(--avatar-size) / var(--ds-type-size-16) * 0.5rem);
+  }
+}

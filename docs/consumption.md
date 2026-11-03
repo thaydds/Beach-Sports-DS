@@ -1,8 +1,9 @@
 # Do token ao componente.
 
-O Beach Sports DS oferece tokens, Button e IconButton no workspace. A publicação
-no npm depende do fluxo de release. Os exemplos abaixo explicam como consumir
-os estilos e o contrato compartilhado.
+O Beach Sports DS reúne tokens e componentes React. Button, IconButton, Typography e Card
+já foram publicados; esta evolução acrescenta Avatar, Badge e Chip. Novos exports ficam
+disponíveis no npm após a PR de release correspondente. Os exemplos abaixo usam a biblioteca
+do workspace e explicam como consumir seus estilos e compor os componentes.
 
 ## 1. Abra o workspace
 
@@ -29,7 +30,8 @@ import { Button } from '@beachsports/components';
 ```
 
 O Storybook já importa os tokens e renderiza os estilos dos componentes. Os pacotes são conectados
-por pnpm workspaces. A instalação pelo npm será possível depois da publicação.
+por pnpm workspaces. Em uma aplicação externa, instale @beachsports/components e
+@beachsports/tokens; confirme que a versão instalada contém os exports necessários.
 
 O consumidor também deve carregar a fonte Inter, por exemplo com um `@font-face`
 apontando para seu arquivo local licenciado, nos pesos usados (400, 600 e 700).
@@ -69,29 +71,27 @@ para o componente, em vez de escolher apenas pela aparência isolada.
 
 ## 4. Use CSS Modules
 
-Exemplo ilustrativo de uma superfície informativa:
+Use os componentes existentes para superfícies e texto; CSS Modules organiza o layout:
 
 ```tsx
+import { Card, Typography } from '@beachsports/components';
 import styles from './Summary.module.css';
 
 export function Summary() {
-  return <p className={styles.summary}>Sua próxima partida começa às 18h.</p>;
+  return (
+    <div className={styles.summary}>
+      <Card title="Próxima partida">
+        <Typography>Sua próxima partida começa às 18h.</Typography>
+      </Card>
+    </div>
+  );
 }
 ```
 
 ```css
 .summary {
-  margin: 0;
-  padding: var(--ds-space-16);
-  border: var(--ds-stroke-subtle) solid var(--ds-color-border-subtle);
-  border-radius: var(--ds-radius-16);
-  background: var(--ds-color-bg-surface);
-  color: var(--ds-color-text-primary);
-  font-family: var(--ds-type-body-m-font-family), sans-serif;
-  font-size: var(--ds-type-body-m-font-size);
-  font-weight: var(--ds-type-body-m-font-weight);
-  line-height: var(--ds-type-body-m-line-height);
-  letter-spacing: var(--ds-type-body-m-letter-spacing);
+  display: grid;
+  gap: var(--ds-space-16);
 }
 ```
 
@@ -179,3 +179,22 @@ Não edite `dist/` nem `packages/components/docs/Tokens.mdx`: são gerados.
 Quando uma decisão visual mudar, atualize o design e seus exports, regenere os
 artefatos e valide o resultado. A sincronização com o Figma é uma etapa explícita;
 não existe atualização automática entre o arquivo de design e este repositório.
+
+## 9. Reutilize os componentes nas composições
+
+```tsx
+import { Avatar, Badge, Card, Chip, Typography } from '@beachsports/components';
+
+<Card title="Participantes">
+  <Avatar initials="AN" size="md" name="André Nunes" />
+  <Badge label="Confirmado" tone="success" />
+  <Chip label="André" selected={selected} onSelectedChange={setSelected} />
+  <Typography tone="secondary">Confira os participantes antes da partida.</Typography>
+</Card>;
+```
+
+Não desenhe um avatar ou status localmente quando a biblioteca já oferece a peça.
+Para identidade ao lado de nome visível, use Avatar decorative. Card permanece
+passivo; Chip é seleção controlada e Badge é informação. Os exemplos e testes de
+Card usam os exports reais da biblioteca. Consulte as páginas específicas para
+tamanhos, semântica, recuperação de imagem e remoção por teclado.

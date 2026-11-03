@@ -1,3 +1,4 @@
+import { PlayersExample } from '../../../docs/examples/CardExamples';
 import { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
@@ -111,4 +112,15 @@ describe('Card', () => {
       await axe(container, { rules: { 'color-contrast': { enabled: false } } }),
     ).toHaveNoViolations();
   });
+});
+
+it('Card examples compose the public Avatar rather than a local visual clone', () => {
+  const { container } = render(
+    <Card title="Time">
+      <PlayersExample />
+    </Card>,
+  );
+  for (const name of ['André', 'Iolanda', 'Gustavo'])
+    expect(screen.getByRole('img', { name })).toHaveAttribute('data-avatar', '');
+  expect(container.querySelectorAll('[data-avatar]')).toHaveLength(3);
 });
