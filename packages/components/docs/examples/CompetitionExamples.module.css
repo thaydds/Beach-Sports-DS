@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+  gap: var(--ds-space-24);
+  align-items: start;
+  min-inline-size: 0;
+}
+
+.stack {
+  display: grid;
+  gap: var(--ds-space-16);
+  align-items: start;
+  max-inline-size: 36rem;
+  min-inline-size: 0;
+}
+
+.narrow {
+  max-inline-size: 22.5rem;
+}

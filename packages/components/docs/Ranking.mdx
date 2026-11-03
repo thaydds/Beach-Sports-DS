@@ -1,0 +1,16 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Ranking/Ranking.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/ranking.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="RANKING" />
+</Unstyled>
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Densities} />
+<Canvas of={Stories.OptionalRegions} />
+<Canvas of={Stories.LongContent} />
+<Canvas of={Stories.Collection} />
+<Canvas of={Stories.Composition} />

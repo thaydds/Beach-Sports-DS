@@ -32,3 +32,17 @@ export {
 } from './components/Input/Input';
 export { FormField, type FormFieldProps } from './components/FormField/FormField';
 export { Checkbox, type CheckboxProps, type CheckboxSize } from './components/Checkbox/Checkbox';
+
+export {
+  ScoreMatch,
+  type ScoreMatchProps,
+  type ScoreMatchTeam,
+  type ScoreMatchDensity,
+} from './components/ScoreMatch/ScoreMatch';
+export { Ranking, type RankingProps } from './components/Ranking/Ranking';
+export {
+  RankingItem,
+  type RankingItemProps,
+  type RankingEmphasis,
+} from './components/Ranking/RankingItem';
+export type { RankingDensity } from './components/Ranking/RankingContext';

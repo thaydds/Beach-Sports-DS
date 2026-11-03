@@ -1,3 +1,4 @@
+import { MatchExample } from '../../../docs/examples/CompetitionExamples';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Badge } from './Badge';
 import { BadgeVariants, RosterComposition } from '../../../docs/examples/IdentityExamples';
@@ -23,4 +24,9 @@ export const LongLabel: Story = {
 export const Composition: Story = {
   name: 'Composição com Card',
   render: () => <RosterComposition />,
+};
+
+export const MatchComposition: Story = {
+  name: 'Status e resultado no ScoreMatch',
+  render: () => <MatchExample state="finished" />,
 };

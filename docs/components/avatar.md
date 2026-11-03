@@ -23,3 +23,7 @@ Os exemplos de Card importam este Avatar: não existe desenho local duplicado. G
 Fallback usa os SVGs originais do Figma em 16/22/32. O ícone ocupa metade da caixa, sem inventar token size/22. Não há fotos inventadas: a imagem é fornecida pelo consumidor. Sem variante de tema, interação ou status. Se houver ação, o controle externo fornece semântica, alvo e foco.
 
 [Figma — Avatar](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P?node-id=2098-57263).
+
+## Composição com partidas e classificação
+
+As stories de Ranking e ScoreMatch reutilizam o Avatar público como identidade decorativa ao lado do nome. A densidade define seu tamanho; a inicial continua sendo fornecida pelo consumidor.
