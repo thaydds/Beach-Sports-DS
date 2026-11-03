@@ -2,7 +2,7 @@
   "name": "beach-sports-ds",
   "version": "0.0.0",
   "private": true,
-  "description": "Beach Sports DS \u2014 design system monorepo (tokens + React components)",
+  "description": "Beach Sports DS — design system monorepo (tokens + React components)",
   "license": "MIT",
   "author": "Thay Santos",
   "homepage": "https://thaydds.github.io/Beach-Sports-DS/",
@@ -29,8 +29,8 @@
     "prepare": "husky",
     "lint:styles": "nx run components:lint-styles",
     "test:browser": "nx run components:test-browser",
-    "release:plan:tokens": "nx release --projects=tokens --dry-run --skip-publish",
-    "release:plan:components": "nx release --projects=components --dry-run --skip-publish"
+    "test:release": "nx run release-automation:test",
+    "release:preview": "node tools/release/prepare.mjs --dry-run"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
@@ -63,6 +63,7 @@
     "prettier": "3.9.10",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "release-please": "17.11.2",
     "storybook": "9.1.21",
     "style-dictionary": "5.7.1",
     "stylelint": "17.16.0",
@@ -71,7 +72,8 @@
     "typescript-eslint": "8.72.1",
     "vite": "7.3.7",
     "vitest": "3.2.7",
-    "vitest-axe": "0.1.0"
+    "vitest-axe": "0.1.0",
+    "yaml": "2.9.1"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs,cjs}": [

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "3d36257ef23d2672d2ad84990acabae5014b336e",
+  "release-type": "node",
+  "separate-pull-requests": true,
+  "include-component-in-tag": true,
+  "include-v-in-tag": false,
+  "tag-separator": "@",
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": false,
+  "initial-version": "0.1.0",
+  "packages": {
+    "packages/tokens": {
+      "component": "tokens"
+    },
+    "packages/components": {
+      "component": "components",
+      "exclude-paths": [
+        "packages/components/docs",
+        "packages/components/.storybook",
+        "packages/components/e2e"
+      ]
+    }
+  }
+}

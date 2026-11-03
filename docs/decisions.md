@@ -124,9 +124,26 @@ Não foi feita migração de major.
   `fixed` foi substituída para atender à cadência independente solicitada.
 - `updateDependents: never` impede incrementos automáticos no outro pacote.
   Atualizações de contrato e da faixa de tokens nos componentes são explícitas.
-- Os scripts `release:plan:*` são simulações sem publicação. Ainda não existe
-  workflow npm automático; autenticação e primeira publicação continuam pendentes.
+- A preparação inicialmente manual foi substituída pela automação documentada abaixo.
 - Pages é um fluxo de deploy da documentação, sem alterar versões dos pacotes.
   `STORYBOOK_BASE_PATH` faz parte do hash de build para evitar reutilizar o
   artefato local com base `/` no deploy com base `/Beach-Sports-DS/`.
 - Procedimento técnico em `docs/releases.md`.
+
+## Automação de release com revisão
+
+- Release Please 17.11.2 prepara PRs independentes de tokens e componentes e cria
+  tags/GitHub Releases após o merge. Nx permanece responsável por build e testes.
+  Os scripts manuais `release:plan:*` foram removidos para evitar dois fluxos de
+  versionamento concorrentes; a configuração Nx independente permanece compatível.
+- `release.yml` espera o CI de push na main ter sucesso e verifica o SHA atual.
+  `GITHUB_TOKEN` cuida das PRs; um dispatch explícito valida suas branches no CI.
+- A publicação npm usa OIDC em jobs separados, com checkout da tag aprovada.
+  Tokens precedem componentes quando ambos são publicados na mesma execução.
+  `retry_tag` permite retomar uma publicação após falha sem criar nova versão.
+- A dependência foi fixada em `workspace:^0.1.0`, convertida pelo pnpm no pack,
+  para não aumentar silenciosamente o mínimo de tokens com a versão local.
+- A confiança OIDC, a permissão para nomes no npm e a autorização de PRs pelo bot
+  dependem das contas externas. Não foram configuradas nem presumidas existentes.
+- A primeira versão continua 0.1.0; o manifesto de releases começa vazio. Um
+  commit somente de documentação/automação não força publicação dos pacotes.

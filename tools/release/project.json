@@ -1,0 +1,29 @@
+{
+  "name": "release-automation",
+  "projectType": "library",
+  "sourceRoot": "tools/release",
+  "tags": ["type:tooling"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["tools/release/**/*.mjs"]
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": [],
+      "inputs": [
+        "default",
+        "{workspaceRoot}/release-please-config.json",
+        "{workspaceRoot}/.release-please-manifest.json",
+        "{workspaceRoot}/.github/workflows/release.yml",
+        "{workspaceRoot}/packages/tokens/package.json",
+        "{workspaceRoot}/packages/components/package.json"
+      ],
+      "options": {
+        "command": "node --test tools/release/*.test.mjs"
+      }
+    }
+  }
+}

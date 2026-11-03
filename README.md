@@ -15,7 +15,7 @@ Monorepo [Nx](https://nx.dev) com pnpm workspaces.
 | Build     | Vite library mode (ESM + CJS + `.d.ts`)             |
 | Docs      | Storybook 9 (react-vite + MDX)                      |
 | Testes    | Vitest + Testing Library + vitest-axe               |
-| Release   | `nx release` (a partir da primeira publicação)      |
+| Release   | Release Please + publicação npm via OIDC            |
 
 Node 24 (`.nvmrc`). O pnpm é fornecido pelo corepack na versão fixada em `packageManager`.
 
@@ -112,20 +112,22 @@ Os testes de tokens comparam fontes DTCG com CSS, JS, declarações TypeScript e
 JSON; também conferem as tabelas de cores, geometria e tipografia da referência.
 O cache Nx considera os documentos usados nesses testes e no build do Storybook.
 
-## Releases independentes
+## Releases automáticas e independentes
 
-Tokens e componentes têm versões, tags e changelogs separados. Uma release de
-`tokens` não aumenta a versão de `components`, e vice-versa. A atualização da
-dependência de tokens em componentes é explícita quando necessária.
+Depois de um push na `main` com CI aprovado, a automação abre ou atualiza uma PR
+de release por pacote alterado. O merge dessa PR, seguido de CI aprovado, cria a
+tag e publica apenas o pacote correspondente. Não há auto-merge.
 
-Para simular a primeira release de cada pacote, sem publicar ou alterar arquivos:
+Release Please interpreta `fix`, `feat` e mudanças incompatíveis; antes de 1.0,
+estas últimas incrementam o minor. Documentação não gera release npm. Tokens e
+componentes têm tags, versões e changelogs separados. A dependência de tokens é
+explícita, sem incremento automático de dependentes.
 
 ```sh
-pnpm release:plan:tokens 0.1.0 --first-release
-pnpm release:plan:components 0.1.0 --first-release
+pnpm test:release
 ```
 
-Depois da primeira release, omita `--first-release`; a simulação pode usar
-Conventional Commits ou receber `patch`, `minor`, `major` ou uma versão exata.
-O fluxo técnico completo está em [Releases e deploy da documentação](docs/releases.md).
-Ainda não há workflow de publicação npm automática nem autenticação npm validada.
+O workflow está preparado no código. Sua ativação requer permissão para criar PRs
+no GitHub e Trusted Publishing configurado **em cada pacote npm**, além do
+bootstrap inicial quando o pacote ainda não existe. Nenhuma credencial npm foi
+configurada por este setup. Veja [configuração, bootstrap e retomada](docs/releases.md).

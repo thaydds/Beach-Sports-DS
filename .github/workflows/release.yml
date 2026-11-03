@@ -1,0 +1,109 @@
+name: Release packages
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      retry_tag:
+        description: 'Retry npm publication of an existing release tag (optional)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-packages
+  cancel-in-progress: false
+
+env:
+  NX_DAEMON: 'false'
+
+jobs:
+  prepare:
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      actions: write
+    outputs:
+      tokens_tag: ${{ steps.release.outputs.tokens_tag }}
+      components_tag: ${{ steps.release.outputs.components_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: pnpm install --frozen-lockfile
+      - name: Prepare release PRs or tag merged releases
+        id: release
+        run: node tools/release/prepare.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RETRY_TAG: ${{ inputs.retry_tag }}
+
+  publish-tokens:
+    needs: prepare
+    if: needs.prepare.outputs.tokens_tag != ''
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.prepare.outputs.tokens_tag }}
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: pnpm install --frozen-lockfile
+      - name: Build, verify archive and publish tokens with OIDC
+        run: node tools/release/publish.mjs
+        env:
+          RELEASE_TAG: ${{ needs.prepare.outputs.tokens_tag }}
+
+  publish-components:
+    needs: [prepare, publish-tokens]
+    if: >-
+      !cancelled() && needs.prepare.result == 'success' &&
+      (needs.publish-tokens.result == 'success' || needs.publish-tokens.result == 'skipped') &&
+      needs.prepare.outputs.components_tag != ''
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.prepare.outputs.components_tag }}
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: pnpm install --frozen-lockfile
+      - name: Build, verify dependency and publish components with OIDC
+        run: node tools/release/publish.mjs
+        env:
+          RELEASE_TAG: ${{ needs.prepare.outputs.components_tag }}

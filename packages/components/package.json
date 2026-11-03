@@ -37,7 +37,7 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@beachsports/tokens": "workspace:^"
+    "@beachsports/tokens": "workspace:^0.1.0"
   },
   "scripts": {
     "build": "vite build && tsc -p tsconfig.lib.json --emitDeclarationOnly",
