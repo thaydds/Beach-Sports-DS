@@ -16,3 +16,5 @@ export {
   type TypographyTone,
   type TypographyElement,
 } from './components/Typography/Typography';
+
+export { Card, type CardProps, type CardSurface, type CardDensity } from './components/Card/Card';
