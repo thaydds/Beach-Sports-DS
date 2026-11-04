@@ -5,12 +5,12 @@
 
   display: inline-flex;
   box-sizing: border-box;
-  gap: var(--ds-space-8);
+  gap: 0;
   align-items: center;
   min-inline-size: 0;
   max-inline-size: 100%;
   min-block-size: var(--chip-height);
-  padding-inline: var(--chip-padding);
+  padding-inline: 0;
   border: var(--ds-stroke-subtle) solid var(--ds-color-border-strong);
   border-radius: var(--ds-radius-pill);
   background: var(--ds-color-bg-surface);
@@ -56,14 +56,23 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* The native button owns the pill padding, so edge taps also select. */
 .select {
   flex: 1;
-  min-inline-size: var(--ds-target-min);
+  min-inline-size: calc(var(--ds-target-min) + var(--chip-padding) * 2);
+  min-block-size: var(--chip-height);
   padding-block: var(--ds-space-8);
+  padding-inline: var(--chip-padding);
+}
+
+:where(.chip:has(.remove)) .select {
+  min-inline-size: calc(var(--ds-target-min) + var(--chip-padding) + var(--ds-space-8));
+  padding-inline-end: var(--ds-space-8);
 }
 
 .remove {
   flex: none;
+  margin-inline-end: var(--chip-padding);
   inline-size: var(--ds-target-min);
   block-size: var(--ds-target-min);
 }
