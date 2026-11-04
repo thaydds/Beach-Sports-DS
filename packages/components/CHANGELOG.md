@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.1](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.4.0...components@0.4.1) (2026-11-04)
+
+### Correções
+
+- **components:** preserve mobile competition columns ([bd54c4c](https://github.com/thaydds/Beach-Sports-DS/commit/bd54c4c8c100efc68445a030afffad11f0c19035))
+
 ## [0.4.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.3.0...components@0.4.0) (2026-11-04)
 
 ### Novidades
