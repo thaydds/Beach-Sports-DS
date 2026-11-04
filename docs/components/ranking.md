@@ -64,7 +64,7 @@ O nome ocupa a coluna flexível e quebra em vez de reduzir a fonte ou cortar
 conteúdo. Abaixo de **24rem úteis**, apenas o Avatar opcional decorativo é
 ocultado, recolhendo seu gap. É uma regra local para preservar o espaço de
 leitura, sem novo token. Nome, posição, pontos e informações textuais permanecem.
-Abaixo de **20rem úteis**, as linhas passam a blocos: posição, nome e pontos
+Abaixo de **17rem úteis**, as linhas passam a blocos: posição, nome e pontos
 continuam na mesma ordem de leitura. O cabeçalho permanece acessível e os pontos
 ganham seu rótulo visual localizado. A tabela mantém papéis e associações semânticas.
 Textos ampliados continuam usando a escala de Typography e aumentam a altura.

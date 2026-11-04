@@ -58,6 +58,35 @@ for (const theme of ['light', 'dark']) {
       contentType: 'image/png',
     });
   });
+  test(`ScoreMatch preserves two teams in a 393px app viewport / ${theme}`, async ({ page }) => {
+    await page.setViewportSize({ width: 393, height: 852 });
+    await open(page, 'scorematch--playground', theme);
+    await page.locator('[data-score-match]').evaluate((node) => {
+      node.style.width = '345px';
+    });
+    const teams = page.locator('[data-slot="team"]');
+    const first = await teams.first().boundingBox(),
+      second = await teams.last().boundingBox();
+    expect(second!.y).toBeCloseTo(first!.y, 1);
+    expect(second!.x).toBeGreaterThan(first!.x);
+    await noOverflow(page);
+    await accessible(page);
+  });
+  test(`Ranking keeps native columns in a 393px app viewport / ${theme}`, async ({ page }) => {
+    await page.setViewportSize({ width: 393, height: 852 });
+    await open(page, 'ranking--playground', theme);
+    await page.locator('[data-ranking]').evaluate((node) => {
+      node.style.width = '345px';
+    });
+    await expect(page.getByRole('columnheader').first()).toBeVisible();
+    await expect(page.locator('[data-ranking] tbody')).toHaveCSS('display', 'table-row-group');
+    const row = page.locator('[data-ranking] tbody tr').first();
+    const player = await row.getByRole('rowheader').boundingBox();
+    const points = await row.locator('td').last().boundingBox();
+    expect(points!.x).toBeGreaterThan(player!.x);
+    await noOverflow(page);
+    await accessible(page);
+  });
   test(`ScoreMatch action focus and consumer-controlled result confirmation / ${theme}`, async ({
     page,
   }) => {
