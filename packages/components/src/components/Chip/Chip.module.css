@@ -53,6 +53,7 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .select {

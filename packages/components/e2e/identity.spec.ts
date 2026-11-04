@@ -172,3 +172,44 @@ for (const theme of ['light', 'dark']) {
     });
   }
 }
+
+test.describe('Chip native touch feedback', () => {
+  test.use({ hasTouch: true });
+  for (const theme of ['light', 'dark']) {
+    test(`Chip owns touch feedback without a consumer reset / ${theme}`, async ({ page }, info) => {
+      await open(page, 'chip--variants', theme);
+      for (const button of await page.locator('[data-chip] button').all()) {
+        await expect(button).toHaveCSS('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)');
+      }
+      await open(page, 'chip--interaction', theme);
+      const chip = page.locator('[data-chip]');
+      const select = page.getByRole('button', { name: 'André', exact: true });
+      const remove = page.getByRole('button', { name: 'Remover André' });
+      const selectedBackground = await chip.evaluate(
+        (node) => getComputedStyle(node).backgroundColor,
+      );
+      await expect(select).toHaveAttribute('aria-pressed', 'true');
+      await select.tap();
+      await expect(select).toHaveAttribute('aria-pressed', 'false');
+      await expect(chip).not.toHaveCSS('background-color', selectedBackground);
+      await select.tap();
+      await expect(select).toHaveAttribute('aria-pressed', 'true');
+      await expect(chip).toHaveCSS('background-color', selectedBackground);
+      await expect(select).toHaveCSS('outline-style', 'none');
+      await select.press('Tab');
+      await expect(remove).toBeFocused();
+      await expect(remove).toHaveCSS('outline-width', '2px');
+      await expect(chip).toHaveCSS('outline-width', '2px');
+      expect(
+        (await new AxeBuilder({ page }).include('#storybook-root').analyze()).violations,
+      ).toEqual([]);
+      await info.attach('chip-touch-feedback', {
+        body: await page.screenshot({ fullPage: true }),
+        contentType: 'image/png',
+      });
+      await remove.tap();
+      await expect(page.getByRole('status')).toHaveText('André removido.');
+      await expect(page.getByRole('button', { name: 'Restaurar' })).toBeFocused();
+    });
+  }
+});
