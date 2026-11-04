@@ -124,7 +124,7 @@
 }
 
 /* At extreme reflow the row becomes a block, keeping DOM order and table roles. */
-@container ranking (width < 20rem) {
+@container ranking (width < 17rem) {
   .table,
   .table tbody {
     display: block;

@@ -55,7 +55,7 @@ a borda interna para manter a distância externa do Figma. Header tem gap
 as colunas e o separador usam `space/16`. Placar usa Display/M ou Display/L;
 título Heading/M, equipes Label/M e metadados/jogadores Body/S via Typography.
 
-As duas equipes dividem a largura disponível. Abaixo de **20rem úteis** no
+As duas equipes dividem a largura disponível. Abaixo de **17rem úteis** no
 contêiner, os blocos empilham preservando a ordem equipe → placar → jogadores.
 É uma regra local de layout equivalente a 320 CSS px na escala de referência,
 sem criar token de breakpoint. Textos quebram, o painel cresce e nenhum nome

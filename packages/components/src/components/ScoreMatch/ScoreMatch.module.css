@@ -83,8 +83,8 @@
   mask-image: url('./assets/more.svg');
 }
 
-/* Local layout threshold: 320 useful CSS px on the reference root scale. */
-@container score-match (width < 20rem) {
+/* Local layout threshold: 272 useful CSS px on the reference root scale. */
+@container score-match (width < 17rem) {
   .teams {
     grid-template-columns: minmax(0, 1fr);
   }
