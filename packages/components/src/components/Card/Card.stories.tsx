@@ -1,3 +1,4 @@
+import { CardCompetition } from '../../../docs/examples/CompetitionExamples';
 import { RegistrationCard } from '../../../docs/examples/FormExamples';
 import { RosterComposition } from '../../../docs/examples/IdentityExamples';
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -86,4 +87,9 @@ export const Participants: Story = {
 export const Registration: Story = {
   name: 'Cadastro com FormField e Checkbox',
   render: () => <RegistrationCard />,
+};
+
+export const Competition: Story = {
+  name: 'Composição com ScoreMatch e Ranking',
+  render: () => <CardCompetition />,
 };

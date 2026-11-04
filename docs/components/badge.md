@@ -21,3 +21,7 @@ Reutiliza Typography Label/S ou Label/M e text/primary em todos os tons, preserv
 Texto quebra e cresce além da altura mínima, sem truncamento. Coleções devem permitir wrap. Cor e ícone não substituem texto. Não use danger como botão de excluir. O consumidor pode fornecer role="status" em atualizações relevantes; não transforme toda badge em região viva.
 
 [Figma — Badge](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P?node-id=2098-55656).
+
+## Composição com partidas e classificação
+
+ScoreMatch reutiliza Badge para Ao vivo/Finalizada e para o resultado confirmado. Os status não são live regions automáticas e não calculam vencedor.

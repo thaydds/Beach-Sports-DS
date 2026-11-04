@@ -1,0 +1,91 @@
+.panel[data-score-match] {
+  --score-space: var(--ds-space-16);
+
+  padding: calc(var(--score-space) - var(--ds-stroke-subtle));
+}
+
+.panel[data-score-density='expanded'] {
+  --score-space: var(--ds-space-24);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--score-space);
+  min-inline-size: 0;
+  container: score-match / inline-size;
+}
+
+.header {
+  display: flex;
+  gap: var(--ds-space-12);
+  align-items: start;
+  min-inline-size: 0;
+}
+
+.heading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--ds-space-8);
+  align-items: start;
+  min-inline-size: 0;
+}
+
+.teams {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: var(--ds-space-16);
+  align-items: start;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-12);
+  align-items: start;
+  min-inline-size: 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-12);
+  align-items: start;
+  min-inline-size: 0;
+}
+
+.extra {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.live,
+.finished,
+.check,
+.more {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background: currentcolor;
+  mask: url('./assets/live.svg') center / contain no-repeat;
+}
+
+.finished {
+  mask-image: url('./assets/finished.svg');
+}
+
+.check {
+  mask-image: url('./assets/check.svg');
+}
+
+.more {
+  mask-image: url('./assets/more.svg');
+}
+
+/* Local layout threshold: 320 useful CSS px on the reference root scale. */
+@container score-match (width < 20rem) {
+  .teams {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

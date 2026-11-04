@@ -1,3 +1,4 @@
+import { RankingExample } from '../../../docs/examples/CompetitionExamples';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Avatar } from './Avatar';
 import {
@@ -29,4 +30,9 @@ export const ImageFailure: Story = {
 export const Composition: Story = {
   name: 'Composição com Card',
   render: () => <RosterComposition />,
+};
+
+export const RankingComposition: Story = {
+  name: 'Identidade no Ranking',
+  render: () => <RankingExample />,
 };

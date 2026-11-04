@@ -1,0 +1,172 @@
+.panel[data-ranking] {
+  --ranking-space: var(--ds-space-16);
+
+  padding: calc(var(--ranking-space) - var(--ds-stroke-subtle));
+}
+
+.panel[data-density='comfortable'] {
+  --ranking-space: var(--ds-space-24);
+}
+
+.region {
+  min-inline-size: 0;
+  container: ranking / inline-size;
+}
+
+.table {
+  inline-size: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+  table-layout: fixed;
+  text-align: start;
+}
+
+.caption {
+  padding-block-end: var(--ds-space-16);
+  text-align: start;
+}
+
+.caption > :not(:first-child) {
+  margin-block-start: var(--ds-space-8);
+}
+
+.edgeColumn {
+  inline-size: calc(var(--ds-size-56) + var(--ds-space-16) + var(--ds-space-12));
+}
+
+.positionHeader,
+.playerHeader,
+.pointsHeader {
+  padding-block: var(--ds-space-8);
+  border-block-end: var(--ds-space-16) solid var(--ds-color-bg-surface);
+  background: var(--ds-color-bg-surface);
+  background-clip: padding-box;
+  text-align: start;
+}
+
+.positionHeader,
+.position {
+  padding-inline: var(--ds-space-16) var(--ds-space-12);
+}
+
+.playerHeader,
+.player {
+  padding-inline: 0;
+}
+
+.pointsHeader,
+.points {
+  padding-inline: var(--ds-space-12) var(--ds-space-16);
+  text-align: end;
+}
+
+.item {
+  --ranking-item-padding: var(--ds-space-12);
+  --ranking-item-content: var(--ds-size-32);
+
+  background: var(--ds-color-bg-surface);
+}
+
+.item[data-density='comfortable'] {
+  --ranking-item-padding: var(--ds-space-16);
+  --ranking-item-content: var(--ds-size-40);
+}
+
+.item[data-emphasis='highlighted'] {
+  background: var(--ds-color-accent-soft);
+}
+
+.item > :is(td, th) {
+  padding-block: var(--ranking-item-padding)
+    calc(var(--ranking-item-padding) - var(--ds-stroke-subtle));
+  border-block-end: var(--ds-stroke-subtle) solid var(--ds-color-border-subtle);
+  vertical-align: middle;
+}
+
+.identity {
+  display: flex;
+  gap: var(--ds-space-12);
+  align-items: center;
+  min-inline-size: 0;
+  min-block-size: var(--ranking-item-content);
+}
+
+.avatar {
+  display: flex;
+  flex: none;
+}
+
+.details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--ds-space-4);
+  min-inline-size: 0;
+}
+
+.current {
+  color: var(--ds-color-accent-fg);
+}
+
+/* Remove only the optional decorative identity on narrow surfaces. */
+@container ranking (width < 24rem) {
+  .avatar {
+    display: none;
+  }
+}
+
+.player {
+  text-align: start;
+}
+
+.mobileLabel {
+  display: none;
+}
+
+/* At extreme reflow the row becomes a block, keeping DOM order and table roles. */
+@container ranking (width < 20rem) {
+  .table,
+  .table tbody {
+    display: block;
+  }
+
+  .caption {
+    display: block;
+  }
+
+  .table colgroup {
+    display: none;
+  }
+
+  .table thead {
+    position: absolute;
+    inline-size: 0;
+    block-size: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: var(--ds-size-56) minmax(0, 1fr);
+    gap: var(--ds-space-8) var(--ds-space-12);
+    padding: var(--ranking-item-padding) var(--ds-space-16);
+    border-block-end: var(--ds-stroke-subtle) solid var(--ds-color-border-subtle);
+  }
+
+  .item > :is(td, th) {
+    min-inline-size: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .points {
+    grid-column: 2;
+    text-align: start;
+  }
+
+  .mobileLabel {
+    display: block;
+    margin-block-end: var(--ds-space-4);
+  }
+}

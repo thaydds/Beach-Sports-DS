@@ -2,7 +2,7 @@
 
 O Beach Sports DS reúne tokens e componentes React. Button, IconButton, Typography e Card
 já foram publicados; o workspace inclui Avatar, Badge e Chip e esta evolução acrescenta
-Input, FormField e Checkbox. Novos exports ficam
+Input, FormField, Checkbox, ScoreMatch e a família Ranking/RankingItem. Novos exports ficam
 disponíveis no npm após a PR de release correspondente. Os exemplos abaixo usam a biblioteca
 do workspace e explicam como consumir seus estilos e compor os componentes.
 
@@ -219,3 +219,29 @@ IconButton quando tem ação final; não redesenhe esses controles em CSS local.
 `ref` aponta ao controle nativo, para focar o primeiro campo inválido.
 Para ajuda e erro, consulte as regras de [FormField](?path=/docs/componentes-formfield--docs),
 [Input](?path=/docs/componentes-input--docs) e [Checkbox](?path=/docs/componentes-checkbox--docs).
+
+## 11. Apresente partidas e classificações com dados autoritativos
+
+`ScoreMatch` apresenta uma partida; `Ranking` e `RankingItem` apresentam pontos
+individuais. Ambos compõem Card, Typography e Avatar; ScoreMatch também compõe
+Badge e IconButton. Não reconstrua esses elementos com estilos locais.
+
+```tsx
+import { Ranking, RankingItem } from '@beachsports/components';
+
+<Ranking title="Classificação" description="Pontos acumulados">
+  {players.map((player) => (
+    <RankingItem
+      key={player.id}
+      position={player.position}
+      playerName={player.name}
+      points={player.points}
+    />
+  ))}
+</Ranking>;
+```
+
+O produto fornece ordem, posições e pontos; o componente não calcula desempates.
+Em ScoreMatch, `state="finished"` exige `winnerLabel` confirmado. Live nunca
+infere vencedor pelo placar. Consulte as páginas de ScoreMatch, Ranking e
+RankingItem no Storybook para API, responsividade e semântica.

@@ -57,3 +57,7 @@ Os exemplos importam Avatar MD da biblioteca, preservando nome completo e fallba
 ## Composição com formulários
 
 O exemplo de cadastro agora compõe FormField, Input, Checkbox, Button, Avatar e Badge da biblioteca. O Card continua passivo; validação e estado ficam no formulário consumidor.
+
+## Composição com partidas e classificação
+
+ScoreMatch e Ranking compõem o Card existente, com Typography, Avatar, Badge e IconButton conforme cada contrato. A story de resultados da rodada usa os componentes públicos, sem redesenhar placar ou linhas de classificação.

@@ -1,0 +1,15 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/ScoreMatch/ScoreMatch.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/score-match.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="SCOREMATCH" />
+</Unstyled>
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Variants} />
+<Canvas of={Stories.Interaction} />
+<Canvas of={Stories.LongContent} />
+<Canvas of={Stories.Composition} />
