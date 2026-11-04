@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.2](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.4.1...components@0.4.2) (2026-11-04)
+
+### Correções
+
+- **components:** correct Chip touch feedback and selection area ([f60a700](https://github.com/thaydds/Beach-Sports-DS/commit/f60a70077c49f334a2bb73fe673f798809ddd2f9))
+- **components:** include pill padding in Chip selection ([ea6d3bc](https://github.com/thaydds/Beach-Sports-DS/commit/ea6d3bc6524be9bbdebcbab6a4bc21b9e1b1e235))
+- **components:** own native touch feedback in Chip ([a451cd7](https://github.com/thaydds/Beach-Sports-DS/commit/a451cd77268a6b462bbbc229df51a3eafd046c91))
+
 ## [0.4.1](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.4.0...components@0.4.1) (2026-11-04)
 
 ### Correções
