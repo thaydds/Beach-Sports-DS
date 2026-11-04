@@ -172,3 +172,83 @@ for (const theme of ['light', 'dark']) {
     });
   }
 }
+
+test.describe('Chip native touch feedback', () => {
+  test.use({ hasTouch: true });
+  for (const theme of ['light', 'dark']) {
+    test(`Chip owns touch feedback without a consumer reset / ${theme}`, async ({ page }, info) => {
+      await open(page, 'chip--variants', theme);
+      for (const button of await page.locator('[data-chip] button').all()) {
+        await expect(button).toHaveCSS('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)');
+      }
+      // The public pill's padding is part of selection, not an inert decoration.
+      await open(page, 'chip--variants', theme);
+      for (const chip of await page.locator('[data-chip]').all()) {
+        if ((await chip.getAttribute('data-disabled')) === 'true') continue;
+        const select = chip.getByRole('button').first();
+        const chipBox = await chip.boundingBox();
+        const buttonBox = await select.boundingBox();
+        expect(buttonBox!.x - chipBox!.x).toBeLessThanOrEqual(1);
+        const removalBox = await chip.getByRole('button').last().boundingBox();
+        expect(Math.abs(buttonBox!.x + buttonBox!.width - removalBox!.x)).toBeLessThanOrEqual(1);
+        expect(buttonBox!.height).toBeGreaterThanOrEqual(chipBox!.height - 2);
+      }
+      await open(page, 'chip--composition', theme);
+      const pill = page.locator('[data-chip]');
+      const selection = pill.getByRole('button', { name: 'André', exact: true });
+      const pillBox = await pill.boundingBox();
+      const selectionBox = await selection.boundingBox();
+      expect(pillBox!.width - selectionBox!.width).toBeLessThanOrEqual(2);
+      for (const position of [
+        { x: 5, y: 22 },
+        { x: pillBox!.width - 5, y: 22 },
+        { x: pillBox!.width / 2, y: 3 },
+        { x: pillBox!.width / 2, y: pillBox!.height - 3 },
+      ]) {
+        const previous = await selection.getAttribute('aria-pressed');
+        await pill.tap({ position });
+        await expect(selection).toHaveAttribute(
+          'aria-pressed',
+          previous === 'true' ? 'false' : 'true',
+        );
+      }
+      await open(page, 'chip--interaction', theme);
+      const chip = page.locator('[data-chip]');
+      const select = page.getByRole('button', { name: 'André', exact: true });
+      const remove = page.getByRole('button', { name: 'Remover André' });
+      const beforePadding = await select.getAttribute('aria-pressed');
+      await chip.tap({ position: { x: 5, y: 24 } });
+      await expect(select).toHaveAttribute(
+        'aria-pressed',
+        beforePadding === 'true' ? 'false' : 'true',
+      );
+      await chip.tap({ position: { x: 5, y: 24 } });
+      await expect(select).toHaveAttribute('aria-pressed', beforePadding!);
+      const selectedBackground = await chip.evaluate(
+        (node) => getComputedStyle(node).backgroundColor,
+      );
+      await expect(select).toHaveAttribute('aria-pressed', 'true');
+      await select.tap();
+      await expect(select).toHaveAttribute('aria-pressed', 'false');
+      await expect(chip).not.toHaveCSS('background-color', selectedBackground);
+      await select.tap();
+      await expect(select).toHaveAttribute('aria-pressed', 'true');
+      await expect(chip).toHaveCSS('background-color', selectedBackground);
+      await expect(select).toHaveCSS('outline-style', 'none');
+      await select.press('Tab');
+      await expect(remove).toBeFocused();
+      await expect(remove).toHaveCSS('outline-width', '2px');
+      await expect(chip).toHaveCSS('outline-width', '2px');
+      expect(
+        (await new AxeBuilder({ page }).include('#storybook-root').analyze()).violations,
+      ).toEqual([]);
+      await info.attach('chip-touch-feedback', {
+        body: await page.screenshot({ fullPage: true }),
+        contentType: 'image/png',
+      });
+      await remove.tap();
+      await expect(page.getByRole('status')).toHaveText('André removido.');
+      await expect(page.getByRole('button', { name: 'Restaurar' })).toBeFocused();
+    });
+  }
+});
