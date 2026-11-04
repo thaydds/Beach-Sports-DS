@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.3.0...components@0.4.0) (2026-11-04)
+
+### Novidades
+
+- **components:** add ScoreMatch and Ranking ([d351b02](https://github.com/thaydds/Beach-Sports-DS/commit/d351b0288397dbf76a46dffc3656bf02f97e34a8))
+
 ## [0.3.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.2.0...components@0.3.0) (2026-11-03)
 
 ### Novidades
