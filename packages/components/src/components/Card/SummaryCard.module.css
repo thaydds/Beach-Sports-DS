@@ -1,0 +1,132 @@
+.card {
+  display: flex;
+  box-sizing: border-box;
+  gap: var(--ds-space-12);
+  align-items: center;
+  inline-size: 100%;
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--ds-space-16);
+  border: var(--ds-stroke-subtle) solid var(--ds-color-border-subtle);
+  border-radius: var(--ds-radius-16);
+  appearance: none;
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-text-primary);
+  text-align: start;
+  overflow-wrap: anywhere;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button.card {
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  button.card[data-selected='false']:enabled:hover {
+    background: var(--ds-color-bg-sunken);
+  }
+}
+
+.card[data-selected='true'] {
+  border-width: var(--ds-stroke-control);
+  border-color: var(--ds-color-action-default);
+  background: var(--ds-color-bg-surface);
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--ds-space-2);
+  min-inline-size: 0;
+}
+
+.title,
+.avatar,
+.badge {
+  font-family: var(--ds-type-family-primary), sans-serif;
+  font-weight: var(--ds-type-weight-600);
+  letter-spacing: var(--ds-type-tracking-px-15-0);
+}
+
+.title {
+  font-size: var(--ds-type-control-md-font-size);
+  line-height: var(--ds-type-control-md-line-height);
+}
+
+/* Intrinsic pill and AUTO line-height are explicit in the Card master.
+   They are not instances of the separate Avatar/Badge component sets. */
+.avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  block-size: var(--ds-size-48);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-color-accent-soft);
+  color: var(--ds-color-accent-fg);
+  font-size: var(--ds-type-size-15);
+  line-height: normal;
+}
+
+.badge {
+  flex: none;
+  max-inline-size: 40%;
+  padding: var(--ds-space-4) var(--ds-space-8);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-color-status-success-soft);
+  color: var(--ds-color-status-success);
+  font-size: var(--ds-type-size-11);
+  line-height: normal;
+}
+
+.card[data-summary-card='match'] .badge {
+  background: var(--ds-color-status-info-soft);
+  color: var(--ds-color-status-info);
+}
+
+.card[data-disabled='true'] {
+  border-width: var(--ds-stroke-subtle);
+  border-color: var(--ds-color-border-subtle);
+  background: var(--ds-color-bg-sunken);
+  color: var(--ds-color-text-muted);
+  cursor: default;
+}
+
+.card[data-disabled='true'] :is(.avatar, .badge) {
+  background: var(--ds-color-bg-sunken);
+  color: var(--ds-color-text-muted);
+}
+
+.card:focus-visible {
+  outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+  outline-offset: var(--ds-focus-offset);
+}
+
+@supports (font-size: calc(1rem * (1rem / 1rem))) {
+  .title,
+  .avatar {
+    font-size: calc(var(--ds-type-size-15) / var(--ds-type-size-16) * 1rem);
+  }
+
+  .title {
+    line-height: calc(var(--ds-type-control-md-line-height) / var(--ds-type-size-15));
+  }
+
+  .badge {
+    font-size: calc(var(--ds-type-size-11) / var(--ds-type-size-16) * 1rem);
+  }
+}
+
+@media (forced-colors: active) {
+  .card {
+    border-color: ButtonText;
+  }
+
+  .card[data-selected='true'] {
+    border-color: Highlight;
+  }
+
+  .card[data-disabled='true'] {
+    color: GrayText;
+  }
+}

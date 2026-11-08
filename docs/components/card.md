@@ -61,3 +61,41 @@ O exemplo de cadastro agora compõe FormField, Input, Checkbox, Button, Avatar e
 ## Composição com partidas e classificação
 
 ScoreMatch e Ranking compõem o Card existente, com Typography, Avatar, Badge e IconButton conforme cada contrato. A story de resultados da rodada usa os componentes públicos, sem redesenhar placar ou linhas de classificação.
+
+## Card/Player e Card/Match do Figma
+
+`PlayerCard` e `MatchCard` implementam as composições do conjunto
+[Card](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P/volei-app--Copy-?node-id=2130-14749).
+O `Card` acima continua sendo o contêiner composicional; sua API e aparência não mudam.
+
+```tsx
+<PlayerCard
+  name="Lana Souza"
+  initials="LS"
+  description="Nível 12 · 87% de vitórias"
+  badge="V 12"
+  selected={selected}
+  onSelectedChange={setSelected}
+/>
+<MatchCard
+  title="Time A vs Time B"
+  description="Hoje · 18:30 · Areia 2"
+  badge="Agendada"
+/>
+```
+
+Sem `onSelectedChange`, o resumo é um article passivo. Com o callback, é um botão
+nativo `type="button"`, com `aria-pressed`, Enter/Espaço, foco e `disabled`.
+O consumidor controla `selected`. A borda selecionada é de 2px e segue o master.
+Os campos são texto, sem controles interativos aninhados. A identidade visual é
+decorativa; o nome acessível do botão inclui os textos visíveis.
+
+O avatar intrínseco de 48px e o badge de 11px são partes locais do master Card,
+não instâncias dos conjuntos Avatar/Badge. Por isso não substituem as APIs públicas
+existentes. São implementados com tokens existentes e altura de linha `normal`
+para o AUTO do Figma.
+
+**Pendência de design:** os badges Light do master têm contraste inferior a AA
+(2,91:1 Player; 2,61:1 Match). A composição reproduz o desenho e ainda não deve
+ser considerada aprovada em acessibilidade. A resolução precisa começar no Figma;
+o [relatório de auditoria](../figma-component-audit.md) registra as evidências.
