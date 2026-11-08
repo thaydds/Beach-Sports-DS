@@ -6,7 +6,13 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import vm from 'node:vm';
-import { canonicalName, compare, loadContract, validateSnapshot } from './compare.mjs';
+import {
+  canonicalName,
+  compare,
+  loadContract,
+  validateSnapshot,
+  figmaTokenName,
+} from './compare.mjs';
 
 const variable = (id, name, value, type = 'FLOAT', collection = 'base') => ({
   id,
@@ -40,6 +46,40 @@ const token = (path, raw, value = raw, type = 'dimension') => ({
   value,
 });
 const contract = (tokens) => ({ light: tokens, dark: tokens });
+
+test('collection namespaces disambiguate typography sizing and qualify semantic aliases', () => {
+  assert.equal(figmaTokenName({ name: 'size/16' }, { name: 'typography' }), '--ds-type-size-16');
+  assert.equal(figmaTokenName({ name: 'size/16' }, { name: 'sizing' }), '--ds-size-16');
+  const data = snapshot([
+    variable('p', 'blue/50', { r: 1, g: 1, b: 1 }, 'COLOR', 'palette'),
+    variable('c', 'bg/base', null, 'COLOR', 'color'),
+  ]);
+  data.collections = [
+    { ...collection, id: 'palette', name: 'palette' },
+    {
+      id: 'color',
+      name: 'color',
+      defaultModeId: 'l',
+      modes: [
+        { modeId: 'l', name: 'Light' },
+        { modeId: 'd', name: 'Dark' },
+      ],
+    },
+  ];
+  data.variables[1].valuesByMode = {
+    l: { type: 'VARIABLE_ALIAS', id: 'p' },
+    d: { type: 'VARIABLE_ALIAS', id: 'p' },
+  };
+  const tokens = [
+    token('palette.blue.50', '#ffffff', '#ffffff', 'color'),
+    token('color.bg.base', '{palette.blue.50}', '#ffffff', 'color'),
+  ];
+  assert.deepEqual(compare(data, contract(tokens)).findings, []);
+  data.variables[0].codeSyntax = { WEB: 'var(--ds-blue-50)' };
+  assert.ok(
+    compare(data, contract(tokens)).findings.some((f) => f.kind === 'code-syntax-mismatch'),
+  );
+});
 
 test('manifest supports Design and Dev Mode inspection without network access', async () => {
   const manifest = JSON.parse(
@@ -198,6 +238,31 @@ test('master bindings include literals, paints and text style review without equ
   assert.ok(!report.bindingReview.some((f) => f.field === 'paddingLeft' || f.field === 'fontSize'));
   assert.ok(report.bindingReview.some((f) => f.field === 'fills[0]'));
   assert.ok(report.bindingReview.some((f) => f.styleId === 'style'));
+});
+
+test('four bound corners and unused stroke weight are not unbound geometry findings', () => {
+  const data = snapshot([]);
+  const ref = { type: 'VARIABLE_ALIAS', id: 'radius' };
+  data.nodes = [
+    {
+      id: 'master',
+      name: 'Button',
+      type: 'COMPONENT',
+      masterId: 'master',
+      cornerRadius: 999,
+      strokeWeight: 1,
+      strokes: [],
+      boundVariables: {
+        topLeftRadius: ref,
+        topRightRadius: ref,
+        bottomLeftRadius: ref,
+        bottomRightRadius: ref,
+      },
+    },
+  ];
+  assert.equal(compare(data, contract([])).bindingReview.length, 0);
+  delete data.nodes[0].boundVariables.bottomRightRadius;
+  assert.ok(compare(data, contract([])).bindingReview.some((f) => f.field === 'cornerRadius'));
 });
 
 async function runPlugin({

@@ -81,6 +81,10 @@ Ele nega acesso de rede no manifest e só entrega o JSON para download local.
 
 - Nomes por conversão determinística: `space/16` e `space.16` → `--ds-space-16`.
   Nomes CSS já canônicos são preservados. Colisões não são aceitas.
+  `mapping.json` declara os namespaces das coleções: palette → palette,
+  color → color, typography → type; spacing/sizing já contêm seus caminhos.
+  A mesma regra resolve nomes dos aliases; `codeSyntax.WEB` é conferido contra
+  o nome resultante, sem ser usado para esconder divergências de nome.
 - Presença nos dois lados, tipos, valores e identidade do alias imediato, mesmo
   quando dois aliases resolvem para a mesma cor ou dimensão.
 - Light/Dark separadamente; aliases resolvidos através de coleções, com detecção

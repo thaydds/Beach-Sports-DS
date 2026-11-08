@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import mapping from './mapping.json' with { type: 'json' };
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const aliasPath = (value) =>
@@ -15,6 +16,19 @@ export function canonicalName(name) {
     .replaceAll('/', '-')
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
     .toLowerCase()}`;
+}
+
+export function figmaTokenName(variable, collection) {
+  const prefix = mapping.collectionPrefixes[collection?.name] || '';
+  const name = variable.name;
+  if (
+    !prefix ||
+    name.startsWith('--ds-') ||
+    name.startsWith(`${prefix}/`) ||
+    name.startsWith(`${prefix}.`)
+  )
+    return canonicalName(name);
+  return canonicalName(`${prefix}/${name}`);
 }
 
 export async function loadContract(repoRoot = root) {
@@ -133,9 +147,19 @@ export function compare(snapshot, contract) {
   const add = (kind, detail) => findings.push({ kind, ...detail });
   const variables = new Map(snapshot.variables.map((v) => [v.id, v]));
   const collections = new Map(snapshot.collections.map((c) => [c.id, c]));
+  const nameOf = (variable) =>
+    figmaTokenName(variable, collections.get(variable.variableCollectionId));
   const named = new Map();
   for (const variable of snapshot.variables.filter((v) => !v.remote)) {
-    const name = canonicalName(variable.name);
+    const name = nameOf(variable);
+    const syntax = variable.codeSyntax?.WEB;
+    if (syntax && syntax !== `var(${name})`)
+      add('code-syntax-mismatch', {
+        name,
+        variableId: variable.id,
+        expected: `var(${name})`,
+        actual: syntax,
+      });
     const group = named.get(name) || [];
     group.push(variable);
     named.set(name, group);
@@ -145,7 +169,7 @@ export function compare(snapshot, contract) {
     if (!collection) throw new Error(`Missing collection: ${variable.variableCollectionId}`);
     const matches = collection.modes.filter((mode) => mode.name.toLowerCase() === theme);
     if (matches.length === 1) return matches[0].modeId;
-    if (collection.modes.length === 1 && !canonicalName(variable.name).startsWith('--ds-color-'))
+    if (collection.modes.length === 1 && !nameOf(variable).startsWith('--ds-color-'))
       return collection.defaultModeId;
     throw new Error(`No unambiguous ${theme} mode: ${collection.name}/${variable.name}`);
   }
@@ -194,11 +218,7 @@ export function compare(snapshot, contract) {
         const actualAlias = raw?.type === 'VARIABLE_ALIAS' ? variables.get(raw.id) : null;
         const expected = expectedAlias ? canonicalName(expectedAlias) : null;
         const actual =
-          raw?.type === 'VARIABLE_ALIAS'
-            ? actualAlias
-              ? canonicalName(actualAlias.name)
-              : raw.id
-            : null;
+          raw?.type === 'VARIABLE_ALIAS' ? (actualAlias ? nameOf(actualAlias) : raw.id) : null;
         if (expected !== actual) add('alias-mismatch', { ...base, expected, actual });
         const value = resolveVariable(variable, theme);
         if (!equivalent(token.value, value, token.type))
@@ -222,6 +242,18 @@ export function compare(snapshot, contract) {
       'cornerRadius',
       'strokeWeight',
     ]) {
+      if (
+        field === 'cornerRadius' &&
+        ['topLeftRadius', 'topRightRadius', 'bottomLeftRadius', 'bottomRightRadius'].every(
+          (corner) => node.boundVariables?.[corner],
+        )
+      )
+        continue;
+      if (
+        field === 'strokeWeight' &&
+        (!Array.isArray(node.strokes) || !node.strokes.some((paint) => paint.visible !== false))
+      )
+        continue;
       if (typeof node[field] === 'number' && node[field] !== 0 && !node.boundVariables?.[field]) {
         bindingReview.push({
           nodeId: node.id,
