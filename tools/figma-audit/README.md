@@ -67,6 +67,11 @@ remotas são apenas as referenciadas, não um inventário de bibliotecas externa
 Valores mistos são representados por `{ "mixed": true }`; intervalos de texto
 preservam as diferenças internas. Falha de travessia aborta a exportação.
 Referências indisponíveis ficam nos avisos, sem marcar a leitura como completa.
+Definições de propriedades são lidas no `COMPONENT_SET` ou no componente sem
+variantes. Cada variante aponta para seu conjunto por `componentSetId` e
+`componentPropertyDefinitionsOwnerId`, sem invocar o getter proibido pela API.
+Outras propriedades de nós indisponíveis são registradas por nó/campo nos avisos;
+o export é preservado, mas a cobertura fica incompleta.
 
 Nomes de nós/component properties podem conter conteúdo do arquivo; revise o
 JSON antes de publicá-lo. O plugin não exporta imagens nem o texto dos segmentos.

@@ -200,7 +200,12 @@ test('master bindings include literals, paints and text style review without equ
   assert.ok(report.bindingReview.some((f) => f.styleId === 'style'));
 });
 
-async function runPlugin({ missingMain = false, failTraversal = false } = {}) {
+async function runPlugin({
+  missingMain = false,
+  failTraversal = false,
+  variant = false,
+  failProperty = false,
+} = {}) {
   const messages = [];
   const text = {
     id: 'text',
@@ -234,7 +239,34 @@ async function runPlugin({ missingMain = false, failTraversal = false } = {}) {
     type: 'COMPONENT',
     children: [instance],
   };
-  const page = { id: 'page', name: 'DS', children: [master] };
+  const definitions = {
+    State: { type: 'VARIANT', defaultValue: 'Default', variantOptions: ['Default'] },
+  };
+  const componentSet = {
+    id: 'set',
+    name: 'Button variants',
+    type: 'COMPONENT_SET',
+    key: 'set-key',
+    componentPropertyDefinitions: definitions,
+    children: [master],
+  };
+  Object.defineProperty(master, 'parent', { get: () => (variant ? componentSet : null) });
+  Object.defineProperty(master, 'componentPropertyDefinitions', {
+    get() {
+      if (variant)
+        throw new Error(
+          'Can only get component property definitions of a component set or non-variant component',
+        );
+      return definitions;
+    },
+  });
+  if (failProperty)
+    Object.defineProperty(text, 'cornerRadius', {
+      get() {
+        throw new Error('restricted getter');
+      },
+    });
+  const page = { id: 'page', name: 'DS', children: [variant ? componentSet : master] };
   const api = {
     editorType: 'dev',
     skipInvisibleInstanceChildren: true,
@@ -288,6 +320,32 @@ test('plugin marks missing instance masters incomplete and never emits success o
   const failure = await runPlugin({ failTraversal: true });
   assert.equal(failure.type, 'error');
   assert.ok(!failure.snapshot);
+});
+
+test('variant definitions are read from the set without invoking the forbidden variant getter', async () => {
+  const result = await runPlugin({ variant: true });
+  assert.equal(result.type, 'snapshot');
+  assert.equal(result.snapshot.coverage.complete, true);
+  const master = result.snapshot.nodes.find((node) => node.id === 'master');
+  const set = result.snapshot.nodes.find((node) => node.id === 'set');
+  assert.equal(master.componentPropertyDefinitionsOwnerId, 'set');
+  assert.equal(master.componentSetId, 'set');
+  assert.ok(!Object.hasOwn(master, 'componentPropertyDefinitions'));
+  assert.equal(set.componentPropertyDefinitions.State.type, 'VARIANT');
+  const standalone = (await runPlugin()).snapshot.nodes.find((node) => node.id === 'master');
+  assert.equal(standalone.componentPropertyDefinitionsOwnerId, 'master');
+  assert.ok(standalone.componentPropertyDefinitions);
+});
+
+test('other unavailable node getters are reported as incomplete evidence instead of losing the export', async () => {
+  const result = await runPlugin({ failProperty: true });
+  assert.equal(result.type, 'snapshot');
+  assert.equal(result.snapshot.coverage.complete, false);
+  assert.ok(
+    result.snapshot.coverage.warnings.some(
+      (warning) => warning.nodeId === 'text' && warning.field === 'cornerRadius',
+    ),
+  );
 });
 
 test('CLI writes review reports from a snapshot and rejects overwriting its input', async () => {

@@ -1,6 +1,6 @@
 /* global figma, __html__ */
 // No document writes, storage, fetch, or imports. This file runs directly in Figma.
-const VERSION = '1.0.1';
+const VERSION = '1.0.2';
 const properties = [
   'visible',
   'opacity',
@@ -42,9 +42,6 @@ const properties = [
   'boundVariables',
   'explicitVariableModes',
   'resolvedVariableModes',
-  'variantProperties',
-  'componentPropertyDefinitions',
-  'componentProperties',
 ];
 
 function plain(value) {
@@ -55,9 +52,17 @@ function plain(value) {
   return Object.fromEntries(Object.keys(value).map((key) => [key, plain(value[key])]));
 }
 
-function pick(object, keys) {
+function pick(object, keys, onReadError) {
   const result = {};
-  for (const key of keys) if (key in object) result[key] = plain(object[key]);
+  for (const key of keys) {
+    if (!(key in object)) continue;
+    try {
+      result[key] = plain(object[key]);
+    } catch (error) {
+      if (!onReadError) throw error;
+      onReadError(key, error);
+    }
+  }
   return result;
 }
 
@@ -143,6 +148,13 @@ async function collectSnapshot() {
   const pages = [];
   async function visit(node, pageId, masterId) {
     const owner = node.type === 'COMPONENT' ? node.id : masterId;
+    const onReadError = (field, error) =>
+      warnings.push({
+        nodeId: node.id,
+        field,
+        reason: 'property-unavailable',
+        detail: String(error),
+      });
     const record = {
       id: node.id,
       name: node.name,
@@ -150,10 +162,20 @@ async function collectSnapshot() {
       pageId,
       parentId: node.parent ? node.parent.id : null,
       masterId: owner,
-      ...pick(node, properties),
+      ...pick(node, properties, onReadError),
     };
-    if (node.type === 'COMPONENT') record.key = node.key;
+    if (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') {
+      record.key = node.key;
+      const isVariant = node.type === 'COMPONENT' && node.parent?.type === 'COMPONENT_SET';
+      record.componentPropertyDefinitionsOwnerId = isVariant ? node.parent.id : node.id;
+      if (isVariant) record.componentSetId = node.parent.id;
+      else Object.assign(record, pick(node, ['componentPropertyDefinitions'], onReadError));
+    }
+    if (node.type === 'COMPONENT' || node.type === 'INSTANCE') {
+      Object.assign(record, pick(node, ['variantProperties'], onReadError));
+    }
     if (node.type === 'INSTANCE') {
+      Object.assign(record, pick(node, ['componentProperties'], onReadError));
       try {
         const main = await node.getMainComponentAsync();
         record.mainComponent = main
