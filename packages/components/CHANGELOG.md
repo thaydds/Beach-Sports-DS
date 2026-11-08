@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.4.2...components@0.5.0) (2026-11-08)
+
+### Novidades
+
+- **components:** audit Figma contracts and add card compositions ([447b3f6](https://github.com/thaydds/Beach-Sports-DS/commit/447b3f6bdf4589ee833a351ac6dec32eb65a01f0))
+- **components:** audita contratos do Figma e implementa Card Player/Match ([590c60e](https://github.com/thaydds/Beach-Sports-DS/commit/590c60e8b3896a2abb42bfd9de8d83832983deb7))
+
 ## [0.4.2](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.4.1...components@0.4.2) (2026-11-04)
 
 ### Correções
