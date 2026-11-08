@@ -3,8 +3,23 @@
 Referência completa da camada de tokens do design system (arquivo Figma `volei-app (Copy)`, página `Design System`).
 Os exports DTCG em `packages/tokens/src/` são a fonte de dados do build e do catálogo visual.
 Este documento registra as orientações de uso e as tabelas técnicas, conferidas contra os exports pelos testes.
-A cadeia de atualização é Figma → export DTCG → Style Dictionary → CSS/JS/TS/JSON.
-Não edite artefatos em `dist/`; mudanças de design devem voltar ao Figma e gerar novos exports.
+**O Figma é a fonte da verdade do design system.** O export orienta os nomes,
+valores, modos e referências no repositório; as alterações do código são revisadas
+e versionadas antes da publicação. Não se renomeia o Figma para fazê-lo coincidir
+com um contrato antigo do código. O build gera CSS/JS/TS/JSON a partir da cópia
+DTCG no Git; não edite `dist/`.
+
+O contrato acompanha 294 variáveis do export original. Os 15 nomes antigos que
+já haviam sido publicados e diferem do Figma permanecem somente como aliases de
+compatibilidade, declarados em `$extensions.org.beachsports.compatibility` e
+apontando para os nomes canônicos do Figma. Assim, todos os 272 valores
+publicados anteriormente são preservados; o pacote passa a exportar 309 nomes.
+Percentuais nativos FLOAT correspondem a strings com `%` somente nos nomes
+listados no adaptador. Os tokens documentais não ampliam a escala de produto.
+
+O plugin Audit continua somente leitura. Pendências de vínculos, composição ou
+comportamento no Card e em outros componentes são achados de design separados;
+a igualdade dos tokens não certifica fidelidade completa dos componentes.
 
 - Última extração: seção `Design System` (`node 0:1`), 14 seções, fundações `Cores` / `Fontes` / `Espaçamentos`.
 - Nomes de token usam `/` (Figma). Nomes de CSS usam `-` com prefixo `--ds-`.

@@ -2,7 +2,7 @@
   "name": "beach-sports-ds",
   "version": "0.0.0",
   "private": true,
-  "description": "Beach Sports DS — design system monorepo (tokens + React components)",
+  "description": "Beach Sports DS \u2014 design system monorepo (tokens + React components)",
   "license": "MIT",
   "author": "Thay Santos",
   "homepage": "https://thaydds.github.io/Beach-Sports-DS/",
@@ -30,7 +30,9 @@
     "lint:styles": "nx run components:lint-styles",
     "test:browser": "nx run components:test-browser",
     "test:release": "nx run release-automation:test",
-    "release:preview": "node tools/release/prepare.mjs --dry-run"
+    "release:preview": "node tools/release/prepare.mjs --dry-run",
+    "tokens:audit": "node tools/figma-audit/compare.mjs",
+    "test:figma-audit": "node --test tools/figma-audit/*.test.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

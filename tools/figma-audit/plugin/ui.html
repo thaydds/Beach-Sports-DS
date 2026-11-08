@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+  <meta charset="utf-8" />
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+    body {
+      font: 14px/1.5 system-ui;
+      margin: 24px;
+      color: #222;
+    }
+    button,
+    a {
+      font: inherit;
+    }
+    button {
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    a {
+      display: block;
+      margin-top: 16px;
+    }
+    #status {
+      white-space: pre-wrap;
+    }
+  </style>
+  <h1>Auditoria do DS</h1>
+  <p>
+    Exporta variáveis, modos, aliases, estilos e vínculos de todas as páginas. Não altera o arquivo
+    nem envia dados pela rede.
+  </p>
+  <button id="export">Preparar exportação</button>
+  <a id="download" hidden>Baixar figma.snapshot.json</a>
+  <p id="status" role="status">O arquivo pode levar alguns minutos.</p>
+  <script>
+    const button = document.getElementById('export');
+    const status = document.getElementById('status');
+    const download = document.getElementById('download');
+    let url;
+    button.onclick = () => {
+      button.disabled = true;
+      download.hidden = true;
+      status.textContent = 'Lendo todas as páginas…';
+      parent.postMessage({ pluginMessage: { type: 'export' } }, '*');
+    };
+    onmessage = (event) => {
+      const message = event.data.pluginMessage;
+      if (!message) return;
+      button.disabled = false;
+      if (message.type === 'error') {
+        status.textContent = message.message;
+        return;
+      }
+      if (message.type !== 'snapshot') return;
+      if (url) URL.revokeObjectURL(url);
+      url = URL.createObjectURL(
+        new Blob([JSON.stringify(message.snapshot, null, 2)], { type: 'application/json' }),
+      );
+      download.href = url;
+      download.download = 'figma.snapshot.json';
+      download.hidden = false;
+      const snapshot = message.snapshot;
+      status.textContent = `${snapshot.variables.length} variáveis · ${snapshot.nodes.length} nós · ${snapshot.coverage.warnings.length} pendências de leitura. Baixe o JSON para comparar no repositório.`;
+    };
+  </script>
+</html>
