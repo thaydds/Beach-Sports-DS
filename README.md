@@ -112,6 +112,14 @@ Os testes de tokens comparam fontes DTCG com CSS, JS, declarações TypeScript e
 JSON; também conferem as tabelas de cores, geometria e tipografia da referência.
 O cache Nx considera os documentos usados nesses testes e no build do Storybook.
 
+## Auditoria Figma × tokens
+
+O [plugin de auditoria](tools/figma-audit/README.md) exporta variáveis, modos,
+aliases, estilos e vínculos sem alterar o Figma. `pnpm tokens:audit` compara
+o JSON exportado com os tokens canônicos e gera um relatório para revisão.
+O snapshot representa o momento da exportação; ainda não há certificação de
+paridade nem bloqueio de CI baseado em uma base aprovada.
+
 ## Releases automáticas e independentes
 
 Depois de um push na `main` com CI aprovado, a automação abre ou atualiza uma PR

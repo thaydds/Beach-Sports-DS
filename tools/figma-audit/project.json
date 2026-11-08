@@ -1,0 +1,24 @@
+{
+  "name": "figma-audit",
+  "projectType": "library",
+  "sourceRoot": "tools/figma-audit",
+  "tags": ["type:tooling"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["tools/figma-audit/**/*.mjs", "tools/figma-audit/plugin/code.js"]
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": [],
+      "inputs": [
+        "default",
+        "{workspaceRoot}/packages/tokens/src/**/*.json",
+        "{workspaceRoot}/packages/tokens/sd.config.ts"
+      ],
+      "options": { "command": "node --test tools/figma-audit/*.test.mjs" }
+    }
+  }
+}
