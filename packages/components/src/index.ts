@@ -18,6 +18,12 @@ export {
 } from './components/Typography/Typography';
 
 export { Card, type CardProps, type CardSurface, type CardDensity } from './components/Card/Card';
+export {
+  PlayerCard,
+  MatchCard,
+  type PlayerCardProps,
+  type MatchCardProps,
+} from './components/Card/SummaryCard';
 
 export { Avatar, type AvatarProps, type AvatarSize } from './components/Avatar/Avatar';
 export { Badge, type BadgeProps, type BadgeTone } from './components/Badge/Badge';

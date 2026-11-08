@@ -152,3 +152,30 @@ pendentes; não bloqueiam a constatação de igualdade dos tokens, nem justifica
 modificar o Figma automaticamente. Os candidatos de vínculo ficam no relatório e não geram código de erro quando
 a comparação dos tokens está alinhada. `tokenStatus` distingue a correspondência
 com o snapshot; `status: audit-only` preserva o limite de certificação.
+
+## Auditoria dos componentes
+
+O relatório [Figma → componentes](../../docs/figma-component-audit.md) identifica
+os 14 conjuntos/379 variantes e a correspondência com as APIs React. A projeção
+versionada em `design/figma/component-contract.json` preserva os IDs do export,
+as combinações reais, a geometria e os papéis de cor dos roots, os 12 estilos de
+texto e as partes do Card. Não equivale ao export completo.
+
+```sh
+node tools/figma-audit/components.mjs /caminho/figma.snapshot.json design/figma/component-contract.json
+pnpm test:figma-audit
+```
+
+O extrator somente lê o Figma exportado. Ele rejeita sobrescrever sua entrada e
+compara os seis campos e cinco vínculos dos estilos com o contrato Light/Dark.
+Os testes da ferramenta e os testes de browser consomem a projeção, com inputs
+Nx explícitos. As verificações de roots do browser cobrem cores, raio e alturas
+fixas aplicáveis; não são comparação automática de pixels de todas as 379 variantes.
+Button Icon e FormField compartilham as implementações ButtonBase/Input verificadas;
+os estados e as composições têm também os testes de comportamento existentes.
+
+O arquivo `component-binding-review.json` conserva os candidatos do export desta
+revisão por componente, classificando bordas vinculadas por lado, ícones, foco
+derivado e valores literais do Card. Não é gerado pelo extrator da projeção.
+Um novo export exige repetir a revisão dos candidatos; nenhum desses artefatos
+altera o Figma nem certifica automaticamente a acessibilidade da base.

@@ -13,6 +13,11 @@ import {
   PlayersExample,
 } from '../../../docs/examples/CardExamples';
 import { Button } from '../Button/Button';
+import {
+  SummaryCardVariants,
+  SummaryCardInteraction,
+  SummaryCardLongContent,
+} from '../../../docs/examples/SummaryCardExamples';
 const meta = {
   title: 'Componentes/Card',
   component: Card,
@@ -92,4 +97,23 @@ export const Registration: Story = {
 export const Competition: Story = {
   name: 'Composição com ScoreMatch e Ranking',
   render: () => <CardCompetition />,
+};
+
+export const FigmaCompositions: Story = {
+  name: 'Figma: Player e Match',
+  render: () => <SummaryCardVariants />,
+};
+export const FigmaSelection: Story = {
+  name: 'Figma: seleção controlada',
+  render: () => <SummaryCardInteraction />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const card = canvas.getByRole('button', { name: /^Lana Souza/ });
+    await userEvent.click(card);
+    await expect(card).toHaveAttribute('aria-pressed', 'true');
+  },
+};
+export const FigmaLongContent: Story = {
+  name: 'Figma: texto longo e reflow',
+  render: () => <SummaryCardLongContent />,
 };

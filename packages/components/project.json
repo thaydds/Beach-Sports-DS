@@ -96,7 +96,8 @@
       "dependsOn": ["build-storybook"],
       "options": {
         "command": "playwright test -c packages/components/playwright.config.ts"
-      }
+      },
+      "inputs": ["default", "^production", "{workspaceRoot}/design/figma/component-contract.json"]
     }
   }
 }
