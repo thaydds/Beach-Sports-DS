@@ -1,6 +1,9 @@
 # Auditoria Figma × Beach Sports DS
 
-Primeira etapa da sincronização: **exportar evidências e comparar**, sem alterar
+O Figma é a fonte da verdade. O repositório acompanha seu export; diferenças
+no código não autorizam renomear ou modificar o arquivo de design.
+
+Este plugin serve para **exportar evidências e comparar**, sem alterar
 variáveis, estilos, componentes, tokens canônicos ou versões publicadas.
 
 ## Executar no Figma Desktop
@@ -32,9 +35,11 @@ pnpm tokens:audit design/figma/figma.snapshot.json design/figma/audit
 O comando lê as quatro fontes DTCG de cada tema diretamente de
 `packages/tokens/src`, sem executar o build ou sobrescrever os tokens.
 Produz `audit.json` e `audit.md`. Retorna **0** quando não encontrou diferenças
-nas verificações implementadas, **1** quando há diferenças/candidatos para revisão
+de tokens, **1** quando há diferenças de tokens
 e **2** quando a entrada ou execução é inválida. **0 não é certificação de paridade.**
-Não há snapshot real nem resultado aprovado incluído nesta implementação.
+A fixture `fixtures/figma-token-export.json` é uma projeção das 294 variáveis e
+coleções do export real, com SHA-256 de origem. Não contém nós ou estilos e não
+substitui o export completo para a auditoria de componentes.
 
 ```sh
 pnpm test:figma-audit
@@ -102,8 +107,10 @@ mas a implementação só compara os dois temas publicados pelo repositório.
 
 ## O que a primeira auditoria ainda precisa fechar
 
-1. Conferir arquivo e páginas e revisar achados `repo-only`/`figma-only`, incluindo
-   tokens derivados/documentais e os nomes adicionais de tracking.
+1. Os 294 tokens originais estão representados no código. Quinze nomes públicos
+   antigos permanecem como aliases explícitos de compatibilidade, sem exigir
+   equivalentes no Figma. O comparador valida que apontam para tokens canônicos
+   presentes no export e não permite usar essa marca para esconder tokens do Figma.
 2. Comparar os estilos de texto exportados campo a campo com os 12 estilos do
    contrato; revisar aliases/vínculos desses estilos. Esta correspondência ainda
    não é automatizada pelo comparador.
@@ -126,3 +133,22 @@ exportação, o CI não detecta mudanças posteriores no Figma.
 - [Variáveis e vínculos por intervalo](https://developers.figma.com/docs/plugins/working-with-variables/)
 - [Carregamento explícito de páginas](https://developers.figma.com/docs/plugins/migrating-to-dynamic-loading/)
 - [Manifest e restrições de rede](https://developers.figma.com/docs/plugins/manifest/)
+
+## Compatibilidade e direção do fluxo
+
+Figma → export → atualização do código → validação → release. O plugin Align de
+escrita foi retirado; não é parte deste fluxo. Nenhuma alteração de design é
+necessária para validar os tokens do export original contra este repositório.
+
+Os quinze aliases legados usam a extensão `org.beachsports.compatibility` nas
+fontes DTCG. Eles mantêm nomes/valores públicos já existentes, mas não fazem parte
+dos 294 nomes canônicos do Figma. A extensão precisa apontar por alias para um
+token canônico do mesmo tipo; nomes presentes no Figma não podem ser ocultados
+como legado. Os testes conferem os 272 valores anteriormente publicados em
+Light/Dark e os 588 pares token/modo do export real.
+
+As lacunas de vínculos dos masters são relatadas separadamente e continuam
+pendentes; não bloqueiam a constatação de igualdade dos tokens, nem justificam
+modificar o Figma automaticamente. Os candidatos de vínculo ficam no relatório e não geram código de erro quando
+a comparação dos tokens está alinhada. `tokenStatus` distingue a correspondência
+com o snapshot; `status: audit-only` preserva o limite de certificação.

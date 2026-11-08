@@ -3,18 +3,23 @@
 Referência completa da camada de tokens do design system (arquivo Figma `volei-app (Copy)`, página `Design System`).
 Os exports DTCG em `packages/tokens/src/` são a fonte de dados do build e do catálogo visual.
 Este documento registra as orientações de uso e as tabelas técnicas, conferidas contra os exports pelos testes.
-O contrato publicado é o JSON DTCG aprovado no Git. O Figma é o ambiente de autoria;
-seu snapshot é comparado e revisado antes de mudar o contrato. O build gera
-CSS/JS/TS/JSON a partir desse contrato. Não edite artefatos em `dist/`.
+**O Figma é a fonte da verdade do design system.** O export orienta os nomes,
+valores, modos e referências no repositório; as alterações do código são revisadas
+e versionadas antes da publicação. Não se renomeia o Figma para fazê-lo coincidir
+com um contrato antigo do código. O build gera CSS/JS/TS/JSON a partir da cópia
+DTCG no Git; não edite `dist/`.
 
-O alinhamento inicial preserva os valores dos 272 tokens publicados e adiciona
-22 auxiliares existentes no Figma: oito primitivas de line-height, dois
-percentuais e doze tracking-px documentais/de compatibilidade. Os auxiliares
-não ampliam a escala de produto. Aliases são explícitos em target/focus e nos
-campos tipográficos. Percentuais nativos FLOAT do Figma correspondem a strings
-com `%` somente nos nomes declarados no adaptador. A migração real e a revisão
-visual ainda dependem de aplicar o [plano de alinhamento](../tools/figma-align/README.md)
-e obter um novo export.
+O contrato acompanha 294 variáveis do export original. Os 15 nomes antigos que
+já haviam sido publicados e diferem do Figma permanecem somente como aliases de
+compatibilidade, declarados em `$extensions.org.beachsports.compatibility` e
+apontando para os nomes canônicos do Figma. Assim, todos os 272 valores
+publicados anteriormente são preservados; o pacote passa a exportar 309 nomes.
+Percentuais nativos FLOAT correspondem a strings com `%` somente nos nomes
+listados no adaptador. Os tokens documentais não ampliam a escala de produto.
+
+O plugin Audit continua somente leitura. Pendências de vínculos, composição ou
+comportamento no Card e em outros componentes são achados de design separados;
+a igualdade dos tokens não certifica fidelidade completa dos componentes.
 
 - Última extração: seção `Design System` (`node 0:1`), 14 seções, fundações `Cores` / `Fontes` / `Espaçamentos`.
 - Nomes de token usam `/` (Figma). Nomes de CSS usam `-` com prefixo `--ds-`.

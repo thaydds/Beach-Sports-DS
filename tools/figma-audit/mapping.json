@@ -7,11 +7,11 @@
     "sizing": ""
   },
   "numericPercentTokens": [
-    "--ds-type-tracking-negative-1",
-    "--ds-type-tracking-negative-0-5",
-    "--ds-type-tracking-negative-0-3",
-    "--ds-type-tracking-negative-0-2",
-    "--ds-type-tracking-0",
+    "--ds-type-tracking-minus-1",
+    "--ds-type-tracking-minus-0-5",
+    "--ds-type-tracking-minus-0-3",
+    "--ds-type-tracking-minus-0-2",
+    "--ds-type-tracking-normal",
     "--ds-type-tracking-2",
     "--ds-type-tracking-8",
     "--ds-type-tracking-6",

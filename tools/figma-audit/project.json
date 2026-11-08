@@ -16,7 +16,8 @@
       "inputs": [
         "default",
         "{workspaceRoot}/packages/tokens/src/**/*.json",
-        "{workspaceRoot}/packages/tokens/sd.config.ts"
+        "{workspaceRoot}/packages/tokens/sd.config.ts",
+        "{workspaceRoot}/design/figma/published-token-values.json"
       ],
       "options": { "command": "node --test tools/figma-audit/*.test.mjs" }
     }

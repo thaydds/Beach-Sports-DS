@@ -44,6 +44,9 @@ export async function loadContract(repoRoot = root) {
           path: path.join('.'),
           type: value.$type || inheritedType,
           raw: value.$value,
+          ...(value.$extensions?.['org.beachsports.compatibility']
+            ? { compatibility: value.$extensions['org.beachsports.compatibility'] }
+            : {}),
         });
         return;
       }
@@ -186,14 +189,32 @@ export function compare(snapshot, contract) {
   }
   if (!snapshot.coverage.complete || snapshot.coverage.warnings.length)
     add('incomplete-export', { warnings: snapshot.coverage.warnings });
-  const contractNames = new Set(contract.light.map((token) => token.name));
+  const contractNames = new Set(
+    contract.light.filter((token) => !token.compatibility).map((token) => token.name),
+  );
   for (const [name, matches] of named) {
     if (matches.length > 1) add('name-collision', { name, ids: matches.map((v) => v.id) });
     if (!contractNames.has(name)) add('figma-only', { name, ids: matches.map((v) => v.id) });
   }
   let matched = 0;
   for (const theme of ['light', 'dark']) {
+    const byName = new Map(contract[theme].map((token) => [token.name, token]));
     for (const token of contract[theme]) {
+      if (token.compatibility) {
+        const replacement = canonicalName(String(token.compatibility.replacement));
+        const target = byName.get(replacement);
+        if (
+          !target ||
+          target.compatibility ||
+          !named.has(replacement) ||
+          canonicalName(aliasPath(token.raw) || '') !== replacement ||
+          target.type !== token.type
+        ) {
+          add('invalid-compatibility-alias', { name: token.name, theme, replacement });
+        }
+        if (named.has(token.name)) add('compatibility-name-in-figma', { name: token.name, theme });
+        continue;
+      }
       const matches = named.get(token.name);
       if (!matches) {
         add('repo-only', { name: token.name, theme });
@@ -309,8 +330,12 @@ export function compare(snapshot, contract) {
   return {
     schemaVersion: 1,
     status: 'audit-only',
+    tokenStatus: findings.length ? 'differences' : 'matches-snapshot',
     exportedAt: snapshot.exportedAt,
     contractDigest: digest,
+    compatibilityAliases: contract.light
+      .filter((token) => token.compatibility)
+      .map((token) => ({ name: token.name, replacement: token.compatibility.replacement })),
     tokenModeValuesMatched: matched,
     findings,
     bindingReview,
@@ -338,12 +363,16 @@ export function markdown(report) {
     '',
     `Valores por modo coincidentes: ${report.tokenModeValuesMatched}.`,
     `Achados de tokens: ${report.findings.length}. Propriedades para revisão: ${report.bindingReview.length}.`,
+    `Aliases públicos de compatibilidade: ${report.compatibilityAliases.length}.`,
     `Contrato SHA-256: \`${report.contractDigest}\`.`,
     '',
     '## Achados de tokens',
     '',
   ];
   for (const finding of report.findings) lines.push(`- ${JSON.stringify(finding)}`);
+  lines.push('', '## Aliases de compatibilidade do código', '');
+  for (const alias of report.compatibilityAliases)
+    lines.push(`- ${alias.name} → ${alias.replacement}`);
   lines.push('', '## Vínculos para revisão', '');
   for (const finding of report.bindingReview) lines.push(`- ${JSON.stringify(finding)}`);
   lines.push('', '## Limites', '', ...report.limitations.map((limit) => `- ${limit}`));
@@ -366,7 +395,8 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     process.stdout.write(
       `Audit: ${report.findings.length} token findings; ${report.bindingReview.length} binding review candidates. Not a parity certificate.\n`,
     );
-    process.exitCode = report.findings.length || report.bindingReview.length ? 1 : 0;
+    // Binding candidates are separate review data, not proven token mismatches.
+    process.exitCode = report.findings.length ? 1 : 0;
   } catch (error) {
     process.stderr.write(`${error.message}\n`);
     process.exitCode = 2;
