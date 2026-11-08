@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1 (2026-11-08)
+
+### Correções
+
+- Publica o alinhamento dos tokens ao Figma em uma versão inédita, preservando os nomes legados e os valores já publicados.
+- Corrige a tentativa de reutilizar `tokens@0.1.0`, cuja tag e versão npm já existem.
+
 ## 0.1.0 (2026-11-08)
 
 ### Novidades

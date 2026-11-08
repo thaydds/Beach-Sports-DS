@@ -1,7 +1,7 @@
 {
   "name": "@beachsports/tokens",
-  "version": "0.1.0",
-  "description": "Beach Sports DS design tokens — DTCG sources compiled to CSS custom properties, TypeScript and JSON",
+  "version": "0.1.1",
+  "description": "Beach Sports DS design tokens \u2014 DTCG sources compiled to CSS custom properties, TypeScript and JSON",
   "license": "MIT",
   "author": "Thay Santos",
   "homepage": "https://thaydds.github.io/Beach-Sports-DS/",
