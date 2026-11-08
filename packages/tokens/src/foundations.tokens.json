@@ -63,11 +63,11 @@
   },
   "target": {
     "$type": "dimension",
-    "min": { "$value": "44px", "$description": "Padrão mínimo confortável do DS (WCAG 2.2 AA exige 24px; o DS adota 44)" },
-    "comfortable": { "$value": "48px", "$description": "Alvo confortável do DS" }
+    "min": { "$value": "{size.44}", "$description": "Padrão mínimo confortável do DS (WCAG 2.2 AA exige 24px; o DS adota 44)" },
+    "comfortable": { "$value": "{size.48}", "$description": "Alvo confortável do DS" }
   },
   "focus": {
-    "width": { "$type": "dimension", "$value": "2px", "$description": "Espessura do anel" },
-    "offset": { "$type": "dimension", "$value": "2px", "$description": "Afastamento externo; reservar 4px de folga, não altera padding" }
+    "width": { "$type": "dimension", "$value": "{stroke.control}", "$description": "Espessura do anel" },
+    "offset": { "$type": "dimension", "$value": "{space.2}", "$description": "Afastamento externo; reservar 4px de folga, não altera padding" }
   }
 }

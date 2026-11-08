@@ -100,7 +100,7 @@ test('names match the actual Style Dictionary transform for every source token',
   )[1];
   const transform = vm.runInNewContext(`(path) => {${body}}`);
   const current = await loadContract();
-  assert.equal(current.light.length, 272);
+  assert.equal(current.light.length, 294);
   for (const item of current.light)
     assert.equal(canonicalName(item.path), transform(item.path.split('.')));
   assert.equal(new Set(current.light.map((item) => item.name)).size, current.light.length);

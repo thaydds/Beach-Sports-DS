@@ -3,8 +3,18 @@
 Referência completa da camada de tokens do design system (arquivo Figma `volei-app (Copy)`, página `Design System`).
 Os exports DTCG em `packages/tokens/src/` são a fonte de dados do build e do catálogo visual.
 Este documento registra as orientações de uso e as tabelas técnicas, conferidas contra os exports pelos testes.
-A cadeia de atualização é Figma → export DTCG → Style Dictionary → CSS/JS/TS/JSON.
-Não edite artefatos em `dist/`; mudanças de design devem voltar ao Figma e gerar novos exports.
+O contrato publicado é o JSON DTCG aprovado no Git. O Figma é o ambiente de autoria;
+seu snapshot é comparado e revisado antes de mudar o contrato. O build gera
+CSS/JS/TS/JSON a partir desse contrato. Não edite artefatos em `dist/`.
+
+O alinhamento inicial preserva os valores dos 272 tokens publicados e adiciona
+22 auxiliares existentes no Figma: oito primitivas de line-height, dois
+percentuais e doze tracking-px documentais/de compatibilidade. Os auxiliares
+não ampliam a escala de produto. Aliases são explícitos em target/focus e nos
+campos tipográficos. Percentuais nativos FLOAT do Figma correspondem a strings
+com `%` somente nos nomes declarados no adaptador. A migração real e a revisão
+visual ainda dependem de aplicar o [plano de alinhamento](../tools/figma-align/README.md)
+e obter um novo export.
 
 - Última extração: seção `Design System` (`node 0:1`), 14 seções, fundações `Cores` / `Fontes` / `Espaçamentos`.
 - Nomes de token usam `/` (Figma). Nomes de CSS usam `-` com prefixo `--ds-`.

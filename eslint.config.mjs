@@ -81,6 +81,21 @@ export default tseslint.config(
     },
   },
   {
+    files: ['tools/figma-align/**/*.mjs'],
+    rules: {
+      // The migration shares the audit's pure snapshot adapter; neither is a published package.
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          allow: ['../figma-audit/compare.mjs'],
+          depConstraints: [
+            { sourceTag: 'type:tooling', onlyDependOnLibsWithTags: ['type:tooling'] },
+          ],
+        },
+      ],
+    },
+  },
+  {
     files: ['**/*.config.{ts,mts,js,mjs,cjs}', '**/build.ts', '.storybook/**/*'],
     rules: {
       'no-console': 'off',

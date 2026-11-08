@@ -202,13 +202,18 @@ export function compare(snapshot, contract) {
       if (matches.length !== 1) continue;
       const variable = matches[0];
       const base = { name: token.name, theme, variableId: variable.id };
+      const numericPercent =
+        mapping.numericPercentTokens?.includes(token.name) &&
+        token.type === 'string' &&
+        typeof token.value === 'string' &&
+        /^-?[\d.]+%$/.test(token.value);
       const expectedType = {
         color: 'COLOR',
         dimension: 'FLOAT',
         number: 'FLOAT',
         string: 'STRING',
         boolean: 'BOOLEAN',
-      }[token.type];
+      }[numericPercent ? 'number' : token.type];
       if (variable.resolvedType !== expectedType)
         add('type-mismatch', { ...base, expected: expectedType, actual: variable.resolvedType });
       try {
@@ -221,7 +226,13 @@ export function compare(snapshot, contract) {
           raw?.type === 'VARIABLE_ALIAS' ? (actualAlias ? nameOf(actualAlias) : raw.id) : null;
         if (expected !== actual) add('alias-mismatch', { ...base, expected, actual });
         const value = resolveVariable(variable, theme);
-        if (!equivalent(token.value, value, token.type))
+        if (
+          !equivalent(
+            numericPercent ? Number.parseFloat(token.value) : token.value,
+            value,
+            numericPercent ? 'number' : token.type,
+          )
+        )
           add('value-mismatch', { ...base, expected: token.value, actual: value });
         else matched++;
       } catch (error) {

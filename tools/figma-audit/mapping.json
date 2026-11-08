@@ -5,5 +5,27 @@
     "typography": "type",
     "spacing": "",
     "sizing": ""
-  }
+  },
+  "numericPercentTokens": [
+    "--ds-type-tracking-negative-1",
+    "--ds-type-tracking-negative-0-5",
+    "--ds-type-tracking-negative-0-3",
+    "--ds-type-tracking-negative-0-2",
+    "--ds-type-tracking-0",
+    "--ds-type-tracking-2",
+    "--ds-type-tracking-8",
+    "--ds-type-tracking-6",
+    "--ds-type-display-l-letter-spacing-percent",
+    "--ds-type-display-m-letter-spacing-percent",
+    "--ds-type-heading-l-letter-spacing-percent",
+    "--ds-type-heading-m-letter-spacing-percent",
+    "--ds-type-body-l-letter-spacing-percent",
+    "--ds-type-body-m-letter-spacing-percent",
+    "--ds-type-body-s-letter-spacing-percent",
+    "--ds-type-label-m-letter-spacing-percent",
+    "--ds-type-label-s-letter-spacing-percent",
+    "--ds-type-control-sm-letter-spacing-percent",
+    "--ds-type-control-md-letter-spacing-percent",
+    "--ds-type-control-lg-letter-spacing-percent"
+  ]
 }
