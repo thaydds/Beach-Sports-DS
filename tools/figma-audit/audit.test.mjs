@@ -41,6 +41,15 @@ const token = (path, raw, value = raw, type = 'dimension') => ({
 });
 const contract = (tokens) => ({ light: tokens, dark: tokens });
 
+test('manifest supports Design and Dev Mode inspection without network access', async () => {
+  const manifest = JSON.parse(
+    await readFile(new URL('./plugin/manifest.json', import.meta.url), 'utf8'),
+  );
+  assert.deepEqual(manifest.editorType, ['figma', 'dev']);
+  assert.deepEqual(manifest.capabilities, ['inspect']);
+  assert.deepEqual(manifest.networkAccess.allowedDomains, ['none']);
+});
+
 test('names match the actual Style Dictionary transform for every source token', async () => {
   const config = await readFile(
     new URL('../../packages/tokens/sd.config.ts', import.meta.url),
@@ -169,6 +178,7 @@ test('master bindings include literals, paints and text style review without equ
     id: 'n',
     name: 'part',
     type: 'TEXT',
+    visible: false,
     masterId: 'master',
     paddingTop: 16,
     paddingLeft: 16,
@@ -211,6 +221,9 @@ async function runPlugin({ missingMain = false, failTraversal = false } = {}) {
     id: 'instance',
     name: 'Button',
     type: 'INSTANCE',
+    get children() {
+      return api.skipInvisibleInstanceChildren ? [] : [text];
+    },
     getMainComponentAsync: async () =>
       missingMain ? null : { id: 'master', key: 'key', name: 'Button', remote: false },
   };
@@ -219,10 +232,12 @@ async function runPlugin({ missingMain = false, failTraversal = false } = {}) {
     name: 'Button',
     key: 'key',
     type: 'COMPONENT',
-    children: [text, instance],
+    children: [instance],
   };
   const page = { id: 'page', name: 'DS', children: [master] };
   const api = {
+    editorType: 'dev',
+    skipInvisibleInstanceChildren: true,
     root: { name: 'Test file', children: [page] },
     fileKey: 'test-key',
     showUI: () => {},

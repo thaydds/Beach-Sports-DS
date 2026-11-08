@@ -1,6 +1,6 @@
 /* global figma, __html__ */
 // No document writes, storage, fetch, or imports. This file runs directly in Figma.
-const VERSION = '1.0.0';
+const VERSION = '1.0.1';
 const properties = [
   'visible',
   'opacity',
@@ -250,13 +250,18 @@ let busy = false;
 figma.ui.onmessage = async (message) => {
   if (message.type !== 'export' || busy) return;
   busy = true;
+  const previousSkipInvisible = figma.skipInvisibleInstanceChildren;
   try {
+    // Dev Mode skips hidden instance descendants by default. Audit them too.
+    // This is plugin traversal configuration; it does not edit the document.
+    figma.skipInvisibleInstanceChildren = false;
     const snapshot = await collectSnapshot();
     figma.ui.postMessage({ type: 'snapshot', snapshot });
   } catch (error) {
     // A failed traversal must never be presented as a complete export.
     figma.ui.postMessage({ type: 'error', message: String(error) });
   } finally {
+    figma.skipInvisibleInstanceChildren = previousSkipInvisible;
     busy = false;
   }
 };

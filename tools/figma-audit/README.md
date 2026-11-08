@@ -12,6 +12,11 @@ variáveis, estilos, componentes, tokens canônicos ou versões publicadas.
 4. Aguarde a leitura e clique em **Baixar figma.snapshot.json**.
 5. Copie o JSON para `design/figma/figma.snapshot.json` no repositório.
 
+O manifest aceita Design e Dev Mode, com a capability `inspect`. Se uma versão
+anterior mostrar `editor type does not include "dev"`, feche o plugin e reimporte
+este manifest atualizado. O exportador inclui descendentes ocultos de instâncias
+mesmo no Dev Mode, restaurando a configuração de travessia ao concluir ou falhar.
+
 O plugin não precisa de build, GitHub, token de API ou servidor intermediário.
 Os três arquivos em `plugin/` são o plugin completo. O manifest não contém ID
 de publicação; se o Figma exigir um ID ao registrar o plugin local, crie um plugin
