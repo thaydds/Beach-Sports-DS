@@ -23,6 +23,8 @@ export type ScoreMatchProps = Omit<
   teamA: ScoreMatchTeam;
   teamB: ScoreMatchTeam;
   density?: ScoreMatchDensity;
+  /** Layout de acompanhamento para controles maiores; Finished mantém a composição numérica. */
+  scoreLayout?: 'columns' | 'rows';
   /** Texto informativo de status; não altera as regras do produto. */
   statusLabel?: string;
   /** Informação de classificação fornecida pelo produto, nunca calculada pelo placar. */
@@ -50,6 +52,7 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
     teamA,
     teamB,
     density = 'compact',
+    scoreLayout = 'columns',
     state = 'live',
     statusLabel,
     scoreContent,
@@ -111,6 +114,7 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
         <div
           className={styles.teams}
           data-slot="score-content"
+          data-layout={finished ? 'columns' : scoreLayout}
           data-editable={scoreContent != null && !finished ? true : undefined}
         >
           <Team
@@ -118,7 +122,13 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
             density={density}
             scoreContent={finished ? undefined : scoreContent?.A}
           />
-          <Typography as="span" variant="label-m" tone="secondary" aria-hidden="true">
+          <Typography
+            as="span"
+            variant="label-m"
+            tone="secondary"
+            aria-hidden="true"
+            data-slot="separator"
+          >
             ×
           </Typography>
           <Team
