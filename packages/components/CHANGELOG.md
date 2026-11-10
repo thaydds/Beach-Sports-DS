@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.5.0...components@0.6.0) (2026-11-10)
+
+### Novidades
+
+- **components:** add Loading and composable Modal from Figma ([6a34713](https://github.com/thaydds/Beach-Sports-DS/commit/6a3471370eb4688d0b78b42439af46e8ac9eb230))
+- **components:** add Loading and compositional Modal ([4ab64ef](https://github.com/thaydds/Beach-Sports-DS/commit/4ab64ef361a87daf1735683a7978ae9564a1b795))
+
 ## [0.5.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.4.2...components@0.5.0) (2026-11-08)
 
 ### Novidades
