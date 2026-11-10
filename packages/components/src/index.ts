@@ -55,3 +55,5 @@ export type { RankingDensity } from './components/Ranking/RankingContext';
 
 export { Loading, type LoadingProps, type LoadingSize } from './components/Loading/Loading';
 export { Modal, type ModalProps, type ModalCloseReason } from './components/Modal/Modal';
+
+export { Counter, type CounterProps, type CounterDigits } from './components/Counter/Counter';

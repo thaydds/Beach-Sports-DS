@@ -95,3 +95,28 @@
   inline-size: var(--ds-size-56);
   min-block-size: var(--ds-size-56);
 }
+
+.teams[data-layout='rows'] {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ds-space-24);
+}
+
+.teams[data-layout='rows'] > [data-slot='separator'] {
+  display: none;
+}
+
+.teams[data-layout='rows'] .team {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--ds-space-16);
+}
+
+.teams[data-layout='rows'] [data-slot='score'] {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.teams[data-layout='rows'] [data-slot='players'] {
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,16 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CounterStories from '../src/components/Counter/Counter.stories';
+
+<Meta of={CounterStories} />
+
+# Counter
+
+Uma entrada para um inteiro, com casas visuais separadas e ações empilhadas. `digits` deriva o intervalo; `value` e `onChange` sempre representam o número completo. Sem truncamento ao trocar a quantidade de casas. Use um nome por time e `onValidityChange` para bloquear confirmação enquanto houver entrada inválida.
+
+<Canvas of={CounterStories.Playground} />
+<Controls />
+<Canvas of={CounterStories.InMatch} />
+<Canvas of={CounterStories.Minimum} />
+<Canvas of={CounterStories.Maximum} />
+<Canvas of={CounterStories.Disabled} />
+<Canvas of={CounterStories.Error} />
