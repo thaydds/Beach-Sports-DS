@@ -31,3 +31,14 @@ O Chip desativa o destaque nativo de toque nos dois botões internos para evitar
 Botões têm type="button": não submetem o formulário. Remover não dispara seleção. O consumidor gerencia foco após remoção; no exemplo ele segue para Restaurar. Coleções devem permitir wrap, preservar nomes e não cortar foco. A altura cresce com texto longo; ícones e remoção não encolhem. Inter é fornecida pelo consumidor.
 
 [Figma — Chip](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P?node-id=2098-55286).
+
+## Presença — indicador selecionado e remoção flush
+
+`showSelectionIndicator` (false por padrão) exibe o check nativo somente quando
+selected=true, sem reservar ícone no Default. O ícone opcional existente continua
+funcionando. A remoção termina no lado direito da pílula sem padding adicional,
+preservando alvo44 e gap8 após o botão de seleção.
+
+Decisão explícita para o Volley: segue a documentação2098:55311 e as instâncias
+aprovadas de Quem veio hoje, não o padding direito16 divergente do master atual.
+Nenhum token novo; demais estilos e contratos permanecem.

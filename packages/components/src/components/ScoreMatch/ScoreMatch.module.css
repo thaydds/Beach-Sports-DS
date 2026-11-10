@@ -85,7 +85,13 @@
 
 /* Local layout threshold: 272 useful CSS px on the reference root scale. */
 @container score-match (width < 17rem) {
-  .teams {
+  .teams:not([data-editable]) {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* Example layout for the real DS Input placed in the score slot. */
+.scoreInput {
+  inline-size: var(--ds-size-56);
+  min-block-size: var(--ds-size-56);
 }

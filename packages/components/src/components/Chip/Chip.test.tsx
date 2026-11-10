@@ -63,3 +63,13 @@ function typeContracts() {
   return inert;
 }
 void typeContracts;
+
+it('shows the native selected indicator without reserving a Default icon', () => {
+  const { rerender, container } = render(
+    <Chip label="André" showSelectionIndicator onSelectedChange={() => {}} />,
+  );
+  const before = container.querySelector('button')!.children.length;
+  rerender(<Chip label="André" showSelectionIndicator selected onSelectedChange={() => {}} />);
+  expect(container.querySelector('button')!.children.length).toBe(before + 1);
+  expect(screen.getByRole('button', { name: 'André' })).toHaveAttribute('aria-pressed', 'true');
+});

@@ -241,3 +241,37 @@ for (const theme of ['light', 'dark']) {
     });
   }
 }
+
+for (const theme of ['light', 'dark']) {
+  test(`Score content slots use native DS Inputs in both densities / ${theme}`, async ({
+    page,
+  }) => {
+    for (const story of ['editable', 'editable-expanded']) {
+      await page.goto(
+        `/iframe.html?id=componentes-scorematch--${story}&viewMode=story&globals=theme:${theme}`,
+      );
+      const panel = page.getByRole('article');
+      await expect(panel.getByRole('textbox')).toHaveCount(2);
+      for (const input of await panel.locator('[data-input]').all()) {
+        await expect(input).toHaveCSS('width', '56px');
+        await expect(input).toHaveCSS('height', '56px');
+      }
+      await panel.getByRole('textbox', { name: 'Placar Time A' }).fill('25');
+      await expect(panel.getByRole('textbox', { name: 'Placar Time A' })).toHaveValue('25');
+      await expect(panel.getByText('Time B', { exact: true })).toBeVisible();
+      expect(
+        (await new AxeBuilder({ page }).include('#storybook-root').analyze()).violations,
+      ).toEqual([]);
+      await page.setViewportSize({ width: 320, height: 852 });
+      const controls = panel.locator('[data-input]');
+      expect(
+        Math.abs(
+          (await controls.nth(0).boundingBox())!.y - (await controls.nth(1).boundingBox())!.y,
+        ),
+      ).toBeLessThanOrEqual(1);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+    }
+  });
+}

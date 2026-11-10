@@ -72,7 +72,7 @@
 
 .remove {
   flex: none;
-  margin-inline-end: var(--chip-padding);
+  margin-inline-end: 0;
   inline-size: var(--ds-target-min);
   block-size: var(--ds-target-min);
 }

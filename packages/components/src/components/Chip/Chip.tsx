@@ -10,6 +10,8 @@ export interface ChipProps extends Omit<
   selected?: boolean;
   disabled?: boolean;
   icon?: ReactElement;
+  /** Exibe o check nativo quando selecionado, sem ícone no estado Default. */
+  showSelectionIndicator?: boolean;
   onSelectedChange: (selected: boolean) => void;
   onRemove?: () => void;
   removeLabel?: string;
@@ -21,6 +23,7 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(function Chip(
     selected = false,
     disabled = false,
     icon,
+    showSelectionIndicator = false,
     onSelectedChange,
     onRemove,
     removeLabel = `Remover ${label}`,
@@ -46,7 +49,7 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(function Chip(
         aria-pressed={selected}
         onClick={() => onSelectedChange(!selected)}
       >
-        {icon && (
+        {(icon || (selected && showSelectionIndicator)) && (
           <span className={styles.icon} aria-hidden="true">
             {selected ? <span className={styles.check} /> : icon}
           </span>

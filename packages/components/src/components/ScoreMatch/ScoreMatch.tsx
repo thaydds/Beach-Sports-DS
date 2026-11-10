@@ -23,13 +23,25 @@ export type ScoreMatchProps = Omit<
   teamA: ScoreMatchTeam;
   teamB: ScoreMatchTeam;
   density?: ScoreMatchDensity;
+  /** Texto informativo de status; não altera as regras do produto. */
+  statusLabel?: string;
   /** Informação de classificação fornecida pelo produto, nunca calculada pelo placar. */
   position?: string;
   description?: string;
   action?: Omit<IconButtonProps, 'icon' | 'size' | 'variant'>;
   /** Conteúdo adicional no rodapé; controles continuam independentes do painel. */
   children?: ReactNode;
-} & ({ state?: 'live'; winnerLabel?: never } | { state: 'finished'; winnerLabel: string });
+} & (
+    | {
+        state?: 'live';
+        winnerLabel?: never;
+        /** Substitui somente os placares, preservando nomes e participantes. */ scoreContent?: {
+          A: ReactNode;
+          B: ReactNode;
+        };
+      }
+    | { state: 'finished'; winnerLabel: string; scoreContent?: never }
+  );
 
 export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function ScoreMatch(
   {
@@ -39,6 +51,8 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
     teamB,
     density = 'compact',
     state = 'live',
+    statusLabel,
+    scoreContent,
     winnerLabel,
     position,
     description = 'Placar provisório · resultado ainda não confirmado',
@@ -80,7 +94,7 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
             <Badge
               size="sm"
               tone={finished ? 'success' : 'info'}
-              label={finished ? 'Finalizada' : 'Ao vivo'}
+              label={statusLabel ?? (finished ? 'Finalizada' : 'Ao vivo')}
               icon={<span className={finished ? styles.finished : styles.live} />}
             />
             {position && <Typography variant="label-s">{position}</Typography>}
@@ -94,12 +108,24 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
             />
           )}
         </div>
-        <div className={styles.teams}>
-          <Team team={teamA} density={density} />
+        <div
+          className={styles.teams}
+          data-slot="score-content"
+          data-editable={scoreContent != null && !finished ? true : undefined}
+        >
+          <Team
+            team={teamA}
+            density={density}
+            scoreContent={finished ? undefined : scoreContent?.A}
+          />
           <Typography as="span" variant="label-m" tone="secondary" aria-hidden="true">
             ×
           </Typography>
-          <Team team={teamB} density={density} />
+          <Team
+            team={teamB}
+            density={density}
+            scoreContent={finished ? undefined : scoreContent?.B}
+          />
         </div>
         {(finished || description || children != null) && (
           <div className={styles.footer}>
@@ -125,13 +151,25 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
   );
 });
 
-function Team({ team, density }: { team: ScoreMatchTeam; density: ScoreMatchDensity }) {
+function Team({
+  team,
+  density,
+  scoreContent,
+}: {
+  team: ScoreMatchTeam;
+  density: ScoreMatchDensity;
+  scoreContent?: ReactNode;
+}) {
   return (
     <div className={styles.team} data-slot="team">
       <Typography variant="label-m">{team.name}</Typography>
-      <Typography variant={density === 'expanded' ? 'display-l' : 'display-m'} data-slot="score">
-        {team.score}
-      </Typography>
+      {scoreContent != null ? (
+        <div data-slot="score">{scoreContent}</div>
+      ) : (
+        <Typography variant={density === 'expanded' ? 'display-l' : 'display-m'} data-slot="score">
+          {team.score}
+        </Typography>
+      )}
       {density === 'expanded' && team.avatar && <Avatar {...team.avatar} size="sm" decorative />}
       <Typography variant="text-s" tone="secondary" data-slot="players">
         {team.players}
