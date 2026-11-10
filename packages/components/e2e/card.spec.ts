@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 for (const theme of ['light', 'dark']) {
   test(`Card four combinations, tokens and geometry / ${theme}`, async ({ page }) => {
