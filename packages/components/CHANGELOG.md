@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.7.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.6.0...components@0.7.0) (2026-11-10)
+
+### Novidades
+
+- **components:** compose editable scores and presence chips ([102a0d7](https://github.com/thaydds/Beach-Sports-DS/commit/102a0d7f47f55d040468ce4ac2a01d5afabc9a24))
+- **components:** compose live score inputs and presence chips ([1646ccd](https://github.com/thaydds/Beach-Sports-DS/commit/1646ccd2c590db9b1f5a56d77729a3588b41e518))
+
+### Correções
+
+- **components:** keep editable scores in columns on narrow screens ([5df8562](https://github.com/thaydds/Beach-Sports-DS/commit/5df85620b0e082de81700b2755ba5ec7d86a5f91))
+
 ## [0.6.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.5.0...components@0.6.0) (2026-11-10)
 
 ### Novidades
