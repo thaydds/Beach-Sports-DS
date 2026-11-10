@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.8.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.7.0...components@0.8.0) (2026-11-10)
+
+### Novidades
+
+- **components:** add segmented counter and row score composition ([cfcfea5](https://github.com/thaydds/Beach-Sports-DS/commit/cfcfea51d9935a8f646c212207c9d040959c32e7))
+- **components:** Counter com casas e composição de placar em linhas ([18bdd77](https://github.com/thaydds/Beach-Sports-DS/commit/18bdd779606b64dbb790fad2738b0e1dae316a6a))
+
+### Correções
+
+- **components:** format pasted leading zeros without hiding value ([f86d6b8](https://github.com/thaydds/Beach-Sports-DS/commit/f86d6b8426e7c988d9833603c0e36e0980f2afca))
+
 ## [0.7.0](https://github.com/thaydds/Beach-Sports-DS/compare/components@0.6.0...components@0.7.0) (2026-11-10)
 
 ### Novidades
