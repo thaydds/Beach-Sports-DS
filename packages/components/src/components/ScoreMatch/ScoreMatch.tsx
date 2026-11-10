@@ -108,7 +108,11 @@ export const ScoreMatch = forwardRef<HTMLElement, ScoreMatchProps>(function Scor
             />
           )}
         </div>
-        <div className={styles.teams} data-slot="score-content">
+        <div
+          className={styles.teams}
+          data-slot="score-content"
+          data-editable={scoreContent != null && !finished ? true : undefined}
+        >
           <Team
             team={teamA}
             density={density}

@@ -97,3 +97,5 @@ Os exemplos usam Input real em uma caixa56×56 com tokens size/56, sem card “P
 separado. Regras de inteiros, empate, confirmação e persistência pertencem à aplicação.
 Fonte atual conferida em10nov2026: instância2184:17980, slot2184:26846, Body com
 Inputs2184:27032 e2184:27037. [Figma](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P?node-id=2184-17980).
+
+O Body com scoreContent preserva as duas colunas também em320px, pois Inputs56 cabem nessa composição. O fallback numérico existente continua com a regra de empilhamento anterior.

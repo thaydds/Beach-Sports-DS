@@ -85,7 +85,7 @@
 
 /* Local layout threshold: 272 useful CSS px on the reference root scale. */
 @container score-match (width < 17rem) {
-  .teams {
+  .teams:not([data-editable]) {
     grid-template-columns: minmax(0, 1fr);
   }
 }

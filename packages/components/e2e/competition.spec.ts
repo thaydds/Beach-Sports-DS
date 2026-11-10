@@ -263,6 +263,12 @@ for (const theme of ['light', 'dark']) {
         (await new AxeBuilder({ page }).include('#storybook-root').analyze()).violations,
       ).toEqual([]);
       await page.setViewportSize({ width: 320, height: 852 });
+      const controls = panel.locator('[data-input]');
+      expect(
+        Math.abs(
+          (await controls.nth(0).boundingBox())!.y - (await controls.nth(1).boundingBox())!.y,
+        ),
+      ).toBeLessThanOrEqual(1);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,
       );
