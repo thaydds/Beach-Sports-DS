@@ -28,7 +28,7 @@ export const matchTeams = {
 };
 export function MatchExample(props: Partial<ScoreMatchProps>) {
   // Partial is only for the fixture wrapper. Final production props preserve the state contract.
-  const { state = 'live', winnerLabel, density, ...rest } = props;
+  const { state = 'live', winnerLabel, density, scoreContent, ...rest } = props;
   return (
     <ScoreMatch
       title="Partida #014"
@@ -38,7 +38,7 @@ export function MatchExample(props: Partial<ScoreMatchProps>) {
       {...rest}
       {...(state === 'finished'
         ? { state, winnerLabel: winnerLabel ?? 'Time A · Vencedor' }
-        : { state })}
+        : { state, scoreContent })}
     />
   );
 }

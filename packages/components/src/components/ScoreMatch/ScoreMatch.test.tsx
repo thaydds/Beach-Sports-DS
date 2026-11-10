@@ -3,6 +3,7 @@ import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { ScoreMatch } from './ScoreMatch';
+import { Input } from '../Input/Input';
 import { matchTeams, MatchInteraction } from '../../../docs/examples/CompetitionExamples';
 
 const base = {
@@ -130,3 +131,32 @@ function typeContracts() {
   return [result, live, action, click];
 }
 void typeContracts;
+
+describe('Score content slot', () => {
+  it.each(['compact', 'expanded'] as const)(
+    'preserves names, participants and native fields in %s; finish removes inputs',
+    (density) => {
+      const { rerender } = render(
+        <ScoreMatch
+          {...base}
+          density={density}
+          statusLabel="Em andamento"
+          scoreContent={{
+            A: <Input aria-label="Placar A" defaultValue="21" />,
+            B: <Input aria-label="Placar B" defaultValue="18" />,
+          }}
+        />,
+      );
+      expect(screen.getByRole('textbox', { name: 'Placar A' })).toHaveValue('21');
+      expect(screen.getByRole('textbox', { name: 'Placar B' })).toHaveValue('18');
+      expect(screen.getByText(base.teamA.players)).toBeVisible();
+      expect(screen.getByText(base.teamB.name)).toBeVisible();
+      expect(screen.getByText('Em andamento')).toBeVisible();
+      rerender(
+        <ScoreMatch {...base} density={density} state="finished" winnerLabel="Time A · Vencedor" />,
+      );
+      expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+      expect(screen.getByText(String(base.teamA.score))).toBeVisible();
+    },
+  );
+});

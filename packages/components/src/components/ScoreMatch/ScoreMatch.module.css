@@ -89,3 +89,9 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Example layout for the real DS Input placed in the score slot. */
+.scoreInput {
+  inline-size: var(--ds-size-56);
+  min-block-size: var(--ds-size-56);
+}

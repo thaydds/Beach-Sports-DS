@@ -84,3 +84,16 @@ foi interpretado conforme esse contrato explícito. Finished só mostra o
 vencedor fornecido. Ícones são exports originais usados como máscaras currentColor.
 Nenhum token, versão ou dependência foi alterado. Novas exportações chegam ao npm
 pela próxima release; o Storybook usa o workspace.
+
+## Score content — edição de placar
+
+O slot nativo do Figma Live (Compact/Expanded) aceita Body composto com Inputs reais do DS.
+No React, `scoreContent={{ A: <Input ... />, B: <Input ... /> }}` substitui somente
+os valores nas colunas de cada time; preserva labels, jogadores, ação, metadados e footer.
+Finished não aceita scoreContent e sempre apresenta os números de teamA/teamB.
+`statusLabel` permite “Em andamento” sem mudar o estado estrutural nem inferir resultado.
+
+Os exemplos usam Input real em uma caixa56×56 com tokens size/56, sem card “Placar”
+separado. Regras de inteiros, empate, confirmação e persistência pertencem à aplicação.
+Fonte atual conferida em10nov2026: instância2184:17980, slot2184:26846, Body com
+Inputs2184:27032 e2184:27037. [Figma](https://www.figma.com/design/baO5SbbaGO01QTGc8d5M0P?node-id=2184-17980).

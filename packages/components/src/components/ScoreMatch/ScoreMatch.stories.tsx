@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { Input } from '../Input/Input';
+import styles from './ScoreMatch.module.css';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ScoreMatch } from './ScoreMatch';
 import {
@@ -16,12 +19,12 @@ const meta = {
     ...matchTeams,
     density: 'compact',
   },
-  render: ({ state, winnerLabel, ...args }) => (
+  render: ({ state, winnerLabel, scoreContent, ...args }) => (
     <ScoreMatch
       {...args}
       {...(state === 'finished'
         ? { state, winnerLabel: winnerLabel ?? 'Time A · Vencedor' }
-        : { state: 'live' })}
+        : { state: 'live', scoreContent })}
     />
   ),
   argTypes: {
@@ -59,3 +62,41 @@ export const LongContent: Story = {
     ),
   ],
 };
+
+function EditableScores({ density = 'compact' }: { density?: 'compact' | 'expanded' }) {
+  const [a, setA] = useState('21');
+  const [b, setB] = useState('18');
+  return (
+    <ScoreMatch
+      title="Partida #015"
+      metadata="Exemplo de edição"
+      statusLabel="Em andamento"
+      {...matchTeams}
+      density={density}
+      description="Partida em andamento"
+      scoreContent={{
+        A: (
+          <Input
+            className={styles.scoreInput}
+            aria-label="Placar Time A"
+            inputMode="numeric"
+            value={a}
+            onChange={(e) => setA(e.target.value)}
+          />
+        ),
+        B: (
+          <Input
+            className={styles.scoreInput}
+            aria-label="Placar Time B"
+            inputMode="numeric"
+            value={b}
+            onChange={(e) => setB(e.target.value)}
+          />
+        ),
+      }}
+    />
+  );
+}
+export const Editable: Story = { render: () => <EditableScores /> };
+export const EditableExpanded: Story = { render: () => <EditableScores density="expanded" /> };
+export const EditableDark: Story = { ...Editable, globals: { theme: 'dark' } };
