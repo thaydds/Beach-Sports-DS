@@ -173,3 +173,15 @@ Não foi feita migração de major.
   de implementação, removidas com reduced motion; não criam tokens de movimento.
 - Stories são excluídas da emissão de declarações. A documentação do Button é
   um input explícito do build Storybook para invalidar seu cache.
+
+## Loading e Modal — export de 10 nov 2026
+
+- Loading tem somente spinner SM/MD/LG16/24/32, action/default e stroke/control. Nome
+  acessível não visual; sem Label/Show label/Orientation. Button loading permanece intacto.
+- Modal segue slots Content/Actions, título e descrição configuráveis. Busy é estado
+  operacional genérico; Default/Saving/Error são composições documentadas, sem API do Volley.
+- Dialog nativo preserva herança de tema e fornece top layer; complemento explícito
+  contém Tab, scroll e dispensa enquanto busy. Sem dependências ou polyfill novos.
+- Lacuna do Figma mantida e documentada: text/primary a48% no backdrop, sem novo token
+  canônico. Max-width480 é recomendação de layout com exceção localizada no Stylelint.
+- Fonte, geometria, limites e orientação de uso em docs/components/loading.md e modal.md.

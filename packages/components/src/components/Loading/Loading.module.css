@@ -1,0 +1,52 @@
+.loading {
+  --loading-size: var(--ds-size-16);
+
+  display: inline-flex;
+  flex: none;
+  inline-size: var(--loading-size);
+  block-size: var(--loading-size);
+  color: var(--ds-color-action-default);
+  vertical-align: middle;
+}
+
+.loading[data-size='md'] {
+  --loading-size: var(--ds-size-24);
+}
+
+.loading[data-size='lg'] {
+  --loading-size: var(--ds-size-32);
+}
+
+.loading svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  animation: spin 900ms linear infinite;
+}
+
+.loading circle {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: var(--ds-stroke-control);
+  stroke-dasharray: 75 25;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading svg {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .loading {
+    color: CanvasText;
+  }
+}
