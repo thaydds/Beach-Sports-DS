@@ -1,0 +1,975 @@
+{
+  "exportedAt": "2026-11-10T03:14:44.271Z",
+  "originalSha256": "2f3c492ec11b166817d2183891fa53e247b028a48572da4f91500c63d2191637",
+  "extractSha256": "4ad26bd88f27cda8d25916bfb2989ec8fd5694003ff180aea5071a28f801b2fb",
+  "coverage": {
+    "scope": "Loading and Modal sections; all variables and styles retained",
+    "complete": true,
+    "warnings": [],
+    "limitations": [
+      "No detached-instance detection: manually drawn copies require visual review.",
+      "No behavior or visual equivalence certification.",
+      "Export is a point-in-time snapshot, not a live connection."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "2184:15754",
+      "name": "Size=SM",
+      "type": "COMPONENT",
+      "pageId": "0:1",
+      "parentId": "2184:15772",
+      "masterId": "2184:15754",
+      "visible": true,
+      "opacity": 1,
+      "width": 16,
+      "height": 16,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "HORIZONTAL",
+      "layoutSizingHorizontal": "HUG",
+      "layoutSizingVertical": "HUG",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "AUTO",
+      "paddingTop": 0,
+      "paddingRight": 0,
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "itemSpacing": 8,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 0,
+      "topLeftRadius": 0,
+      "topRightRadius": 0,
+      "bottomLeftRadius": 0,
+      "bottomRightRadius": 0,
+      "strokeWeight": 1,
+      "fills": [],
+      "strokes": [],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "itemSpacing": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62083"
+        },
+        "paddingLeft": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingTop": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingRight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingBottom": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        }
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "e83b6e006d8f4ae101498d16f1867ac1856762f6",
+      "componentPropertyDefinitionsOwnerId": "2184:15772",
+      "componentSetId": "2184:15772",
+      "variantProperties": {
+        "Size": "SM"
+      }
+    },
+    {
+      "id": "2184:15760",
+      "name": "Size=MD",
+      "type": "COMPONENT",
+      "pageId": "0:1",
+      "parentId": "2184:15772",
+      "masterId": "2184:15760",
+      "visible": true,
+      "opacity": 1,
+      "width": 24,
+      "height": 24,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "HORIZONTAL",
+      "layoutSizingHorizontal": "HUG",
+      "layoutSizingVertical": "HUG",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "AUTO",
+      "paddingTop": 0,
+      "paddingRight": 0,
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "itemSpacing": 8,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 0,
+      "topLeftRadius": 0,
+      "topRightRadius": 0,
+      "bottomLeftRadius": 0,
+      "bottomRightRadius": 0,
+      "strokeWeight": 1,
+      "fills": [],
+      "strokes": [],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "itemSpacing": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62083"
+        },
+        "paddingLeft": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingTop": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingRight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingBottom": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        }
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "2d64d07b8ba39f542fb23a6078450bccff44840a",
+      "componentPropertyDefinitionsOwnerId": "2184:15772",
+      "componentSetId": "2184:15772",
+      "variantProperties": {
+        "Size": "MD"
+      }
+    },
+    {
+      "id": "2184:15766",
+      "name": "Size=LG",
+      "type": "COMPONENT",
+      "pageId": "0:1",
+      "parentId": "2184:15772",
+      "masterId": "2184:15766",
+      "visible": true,
+      "opacity": 1,
+      "width": 32,
+      "height": 32,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "HORIZONTAL",
+      "layoutSizingHorizontal": "HUG",
+      "layoutSizingVertical": "HUG",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "AUTO",
+      "paddingTop": 0,
+      "paddingRight": 0,
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "itemSpacing": 8,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 0,
+      "topLeftRadius": 0,
+      "topRightRadius": 0,
+      "bottomLeftRadius": 0,
+      "bottomRightRadius": 0,
+      "strokeWeight": 1,
+      "fills": [],
+      "strokes": [],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "itemSpacing": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62083"
+        },
+        "paddingLeft": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingTop": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingRight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        },
+        "paddingBottom": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62079"
+        }
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "a1eaee69cd5bd2fe6d3e0348bf59c3f839a9a08a",
+      "componentPropertyDefinitionsOwnerId": "2184:15772",
+      "componentSetId": "2184:15772",
+      "variantProperties": {
+        "Size": "LG"
+      }
+    },
+    {
+      "id": "2184:15772",
+      "name": "Loading",
+      "type": "COMPONENT_SET",
+      "pageId": "0:1",
+      "parentId": "2184:15746",
+      "masterId": null,
+      "visible": true,
+      "opacity": 1,
+      "width": 1184,
+      "height": 100,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "NONE",
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "FIXED",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "FIXED",
+      "paddingTop": 0,
+      "paddingRight": 0,
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "itemSpacing": 0,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 5,
+      "topLeftRadius": 5,
+      "topRightRadius": 5,
+      "bottomLeftRadius": 5,
+      "bottomRightRadius": 5,
+      "strokeWeight": 1,
+      "fills": [],
+      "strokes": [],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {},
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "bfa7a9009fd533280c0dd471b8a302193fd7c174",
+      "componentPropertyDefinitionsOwnerId": "2184:15772",
+      "componentPropertyDefinitions": {
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "SM",
+          "variantOptions": ["SM", "MD", "LG"]
+        }
+      }
+    },
+    {
+      "id": "2184:15840",
+      "name": "State=Default",
+      "type": "COMPONENT",
+      "pageId": "0:1",
+      "parentId": "2184:15894",
+      "masterId": "2184:15840",
+      "visible": true,
+      "opacity": 1,
+      "width": 360,
+      "height": 292,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "VERTICAL",
+      "layoutSizingHorizontal": "FIXED",
+      "layoutSizingVertical": "HUG",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "FIXED",
+      "paddingTop": 24,
+      "paddingRight": 24,
+      "paddingBottom": 24,
+      "paddingLeft": 24,
+      "itemSpacing": 16,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 16,
+      "topLeftRadius": 16,
+      "topRightRadius": 16,
+      "bottomLeftRadius": 16,
+      "bottomRightRadius": 16,
+      "strokeWeight": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:2087:2768"
+            }
+          }
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.8627451062202454,
+            "g": 0.886274516582489,
+            "b": 0.9254902005195618
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:2087:2770"
+            }
+          }
+        }
+      ],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "itemSpacing": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62087"
+        },
+        "paddingLeft": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingTop": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingRight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingBottom": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "topLeftRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "topRightRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "bottomLeftRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "bottomRightRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "strokeTopWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeBottomWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeLeftWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeRightWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "fills": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2087:2768"
+          }
+        ],
+        "strokes": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2087:2770"
+          }
+        ]
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62062": "2098:2",
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "41fce5797b63ba10da76c4631224c6dfe8cdf1d5",
+      "componentPropertyDefinitionsOwnerId": "2184:15894",
+      "componentSetId": "2184:15894",
+      "variantProperties": {
+        "State": "Default"
+      }
+    },
+    {
+      "id": "2184:15852",
+      "name": "State=Saving",
+      "type": "COMPONENT",
+      "pageId": "0:1",
+      "parentId": "2184:15894",
+      "masterId": "2184:15852",
+      "visible": true,
+      "opacity": 1,
+      "width": 360,
+      "height": 298,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "VERTICAL",
+      "layoutSizingHorizontal": "FIXED",
+      "layoutSizingVertical": "HUG",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "FIXED",
+      "paddingTop": 24,
+      "paddingRight": 24,
+      "paddingBottom": 24,
+      "paddingLeft": 24,
+      "itemSpacing": 16,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 16,
+      "topLeftRadius": 16,
+      "topRightRadius": 16,
+      "bottomLeftRadius": 16,
+      "bottomRightRadius": 16,
+      "strokeWeight": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:2087:2768"
+            }
+          }
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.8627451062202454,
+            "g": 0.886274516582489,
+            "b": 0.9254902005195618
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:2087:2770"
+            }
+          }
+        }
+      ],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "itemSpacing": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62087"
+        },
+        "paddingLeft": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingTop": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingRight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingBottom": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "topLeftRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "topRightRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "bottomLeftRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "bottomRightRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "strokeTopWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeBottomWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeLeftWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeRightWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "fills": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2087:2768"
+          }
+        ],
+        "strokes": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2087:2770"
+          }
+        ]
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62062": "2098:2",
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "a17b4836ae262d2ff52c50b8d978d623205b1a26",
+      "componentPropertyDefinitionsOwnerId": "2184:15894",
+      "componentSetId": "2184:15894",
+      "variantProperties": {
+        "State": "Saving"
+      }
+    },
+    {
+      "id": "2184:15875",
+      "name": "State=Error",
+      "type": "COMPONENT",
+      "pageId": "0:1",
+      "parentId": "2184:15894",
+      "masterId": "2184:15875",
+      "visible": true,
+      "opacity": 1,
+      "width": 360,
+      "height": 318,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "VERTICAL",
+      "layoutSizingHorizontal": "FIXED",
+      "layoutSizingVertical": "HUG",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "FIXED",
+      "paddingTop": 24,
+      "paddingRight": 24,
+      "paddingBottom": 24,
+      "paddingLeft": 24,
+      "itemSpacing": 16,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 16,
+      "topLeftRadius": 16,
+      "topRightRadius": 16,
+      "bottomLeftRadius": 16,
+      "bottomRightRadius": 16,
+      "strokeWeight": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:2087:2768"
+            }
+          }
+        }
+      ],
+      "strokes": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.8627451062202454,
+            "g": 0.886274516582489,
+            "b": 0.9254902005195618
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:2087:2770"
+            }
+          }
+        }
+      ],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "itemSpacing": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62087"
+        },
+        "paddingLeft": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingTop": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingRight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "paddingBottom": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62091"
+        },
+        "topLeftRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "topRightRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "bottomLeftRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "bottomRightRadius": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62119"
+        },
+        "strokeTopWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeBottomWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeLeftWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "strokeRightWeight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62123"
+        },
+        "fills": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2087:2768"
+          }
+        ],
+        "strokes": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2087:2770"
+          }
+        ]
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62062": "2098:2",
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "d86e9bce1af2dfac930860614c212cdc328ea213",
+      "componentPropertyDefinitionsOwnerId": "2184:15894",
+      "componentSetId": "2184:15894",
+      "variantProperties": {
+        "State": "Error"
+      }
+    },
+    {
+      "id": "2184:15894",
+      "name": "Modal",
+      "type": "COMPONENT_SET",
+      "pageId": "0:1",
+      "parentId": "2184:15832",
+      "masterId": null,
+      "visible": true,
+      "opacity": 1,
+      "width": 1184,
+      "height": 366,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "NONE",
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "FIXED",
+      "primaryAxisSizingMode": "AUTO",
+      "counterAxisSizingMode": "FIXED",
+      "paddingTop": 0,
+      "paddingRight": 0,
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "itemSpacing": 0,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 5,
+      "topLeftRadius": 5,
+      "topRightRadius": 5,
+      "bottomLeftRadius": 5,
+      "bottomRightRadius": 5,
+      "strokeWeight": 1,
+      "fills": [],
+      "strokes": [],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {},
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62062": "2098:2",
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "f4b61daf38359064aef72e752a14d046488af7c3",
+      "componentPropertyDefinitionsOwnerId": "2184:15894",
+      "componentPropertyDefinitions": {
+        "Title#2184:15": {
+          "type": "TEXT",
+          "defaultValue": "Salvar partida?"
+        },
+        "Description#2184:16": {
+          "type": "TEXT",
+          "defaultValue": "Os times e o resultado ficarão disponíveis em todos os dispositivos."
+        },
+        "Show description#2184:17": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Content#2184:18": {
+          "type": "SLOT",
+          "description": "Conteúdo livre: textos e componentes do DS.",
+          "preferredValues": []
+        },
+        "Actions#2184:19": {
+          "type": "SLOT",
+          "description": "Ações configuráveis: instâncias de Button do DS.",
+          "preferredValues": []
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": ["Default", "Saving", "Error"]
+        }
+      }
+    },
+    {
+      "id": "2184:16044",
+      "name": "Modal Overlay",
+      "type": "COMPONENT",
+      "pageId": "0:1",
+      "parentId": "2184:15832",
+      "masterId": "2184:16044",
+      "visible": true,
+      "opacity": 1,
+      "width": 393,
+      "height": 640,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutMode": "VERTICAL",
+      "layoutSizingHorizontal": "FIXED",
+      "layoutSizingVertical": "FIXED",
+      "primaryAxisSizingMode": "FIXED",
+      "counterAxisSizingMode": "FIXED",
+      "paddingTop": 16,
+      "paddingRight": 16,
+      "paddingBottom": 16,
+      "paddingLeft": 16,
+      "itemSpacing": 0,
+      "counterAxisSpacing": 0,
+      "cornerRadius": 0,
+      "topLeftRadius": 0,
+      "topRightRadius": 0,
+      "bottomLeftRadius": 0,
+      "bottomRightRadius": 0,
+      "strokeWeight": 1,
+      "fills": [],
+      "strokes": [],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "paddingLeft": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62087"
+        },
+        "paddingTop": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62087"
+        },
+        "paddingRight": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62087"
+        },
+        "paddingBottom": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:2098:62087"
+        }
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2098:62062": "2098:2",
+        "VariableCollectionId:2098:62060": "2098:0",
+        "VariableCollectionId:2098:62061": "2098:1",
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      },
+      "key": "ea9c7b2ce1901fc9267bc6ab8e9293d475ca3771",
+      "componentPropertyDefinitionsOwnerId": "2184:16044",
+      "componentPropertyDefinitions": {
+        "Dialog#2184:20": {
+          "type": "SLOT",
+          "description": "Modal configurável: selecione a instância aninhada para título, descrição, Content, Actions e State.",
+          "preferredValues": []
+        }
+      },
+      "variantProperties": null
+    },
+    {
+      "id": "2184:16045",
+      "name": "Backdrop · opacidade direta documentada",
+      "type": "RECTANGLE",
+      "pageId": "0:1",
+      "parentId": "2184:16044",
+      "masterId": "2184:16044",
+      "visible": true,
+      "opacity": 0.47999998927116394,
+      "width": 393,
+      "height": 640,
+      "minWidth": null,
+      "maxWidth": null,
+      "minHeight": null,
+      "maxHeight": null,
+      "layoutSizingHorizontal": "FIXED",
+      "layoutSizingVertical": "FIXED",
+      "cornerRadius": 0,
+      "topLeftRadius": 0,
+      "topRightRadius": 0,
+      "bottomLeftRadius": 0,
+      "bottomRightRadius": 0,
+      "strokeWeight": 1,
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.08627451211214066,
+            "g": 0.10980392247438431,
+            "b": 0.1568627506494522
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:2087:2772"
+            }
+          }
+        }
+      ],
+      "strokes": [],
+      "effects": [],
+      "fillStyleId": "",
+      "strokeStyleId": "",
+      "effectStyleId": "",
+      "boundVariables": {
+        "fills": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2087:2772"
+          }
+        ]
+      },
+      "explicitVariableModes": {},
+      "resolvedVariableModes": {
+        "VariableCollectionId:2087:2711": "2087:15",
+        "VariableCollectionId:2087:2765": "2087:16"
+      }
+    }
+  ]
+}

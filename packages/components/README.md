@@ -3,7 +3,7 @@
 Biblioteca React do Beach Sports DS, com TypeScript e CSS Modules.
 O workspace exporta `Button`, `IconButton`, `Typography`, `Card`, `Avatar`,
 `Badge`, `Chip`, `Input`, `FormField`, `Checkbox`, `ScoreMatch`, `Ranking`,
-`RankingItem` e seus tipos. Novas exportações
+`RankingItem`, `PlayerCard`, `MatchCard`, `Loading`, `Modal` e seus tipos. Novas exportações
 chegam ao npm pelo fluxo de release; confira o CHANGELOG da versão instalada.
 
 ```sh
@@ -39,3 +39,6 @@ Para formulários, componha `FormField` (que já usa `Input` e `Typography`),
 
 Para partidas e classificação, use `ScoreMatch` e `Ranking` com `RankingItem`.
 Resultados, pontos, posições e desempates são fornecidos pelo produto.
+
+Para carregamento de regiões, use [Loading](../../docs/components/loading.md), sem texto visual.
+Para diálogos, componha [Modal](../../docs/components/modal.md) com os controles existentes.

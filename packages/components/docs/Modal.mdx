@@ -1,0 +1,16 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Modal/Modal.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/modal.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="MODAL" />
+</Unstyled>
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Playground} />
+<Canvas of={Stories.Saving} />
+<Canvas of={Stories.Error} />
+<Canvas of={Stories.LongContent} />
+<Canvas of={Stories.WithoutTitle} />
+<Canvas of={Stories.Dark} />

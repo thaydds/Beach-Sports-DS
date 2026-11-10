@@ -1,0 +1,13 @@
+import { Meta, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as Stories from '../src/components/Loading/Loading.stories';
+import { TechnicalReference } from './ui/FoundationDocs';
+import guide from '../../../docs/components/loading.md?raw';
+
+<Meta of={Stories} />
+<Unstyled>
+  <TechnicalReference markdown={guide} section="LOADING" />
+</Unstyled>
+<Controls of={Stories.Playground} />
+<Canvas of={Stories.Playground} />
+<Canvas of={Stories.Sizes} />
+<Canvas of={Stories.Dark} />

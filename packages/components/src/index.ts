@@ -52,3 +52,6 @@ export {
   type RankingEmphasis,
 } from './components/Ranking/RankingItem';
 export type { RankingDensity } from './components/Ranking/RankingContext';
+
+export { Loading, type LoadingProps, type LoadingSize } from './components/Loading/Loading';
+export { Modal, type ModalProps, type ModalCloseReason } from './components/Modal/Modal';

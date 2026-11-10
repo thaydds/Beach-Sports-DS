@@ -1,0 +1,51 @@
+.modal {
+  box-sizing: border-box;
+  inline-size: calc(100% - 2 * var(--ds-space-16));
+
+  /* Layout recommendation from Figma; not a canonical token. */
+  max-inline-size: 480px; /* stylelint-disable-line unit-disallowed-list */
+  max-block-size: calc(100dvh - 2 * var(--ds-space-16));
+  margin: auto;
+  padding: var(--ds-space-24);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: var(--ds-stroke-subtle) solid var(--ds-color-border-subtle);
+  border-radius: var(--ds-radius-16);
+  background: var(--ds-color-bg-raised);
+  color: var(--ds-color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.modal[open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-16);
+}
+
+.modal::backdrop {
+  /* Figma exception: text/primary at 48%; no canonical scrim token exists. */
+  background: color-mix(in srgb, var(--ds-color-text-primary) 48%, transparent);
+}
+
+.modal > * {
+  flex: none;
+  min-inline-size: 0;
+}
+
+.content,
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-12);
+}
+
+.modal:focus-visible {
+  outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+  outline-offset: var(--ds-focus-offset);
+}
+
+@media (forced-colors: active) {
+  .modal {
+    border-color: CanvasText;
+  }
+}
