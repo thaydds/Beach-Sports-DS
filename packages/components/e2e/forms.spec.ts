@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './fixtures';
 
 async function open(page: Page, id: string, theme: string) {
   await page.goto(`/iframe.html?id=componentes-${id}&viewMode=story&globals=theme:${theme}`);

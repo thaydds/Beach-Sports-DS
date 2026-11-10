@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './fixtures';
 
 async function open(page: Page, id: string, theme: string) {
   await page.goto(`/iframe.html?id=componentes-${id}&viewMode=story&globals=theme:${theme}`);
@@ -185,13 +185,23 @@ test.describe('Chip native touch feedback', () => {
       await open(page, 'chip--variants', theme);
       for (const chip of await page.locator('[data-chip]').all()) {
         if ((await chip.getAttribute('data-disabled')) === 'true') continue;
-        const select = chip.getByRole('button').first();
-        const chipBox = await chip.boundingBox();
-        const buttonBox = await select.boundingBox();
-        expect(buttonBox!.x - chipBox!.x).toBeLessThanOrEqual(1);
-        const removalBox = await chip.getByRole('button').last().boundingBox();
-        expect(Math.abs(buttonBox!.x + buttonBox!.width - removalBox!.x)).toBeLessThanOrEqual(1);
-        expect(buttonBox!.height).toBeGreaterThanOrEqual(chipBox!.height - 2);
+        // Font/layout changes may happen between separate boundingBox() calls.
+        // Read all three boxes in one layout and retry the same strict contract.
+        await expect
+          .poll(() =>
+            chip.evaluate((node) => {
+              const buttons = node.querySelectorAll('button');
+              const pill = node.getBoundingClientRect();
+              const selection = buttons[0]!.getBoundingClientRect();
+              const removal = buttons[buttons.length - 1]!.getBoundingClientRect();
+              return {
+                ownsLeftEdge: Math.abs(selection.x - pill.x) <= 1,
+                adjacentToRemoval: Math.abs(selection.right - removal.x) <= 1,
+                ownsHeight: selection.height >= pill.height - 2,
+              };
+            }),
+          )
+          .toEqual({ ownsLeftEdge: true, adjacentToRemoval: true, ownsHeight: true });
       }
       await open(page, 'chip--composition', theme);
       const pill = page.locator('[data-chip]');

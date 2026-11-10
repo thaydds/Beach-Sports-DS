@@ -53,6 +53,9 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
+    // Only the Playwright fixture sets this pre-boot flag. Normal Storybook
+    // retains automatic audits and test:error; AxeBuilder stays active in E2E.
+    a11y: { manual: Reflect.get(globalThis, '__BEACHSPORTS_PLAYWRIGHT_A11Y__') === true },
     theme: storedTheme(),
     viewport: { value: 'mobile', isRotated: false },
   },

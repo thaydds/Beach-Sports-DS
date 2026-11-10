@@ -185,3 +185,17 @@ Não foi feita migração de major.
 - Lacuna do Figma mantida e documentada: text/primary a48% no backdrop, sem novo token
   canônico. Max-width480 é recomendação de layout com exceção localizada no Stylelint.
 - Fonte, geometria, limites e orientação de uso em docs/components/loading.md e modal.md.
+
+## Um executor de acessibilidade por página
+
+- No E2E, a fixture injeta um marcador antes de inicializar qualquer frame. O
+  Storybook usa `globals.a11y.manual` somente nesse contexto; os testes continuam
+  executando AxeBuilder e verificando violações. Não há alteração de regras ou
+  repetição automática de auditorias que falharam.
+- O Storybook normal mantém auditoria automática e `a11y.test: error`. Isso evita
+  `Axe is already running` quando a auditoria automática do addon concorre com
+  a auditoria explícita do Playwright após uma navegação.
+- As verificações de geometria do Chip medem pill/seleção/remoção no mesmo layout
+  e aguardam as mesmas tolerâncias existentes. Leituras separadas de boundingBox
+  podiam combinar medidas de antes/depois de uma mudança de fonte/layout. Nenhum
+  estilo ou comportamento do Chip foi alterado.
