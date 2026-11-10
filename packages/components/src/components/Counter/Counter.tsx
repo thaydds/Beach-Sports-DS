@@ -96,6 +96,7 @@ export const Counter = forwardRef<HTMLInputElement, CounterProps>(function Count
             <span
               key={i}
               className={styles.cell}
+              data-slot="counter-digit"
               data-active={
                 focused &&
                 (selection.start === selection.end
@@ -108,7 +109,7 @@ export const Counter = forwardRef<HTMLInputElement, CounterProps>(function Count
               }
             >
               <Typography as="span" variant="heading-l" tone="inherit">
-                {valid ? text.padStart(digits, '0')[i] : ''}
+                {valid ? format(Number(text))[i] : ''}
               </Typography>
             </span>
           ))}

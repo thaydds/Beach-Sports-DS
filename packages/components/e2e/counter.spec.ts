@@ -8,7 +8,9 @@ for (const theme of ['light', 'dark'])
     );
     const field = page.getByRole('spinbutton', { name: 'Placar Time A', exact: true });
     await expect(field).toHaveValue('21');
-    await field.fill('09');
+    await field.fill('009');
+    await expect(field).toHaveAttribute('aria-valuenow', '9');
+    await expect(field.locator('..').locator('[data-slot=counter-digit]')).toHaveText(['0', '9']);
     await field.press('ArrowUp');
     await expect(field).toHaveValue('10');
     await field.press('Home');
